@@ -165,7 +165,7 @@ function App() {
               <div className="p-4 md:p-6 flex-1 flex flex-col overflow-y-auto bg-slate-50 dark:bg-slate-950">
                 {/* Greeting */}
                 <div className="flex items-center justify-between mb-4">
-                  <h1 className="text-base md:text-lg font-semibold">Bom dia, Maria!</h1>
+                  <h1 className="text-base md:text-lg font-semibold">Bom dia, Roberto!</h1>
                   <div className="flex items-center gap-2 text-xs text-slate-500">
                     <span>Ano:</span>
                     <div className="px-2 py-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded text-xs">2025</div>
