@@ -290,7 +290,7 @@ function App() {
         </section>
 
         {/* AI Section */}
-        <section id="ia" className="py-20">
+        <section id="ia" className="pt-20 pb-12">
           <div className="container mx-auto px-6">
             <div className="bg-slate-950 rounded-[3rem] p-8 md:p-16 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#3cb371] opacity-10 blur-[120px] -mr-40 -mt-40" />
@@ -354,7 +354,7 @@ function App() {
         </section>
 
         {/* Future Features */}
-        <section className="pt-2 pb-20">
+        <section className="pb-20">
           <div className="container mx-auto px-6">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4">O que vem por aí</h2>
