@@ -83,13 +83,81 @@ function App() {
             Planeje e acompanhe seus objetivos em todas as áreas da vida com o sistema estruturado de dimensões do Resolu.app.
           </p>
           
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
             <a href="https://my.resolu.app/cadastro" className="px-8 py-4 bg-[#3cb371] text-white rounded-full font-medium hover:bg-[#2e8b57] flex items-center gap-2 inline-flex">
               Começar agora <ArrowRight className="w-5 h-5" />
             </a>
             <a href="#features" className="px-8 py-4 border-2 border-slate-300 dark:border-slate-700 rounded-full font-medium hover:bg-slate-50 dark:hover:bg-slate-900 inline-block">
               Ver como funciona
             </a>
+          </div>
+
+          {/* Mockup Preview */}
+          <div className="mt-20 relative group">
+            <div className="absolute -inset-4 bg-gradient-to-r from-[#3cb371] to-blue-500 rounded-[2.5rem] blur-2xl opacity-10 group-hover:opacity-20 transition-opacity" />
+            <div className="relative rounded-[2rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xl overflow-hidden aspect-[16/10] md:aspect-[21/9]">
+              {/* Simulated App Header */}
+              <div className="h-12 border-b border-slate-200 dark:border-slate-800 flex items-center px-6 gap-2">
+                <div className="flex gap-1.5">
+                  <div className="w-3 h-3 rounded-full bg-red-400" />
+                  <div className="w-3 h-3 rounded-full bg-amber-400" />
+                  <div className="w-3 h-3 rounded-full bg-green-400" />
+                </div>
+                <div className="ml-4 flex-1 flex items-center gap-2">
+                  <div className="h-4 w-4 rounded bg-[#3cb371]/20" />
+                  <div className="h-3 w-24 bg-slate-200 dark:bg-slate-700 rounded" />
+                </div>
+              </div>
+              {/* Simulated Content */}
+              <div className="p-6 md:p-8 grid grid-cols-12 gap-4 md:gap-6 h-[calc(100%-3rem)]">
+                {/* Sidebar */}
+                <div className="col-span-3 space-y-3 md:space-y-4">
+                  <div className="h-8 md:h-10 w-full bg-slate-100 dark:bg-slate-800 rounded-lg animate-pulse" />
+                  <div className="space-y-2">
+                    {[1, 2, 3, 4].map((i) => (
+                      <div key={i} className="h-12 bg-slate-50 dark:bg-slate-800/50 rounded-lg flex items-center gap-2 px-3">
+                        <div className="w-6 h-6 rounded bg-[#3cb371]/10" />
+                        <div className="flex-1 h-3 bg-slate-200 dark:bg-slate-700 rounded" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                {/* Main Content */}
+                <div className="col-span-9 space-y-4 md:space-y-6">
+                  <div className="h-16 md:h-24 w-full bg-gradient-to-r from-[#3cb371]/10 to-blue-500/10 rounded-2xl border border-[#3cb371]/20 flex items-center justify-center">
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 rounded-full bg-[#3cb371] flex items-center justify-center">
+                        <Star className="w-4 h-4 text-white" />
+                      </div>
+                      <div className="text-sm font-medium text-slate-700 dark:text-slate-300">Dashboard Resolu</div>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4 md:gap-6">
+                    <div className="h-24 md:h-32 bg-[#3cb371]/5 rounded-2xl border border-[#3cb371]/10 p-4 flex flex-col justify-between">
+                      <div className="text-xs text-slate-600 dark:text-slate-400">Objetivos</div>
+                      <div className="text-2xl font-bold text-[#3cb371]">6</div>
+                    </div>
+                    <div className="h-24 md:h-32 bg-slate-50 dark:bg-slate-800 rounded-2xl p-4 flex flex-col justify-between">
+                      <div className="text-xs text-slate-600 dark:text-slate-400">Hábitos</div>
+                      <div className="text-2xl font-bold">12</div>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-3 gap-4">
+                    {dimensions.slice(0, 3).map((dim, i) => {
+                      const Icon = dim.icon
+                      return (
+                        <div key={i} className="h-20 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-3 flex flex-col items-center justify-center gap-2">
+                          <div className="w-8 h-8 rounded-lg bg-[#3cb371]/10 text-[#3cb371] flex items-center justify-center">
+                            <Icon className="w-4 h-4" />
+                          </div>
+                          <div className="text-xs font-medium text-center">{dim.title}</div>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
