@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { 
   Sparkles, 
   ArrowRight, 
@@ -25,8 +25,20 @@ import {
   Info
 } from 'lucide-react'
 
+const APP_URL = (import.meta.env.VITE_APP_URL ?? 'https://my.resolu.app').replace(/\/$/, '')
+const SIGNUP_BASE = `${APP_URL}/cadastro`
+
+function getSignupUrl(): string {
+  if (typeof window === 'undefined') return SIGNUP_BASE
+  const params = new URLSearchParams(window.location.search)
+  const token = params.get('token') ?? params.get('invite') ?? params.get('code')
+  if (!token) return SIGNUP_BASE
+  return `${SIGNUP_BASE}?token=${encodeURIComponent(token)}`
+}
+
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const signupUrl = useMemo(getSignupUrl, [])
 
   const dimensions = [
     { icon: Users2, title: "Família", desc: "Relações familiares e tempo de qualidade" },
@@ -63,8 +75,8 @@ function App() {
           <nav className="hidden md:flex items-center gap-6">
             <a href="#features" className="text-sm hover:text-[#3cb371]">Funcionalidades</a>
             <a href="#ia" className="text-sm hover:text-[#3cb371]">IA</a>
-            <a href="https://my.resolu.app/login" className="text-sm hover:text-[#3cb371]">Entrar</a>
-            <a href="https://my.resolu.app/cadastro" className="px-4 py-2 bg-[#3cb371] text-white rounded-full text-sm font-medium hover:bg-[#2e8b57] inline-block">
+            <a href={`${APP_URL}/login`} className="text-sm hover:text-[#3cb371]">Entrar</a>
+            <a href={signupUrl} className="px-4 py-2 bg-[#3cb371] text-white rounded-full text-sm font-medium hover:bg-[#2e8b57] inline-block">
               Criar conta
             </a>
           </nav>
@@ -82,8 +94,8 @@ function App() {
           <div className="md:hidden absolute top-full left-0 right-0 bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 p-6 flex flex-col gap-4">
             <a href="#features" onClick={() => setMenuOpen(false)} className="text-sm hover:text-[#3cb371]">Funcionalidades</a>
             <a href="#ia" onClick={() => setMenuOpen(false)} className="text-sm hover:text-[#3cb371]">IA</a>
-            <a href="https://my.resolu.app/login" onClick={() => setMenuOpen(false)} className="text-sm hover:text-[#3cb371]">Entrar</a>
-            <a href="https://my.resolu.app/cadastro" onClick={() => setMenuOpen(false)} className="px-4 py-2 bg-[#3cb371] text-white rounded-full text-sm font-medium hover:bg-[#2e8b57] text-center">
+            <a href={`${APP_URL}/login`} onClick={() => setMenuOpen(false)} className="text-sm hover:text-[#3cb371]">Entrar</a>
+            <a href={signupUrl} onClick={() => setMenuOpen(false)} className="px-4 py-2 bg-[#3cb371] text-white rounded-full text-sm font-medium hover:bg-[#2e8b57] text-center">
               Criar conta
             </a>
           </div>
@@ -107,7 +119,7 @@ function App() {
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-            <a href="https://my.resolu.app/cadastro" className="px-8 py-4 bg-[#3cb371] text-white rounded-full font-medium hover:bg-[#2e8b57] flex items-center gap-2 inline-flex">
+            <a href={signupUrl} className="px-8 py-4 bg-[#3cb371] text-white rounded-full font-medium hover:bg-[#2e8b57] flex items-center gap-2 inline-flex">
               Começar agora <ArrowRight className="w-5 h-5" />
             </a>
             <a href="#features" className="px-8 py-4 border-2 border-slate-300 dark:border-slate-700 rounded-full font-medium hover:bg-slate-50 dark:hover:bg-slate-900 inline-block">
@@ -393,7 +405,7 @@ function App() {
             <div className="bg-[#3cb371] rounded-[3rem] p-12 md:p-20 text-center text-white">
               <h2 className="text-4xl md:text-5xl font-bold mb-6">Pronto para transformar seu ano?</h2>
               <p className="text-white/80 mb-10 text-lg">Junte-se a milhares de pessoas que já estão planejando com intenção.</p>
-              <a href="https://my.resolu.app/cadastro" className="px-10 py-5 bg-white text-[#3cb371] rounded-full font-medium hover:bg-slate-100 text-lg inline-block">
+              <a href={signupUrl} className="px-10 py-5 bg-white text-[#3cb371] rounded-full font-medium hover:bg-slate-100 text-lg inline-block">
                 Começar minha jornada grátis
               </a>
             </div>
