@@ -118,7 +118,7 @@ function App() {
           {/* Mockup Preview - Interface Real do App */}
           <div className="mt-20 relative group">
             <div className="absolute -inset-4 bg-gradient-to-r from-[#3cb371] to-blue-500 rounded-[2.5rem] blur-2xl opacity-10 group-hover:opacity-20 transition-opacity" />
-            <div className="relative rounded-[2rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xl overflow-hidden flex flex-col h-[500px] md:h-[600px]">
+            <div className="relative rounded-[2rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xl overflow-hidden flex flex-col h-[600px] md:h-[600px]">
               {/* Header Verde Real - muda para dark no dark mode */}
               <div className="h-12 md:h-14 bg-[#3cb371] dark:bg-slate-950 text-white dark:text-slate-100 flex items-center justify-between px-4 md:px-6 border-b border-[#3cb371]/20 dark:border-slate-800 shrink-0">
                 <div className="flex items-center gap-3">
