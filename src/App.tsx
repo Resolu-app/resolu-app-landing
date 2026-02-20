@@ -111,10 +111,23 @@ function App() {
               {/* Header Verde Real - muda para dark no dark mode */}
               <div className="h-14 bg-[#3cb371] dark:bg-slate-950 text-white dark:text-slate-100 flex items-center justify-between px-4 md:px-6 border-b border-[#3cb371]/20 dark:border-slate-800">
                 <div className="flex items-center gap-3">
-                  <div className="w-6 h-6 rounded bg-white/20 dark:bg-slate-800 flex items-center justify-center">
-                    <div className="w-3 h-3 rounded-full border-2 border-white dark:border-slate-600" />
+                  {/* Logo Resolu Real */}
+                  <div className="flex items-center gap-1.5 font-bold tracking-tight text-xl" style={{ fontFamily: "'Comfortaa', sans-serif" }}>
+                    <svg
+                      className="w-6 h-6 text-white"
+                      viewBox="-8 -5 115 110"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="12"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden
+                    >
+                      <path d="M 80,35 A 40,40 0 1,0 40,90" />
+                      <polyline points="25,55 45,75 85,30" />
+                    </svg>
+                    <span className="text-white tracking-[-0.03em]">resolu.app</span>
                   </div>
-                  <span className="text-sm font-bold">resolu<span className="opacity-80">.app</span></span>
                 </div>
                 <nav className="hidden md:flex items-center gap-2">
                   <div className="px-3 py-2 rounded-lg bg-white/20 dark:bg-[#3cb371]/20 dark:text-[#3cb371] dark:border-l-2 dark:border-[#3cb371] text-xs font-medium dark:font-semibold flex items-center gap-2">
