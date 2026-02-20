@@ -42,11 +42,22 @@ function App() {
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2 font-bold text-xl">
-            <div className="w-8 h-8 rounded-lg bg-[#3cb371] flex items-center justify-center">
-              <div className="w-4 h-4 border-2 border-white rounded-full" />
-            </div>
-            <span>resolu<span className="text-slate-400">.app</span></span>
+          {/* Logo Resolu Real */}
+          <div className="flex items-center gap-1.5 font-bold tracking-tight text-xl" style={{ fontFamily: "'Comfortaa', sans-serif" }}>
+            <svg
+              className="w-6 h-6 text-[#3cb371]"
+              viewBox="-8 -5 115 110"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="12"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden
+            >
+              <path d="M 80,35 A 40,40 0 1,0 40,90" />
+              <polyline points="25,55 45,75 85,30" />
+            </svg>
+            <span className="text-slate-900 dark:text-slate-100 tracking-[-0.03em]">resolu<span className="text-slate-400 dark:text-slate-500">.app</span></span>
           </div>
           
           <nav className="hidden md:flex items-center gap-6">
