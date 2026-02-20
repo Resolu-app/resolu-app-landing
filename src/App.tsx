@@ -87,9 +87,9 @@ function App() {
             <a href="https://my.resolu.app/cadastro" className="px-8 py-4 bg-[#3cb371] text-white rounded-full font-medium hover:bg-[#2e8b57] flex items-center gap-2 inline-flex">
               Começar agora <ArrowRight className="w-5 h-5" />
             </a>
-            <button className="px-8 py-4 border-2 border-slate-300 dark:border-slate-700 rounded-full font-medium hover:bg-slate-50 dark:hover:bg-slate-900">
+            <a href="#features" className="px-8 py-4 border-2 border-slate-300 dark:border-slate-700 rounded-full font-medium hover:bg-slate-50 dark:hover:bg-slate-900 inline-block">
               Ver como funciona
-            </button>
+            </a>
           </div>
         </section>
 
@@ -157,10 +157,6 @@ function App() {
                       <p><strong className="text-white">Pequenos passos:</strong> Transforme objetivos ambiciosos em micro-tarefas diárias com auxílio inteligente.</p>
                     </div>
                   </div>
-                  
-                  <a href="https://my.resolu.app/cadastro" className="mt-8 px-6 py-3 bg-[#3cb371] text-white rounded-full font-medium hover:bg-[#2e8b57] inline-block">
-                    Experimentar Assistente IA
-                  </a>
                 </div>
 
                 <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8">
@@ -176,10 +172,10 @@ function App() {
                   
                   <div className="space-y-3">
                     <div className="bg-white/10 p-4 rounded-2xl rounded-tl-none text-slate-200 text-sm">
-                      Vi que você completou 80% das tarefas de "Saúde" esta semana. Ótimo trabalho!
+                      Vi que você tem focado na <b>Saúde</b>. Um avanço de 80% em relação ao mês passado!
                     </div>
                     <div className="bg-[#3cb371]/20 p-4 rounded-2xl rounded-tr-none text-white text-sm ml-auto max-w-[80%]">
-                      Obrigado pela dica!
+                      Obrigado pela informação!
                     </div>
                   </div>
                 </div>
