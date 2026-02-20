@@ -200,16 +200,16 @@ function App() {
                 {/* Charts Row */}
                 <div className="grid md:grid-cols-3 gap-2 md:gap-4 mb-2 md:mb-4 flex-1 min-h-0">
                   {/* Donut Chart */}
-                  <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-2 md:p-4 flex items-center justify-center">
-                    <div className="relative w-16 h-16 md:w-32 md:h-32">
+                  <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-3 md:p-4 flex items-center justify-center">
+                    <div className="relative w-20 h-20 md:w-32 md:h-32">
                       <svg className="w-full h-full transform -rotate-90">
-                        <circle cx="50%" cy="50%" r="40%" fill="none" stroke="currentColor" strokeWidth="8" className="text-slate-200 dark:text-slate-800" />
-                        <circle cx="50%" cy="50%" r="40%" fill="none" stroke="currentColor" strokeWidth="8" strokeDasharray={`${2 * Math.PI * 40} ${2 * Math.PI * 40}`} strokeDashoffset={`${2 * Math.PI * 40 * 0.35}`} className="text-[#3cb371]" strokeLinecap="round" />
+                        <circle cx="50%" cy="50%" r="40%" fill="none" stroke="currentColor" strokeWidth="6" className="text-slate-200 dark:text-slate-800 md:strokeWidth-8" />
+                        <circle cx="50%" cy="50%" r="40%" fill="none" stroke="currentColor" strokeWidth="6" className="md:strokeWidth-8 text-[#3cb371]" strokeDasharray={`${2 * Math.PI * 40} ${2 * Math.PI * 40}`} strokeDashoffset={`${2 * Math.PI * 40 * 0.35}`} strokeLinecap="round" />
                       </svg>
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="text-center">
-                          <div className="text-lg md:text-xl font-bold text-[#3cb371]">35%</div>
-                          <div className="text-[10px] md:text-xs text-slate-500">Marcos</div>
+                          <div className="text-sm md:text-xl font-bold text-[#3cb371]">35%</div>
+                          <div className="text-[9px] md:text-xs text-slate-500">Marcos</div>
                         </div>
                       </div>
                     </div>
