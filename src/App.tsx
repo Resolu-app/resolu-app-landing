@@ -41,9 +41,9 @@ function App() {
             <a href="#features" className="text-sm hover:text-[#3cb371]">Funcionalidades</a>
             <a href="#ia" className="text-sm hover:text-[#3cb371]">IA</a>
             <a href="https://my.resolu.app/login" className="text-sm hover:text-[#3cb371]">Entrar</a>
-            <button className="px-4 py-2 bg-[#3cb371] text-white rounded-full text-sm font-medium hover:bg-[#2e8b57]">
+            <a href="https://my.resolu.app/cadastro" className="px-4 py-2 bg-[#3cb371] text-white rounded-full text-sm font-medium hover:bg-[#2e8b57] inline-block">
               Criar conta
-            </button>
+            </a>
           </nav>
 
           <button 
@@ -53,6 +53,18 @@ function App() {
             {menuOpen ? '✕' : '☰'}
           </button>
         </div>
+
+        {/* Mobile Menu */}
+        {menuOpen && (
+          <div className="md:hidden absolute top-full left-0 right-0 bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 p-6 flex flex-col gap-4">
+            <a href="#features" onClick={() => setMenuOpen(false)} className="text-sm hover:text-[#3cb371]">Funcionalidades</a>
+            <a href="#ia" onClick={() => setMenuOpen(false)} className="text-sm hover:text-[#3cb371]">IA</a>
+            <a href="https://my.resolu.app/login" onClick={() => setMenuOpen(false)} className="text-sm hover:text-[#3cb371]">Entrar</a>
+            <a href="https://my.resolu.app/cadastro" onClick={() => setMenuOpen(false)} className="px-4 py-2 bg-[#3cb371] text-white rounded-full text-sm font-medium hover:bg-[#2e8b57] text-center">
+              Criar conta
+            </a>
+          </div>
+        )}
       </header>
 
       <main className="pt-20">
@@ -72,9 +84,9 @@ function App() {
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button className="px-8 py-4 bg-[#3cb371] text-white rounded-full font-medium hover:bg-[#2e8b57] flex items-center gap-2">
+            <a href="https://my.resolu.app/cadastro" className="px-8 py-4 bg-[#3cb371] text-white rounded-full font-medium hover:bg-[#2e8b57] flex items-center gap-2 inline-flex">
               Começar agora <ArrowRight className="w-5 h-5" />
-            </button>
+            </a>
             <button className="px-8 py-4 border-2 border-slate-300 dark:border-slate-700 rounded-full font-medium hover:bg-slate-50 dark:hover:bg-slate-900">
               Ver como funciona
             </button>
@@ -146,9 +158,9 @@ function App() {
                     </div>
                   </div>
                   
-                  <button className="mt-8 px-6 py-3 bg-[#3cb371] text-white rounded-full font-medium hover:bg-[#2e8b57]">
+                  <a href="https://my.resolu.app/cadastro" className="mt-8 px-6 py-3 bg-[#3cb371] text-white rounded-full font-medium hover:bg-[#2e8b57] inline-block">
                     Experimentar Assistente IA
-                  </button>
+                  </a>
                 </div>
 
                 <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8">
@@ -216,9 +228,9 @@ function App() {
             <div className="bg-[#3cb371] rounded-[3rem] p-12 md:p-20 text-center text-white">
               <h2 className="text-4xl md:text-5xl font-bold mb-6">Pronto para transformar seu ano?</h2>
               <p className="text-white/80 mb-10 text-lg">Junte-se a milhares de pessoas que já estão planejando com intenção.</p>
-              <button className="px-10 py-5 bg-white text-[#3cb371] rounded-full font-medium hover:bg-slate-100 text-lg">
+              <a href="https://my.resolu.app/cadastro" className="px-10 py-5 bg-white text-[#3cb371] rounded-full font-medium hover:bg-slate-100 text-lg inline-block">
                 Começar minha jornada grátis
-              </button>
+              </a>
             </div>
           </div>
         </section>
