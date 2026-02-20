@@ -118,7 +118,7 @@ function App() {
           {/* Mockup Preview - Interface Real do App */}
           <div className="mt-20 relative group">
             <div className="absolute -inset-4 bg-gradient-to-r from-[#3cb371] to-blue-500 rounded-[2.5rem] blur-2xl opacity-10 group-hover:opacity-20 transition-opacity" />
-            <div className="relative rounded-[2rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xl overflow-hidden aspect-[16/10] md:aspect-[21/9]">
+            <div className="relative rounded-[2rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xl overflow-hidden flex flex-col max-h-[600px] md:max-h-[500px]">
               {/* Header Verde Real - muda para dark no dark mode */}
               <div className="h-14 bg-[#3cb371] dark:bg-slate-950 text-white dark:text-slate-100 flex items-center justify-between px-4 md:px-6 border-b border-[#3cb371]/20 dark:border-slate-800">
                 <div className="flex items-center gap-3">
@@ -162,7 +162,7 @@ function App() {
               </div>
               
               {/* Dashboard Content */}
-              <div className="p-4 md:p-6 h-[calc(100%-3.5rem)] overflow-y-auto bg-slate-50 dark:bg-slate-950">
+              <div className="p-4 md:p-6 min-h-0 flex flex-col bg-slate-50 dark:bg-slate-950">
                 {/* Greeting */}
                 <div className="flex items-center justify-between mb-4">
                   <h1 className="text-base md:text-lg font-semibold">Bom dia, Maria!</h1>
@@ -252,7 +252,7 @@ function App() {
                 </div>
 
                 {/* Link to Objetivos */}
-                <div className="flex items-center gap-1.5 text-xs text-[#3cb371] font-medium">
+                <div className="flex items-center gap-1.5 text-xs text-[#3cb371] font-medium mt-auto">
                   Ver detalhes em Objetivos
                   <ChevronRight className="w-3 h-3" />
                 </div>
