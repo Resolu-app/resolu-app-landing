@@ -118,9 +118,9 @@ function App() {
           {/* Mockup Preview - Interface Real do App */}
           <div className="mt-20 relative group">
             <div className="absolute -inset-4 bg-gradient-to-r from-[#3cb371] to-blue-500 rounded-[2.5rem] blur-2xl opacity-10 group-hover:opacity-20 transition-opacity" />
-            <div className="relative rounded-[2rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xl overflow-hidden flex flex-col h-[650px] md:h-[600px]">
+            <div className="relative rounded-[2rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xl overflow-hidden flex flex-col h-[500px] md:h-[600px]">
               {/* Header Verde Real - muda para dark no dark mode */}
-              <div className="h-14 bg-[#3cb371] dark:bg-slate-950 text-white dark:text-slate-100 flex items-center justify-between px-4 md:px-6 border-b border-[#3cb371]/20 dark:border-slate-800">
+              <div className="h-12 md:h-14 bg-[#3cb371] dark:bg-slate-950 text-white dark:text-slate-100 flex items-center justify-between px-4 md:px-6 border-b border-[#3cb371]/20 dark:border-slate-800 shrink-0">
                 <div className="flex items-center gap-3">
                   {/* Logo Resolu Real */}
                   <div className="flex items-center gap-1.5 font-bold tracking-tight text-xl" style={{ fontFamily: "'Comfortaa', sans-serif" }}>
@@ -162,18 +162,18 @@ function App() {
               </div>
               
               {/* Dashboard Content */}
-              <div className="p-4 md:p-6 flex-1 flex flex-col overflow-y-auto bg-slate-50 dark:bg-slate-950">
+              <div className="p-3 md:p-6 flex-1 flex flex-col overflow-hidden bg-slate-50 dark:bg-slate-950">
                 {/* Greeting */}
-                <div className="flex items-center justify-between mb-4">
-                  <h1 className="text-base md:text-lg font-semibold">Bom dia, Roberto!</h1>
+                <div className="flex items-center justify-between mb-2 md:mb-4">
+                  <h1 className="text-sm md:text-lg font-semibold">Bom dia, Maria!</h1>
                   <div className="flex items-center gap-2 text-xs text-slate-500">
-                    <span>Ano:</span>
+                    <span className="hidden md:inline">Ano:</span>
                     <div className="px-2 py-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded text-xs">2025</div>
                   </div>
                 </div>
 
                 {/* Dashboard Stats - 6 Cards */}
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3 mb-4">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-1.5 md:gap-3 mb-2 md:mb-4">
                   {[
                     { icon: Zap, label: 'Check-ins hoje', value: '8', color: 'text-blue-600' },
                     { icon: CheckCircle2, label: 'Check-ins na semana', value: '24', color: 'text-green-600' },
@@ -198,10 +198,10 @@ function App() {
                 </div>
 
                 {/* Charts Row */}
-                <div className="grid md:grid-cols-3 gap-3 md:gap-4 mb-4">
+                <div className="grid md:grid-cols-3 gap-2 md:gap-4 mb-2 md:mb-4 flex-1 min-h-0">
                   {/* Donut Chart */}
-                  <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 flex items-center justify-center">
-                    <div className="relative w-24 h-24 md:w-32 md:h-32">
+                  <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-2 md:p-4 flex items-center justify-center">
+                    <div className="relative w-16 h-16 md:w-32 md:h-32">
                       <svg className="w-full h-full transform -rotate-90">
                         <circle cx="50%" cy="50%" r="40%" fill="none" stroke="currentColor" strokeWidth="8" className="text-slate-200 dark:text-slate-800" />
                         <circle cx="50%" cy="50%" r="40%" fill="none" stroke="currentColor" strokeWidth="8" strokeDasharray={`${2 * Math.PI * 40} ${2 * Math.PI * 40}`} strokeDashoffset={`${2 * Math.PI * 40 * 0.35}`} className="text-[#3cb371]" strokeLinecap="round" />
@@ -216,27 +216,27 @@ function App() {
                   </div>
 
                   {/* Week Progress Chart */}
-                  <div className="md:col-span-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4">
-                    <div className="flex items-center gap-2 mb-2">
-                      <CalendarDays className="w-3.5 h-3.5 text-slate-500" />
-                      <h3 className="text-xs font-semibold uppercase text-slate-500">Semana atual</h3>
-                      <Info className="w-3 h-3 text-slate-400" />
+                  <div className="md:col-span-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-2 md:p-4 flex flex-col min-h-0">
+                    <div className="flex items-center gap-1.5 md:gap-2 mb-1.5 md:mb-2">
+                      <CalendarDays className="w-3 h-3 md:w-3.5 md:h-3.5 text-slate-500" />
+                      <h3 className="text-[10px] md:text-xs font-semibold uppercase text-slate-500">Semana atual</h3>
+                      <Info className="w-2.5 h-2.5 md:w-3 md:h-3 text-slate-400 hidden md:block" />
                     </div>
-                    <div className="space-y-2">
-                      {dimensions.slice(0, 4).map((dim, i) => {
+                    <div className="space-y-1 md:space-y-2 flex-1 min-h-0">
+                      {dimensions.slice(0, 3).map((dim, i) => {
                         const Icon = dim.icon
-                        const progress = [75, 60, 90, 45][i]
+                        const progress = [75, 60, 90][i]
                         return (
-                          <div key={i} className="flex items-center gap-2">
-                            <div className="w-6 h-6 rounded bg-[#3cb371]/10 flex items-center justify-center shrink-0">
-                              <Icon className="w-3 h-3 text-[#3cb371]" />
+                          <div key={i} className="flex items-center gap-1.5 md:gap-2">
+                            <div className="w-5 h-5 md:w-6 md:h-6 rounded bg-[#3cb371]/10 flex items-center justify-center shrink-0">
+                              <Icon className="w-2.5 h-2.5 md:w-3 md:h-3 text-[#3cb371]" />
                             </div>
-                            <div className="flex-1">
-                              <div className="flex items-center justify-between mb-1">
-                                <span className="text-[10px] text-slate-600 dark:text-slate-400">{dim.title}</span>
-                                <span className="text-[10px] font-semibold text-[#3cb371]">{progress}%</span>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center justify-between mb-0.5 md:mb-1">
+                                <span className="text-[9px] md:text-[10px] text-slate-600 dark:text-slate-400 truncate">{dim.title}</span>
+                                <span className="text-[9px] md:text-[10px] font-semibold text-[#3cb371] ml-1">{progress}%</span>
                               </div>
-                              <div className="h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                              <div className="h-1 md:h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
                                 <div className="h-full bg-[#3cb371] rounded-full" style={{ width: `${progress}%` }} />
                               </div>
                             </div>
@@ -244,15 +244,16 @@ function App() {
                         )
                       })}
                     </div>
-                    <button className="mt-3 w-full flex items-center justify-center gap-1.5 rounded-lg border border-dashed border-slate-300 dark:border-slate-700 py-1.5 text-[10px] md:text-xs text-slate-500 hover:border-[#3cb371] hover:text-[#3cb371] transition-colors">
-                      <CheckSquare className="w-3 h-3" />
-                      Registrar check-in
+                    <button className="mt-1.5 md:mt-3 w-full flex items-center justify-center gap-1 rounded-lg border border-dashed border-slate-300 dark:border-slate-700 py-1 md:py-1.5 text-[9px] md:text-xs text-slate-500 hover:border-[#3cb371] hover:text-[#3cb371] transition-colors">
+                      <CheckSquare className="w-2.5 h-2.5 md:w-3 md:h-3" />
+                      <span className="hidden md:inline">Registrar check-in</span>
+                      <span className="md:hidden">Check-in</span>
                     </button>
                   </div>
                 </div>
 
                 {/* Link to Objetivos */}
-                <div className="flex items-center gap-1.5 text-xs text-[#3cb371] font-medium mt-auto">
+                <div className="hidden md:flex items-center gap-1.5 text-xs text-[#3cb371] font-medium mt-auto">
                   Ver detalhes em Objetivos
                   <ChevronRight className="w-3 h-3" />
                 </div>
