@@ -10,7 +10,19 @@ import {
   HeartPulse,
   Star,
   Share2,
-  Trophy
+  Trophy,
+  LayoutDashboard,
+  Target,
+  Repeat,
+  CalendarCheck,
+  Zap,
+  CircleDot,
+  Flame,
+  Clock,
+  ChevronRight,
+  CheckSquare,
+  CalendarDays,
+  Info
 } from 'lucide-react'
 
 function App() {
@@ -92,69 +104,121 @@ function App() {
             </a>
           </div>
 
-          {/* Mockup Preview */}
+          {/* Mockup Preview - Interface Real do App */}
           <div className="mt-20 relative group">
             <div className="absolute -inset-4 bg-gradient-to-r from-[#3cb371] to-blue-500 rounded-[2.5rem] blur-2xl opacity-10 group-hover:opacity-20 transition-opacity" />
             <div className="relative rounded-[2rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xl overflow-hidden aspect-[16/10] md:aspect-[21/9]">
-              {/* Simulated App Header */}
-              <div className="h-12 border-b border-slate-200 dark:border-slate-800 flex items-center px-6 gap-2">
-                <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-red-400" />
-                  <div className="w-3 h-3 rounded-full bg-amber-400" />
-                  <div className="w-3 h-3 rounded-full bg-green-400" />
+              {/* Header Verde Real */}
+              <div className="h-14 bg-[#3cb371] text-white flex items-center justify-between px-4 md:px-6 border-b border-[#3cb371]/20">
+                <div className="flex items-center gap-3">
+                  <div className="w-6 h-6 rounded bg-white/20 flex items-center justify-center">
+                    <div className="w-3 h-3 rounded-full border-2 border-white" />
+                  </div>
+                  <span className="text-sm font-bold">resolu<span className="opacity-80">.app</span></span>
                 </div>
-                <div className="ml-4 flex-1 flex items-center gap-2">
-                  <div className="h-4 w-4 rounded bg-[#3cb371]/20" />
-                  <div className="h-3 w-24 bg-slate-200 dark:bg-slate-700 rounded" />
-                </div>
+                <nav className="hidden md:flex items-center gap-1">
+                  <div className="px-3 py-1.5 rounded-lg bg-white/20 text-xs font-medium">Visão geral</div>
+                  <div className="px-3 py-1.5 rounded-lg text-white/70 text-xs font-medium hover:bg-white/10">Objetivos</div>
+                  <div className="px-3 py-1.5 rounded-lg text-white/70 text-xs font-medium hover:bg-white/10">Hábitos</div>
+                  <div className="px-3 py-1.5 rounded-lg text-white/70 text-xs font-medium hover:bg-white/10">Check-ins</div>
+                </nav>
+                <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-xs font-semibold">RC</div>
               </div>
-              {/* Simulated Content */}
-              <div className="p-6 md:p-8 grid grid-cols-12 gap-4 md:gap-6 h-[calc(100%-3rem)]">
-                {/* Sidebar */}
-                <div className="col-span-3 space-y-3 md:space-y-4">
-                  <div className="h-8 md:h-10 w-full bg-slate-100 dark:bg-slate-800 rounded-lg animate-pulse" />
-                  <div className="space-y-2">
-                    {[1, 2, 3, 4].map((i) => (
-                      <div key={i} className="h-12 bg-slate-50 dark:bg-slate-800/50 rounded-lg flex items-center gap-2 px-3">
-                        <div className="w-6 h-6 rounded bg-[#3cb371]/10" />
-                        <div className="flex-1 h-3 bg-slate-200 dark:bg-slate-700 rounded" />
-                      </div>
-                    ))}
+              
+              {/* Dashboard Content */}
+              <div className="p-4 md:p-6 h-[calc(100%-3.5rem)] overflow-y-auto bg-slate-50 dark:bg-slate-950">
+                {/* Greeting */}
+                <div className="flex items-center justify-between mb-4">
+                  <h1 className="text-base md:text-lg font-semibold">Bom dia, Maria!</h1>
+                  <div className="flex items-center gap-2 text-xs text-slate-500">
+                    <span>Ano:</span>
+                    <div className="px-2 py-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded text-xs">2025</div>
                   </div>
                 </div>
-                {/* Main Content */}
-                <div className="col-span-9 space-y-4 md:space-y-6">
-                  <div className="h-16 md:h-24 w-full bg-gradient-to-r from-[#3cb371]/10 to-blue-500/10 rounded-2xl border border-[#3cb371]/20 flex items-center justify-center">
-                    <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 rounded-full bg-[#3cb371] flex items-center justify-center">
-                        <Star className="w-4 h-4 text-white" />
-                      </div>
-                      <div className="text-sm font-medium text-slate-700 dark:text-slate-300">Dashboard Resolu</div>
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-2 gap-4 md:gap-6">
-                    <div className="h-24 md:h-32 bg-[#3cb371]/5 rounded-2xl border border-[#3cb371]/10 p-4 flex flex-col justify-between">
-                      <div className="text-xs text-slate-600 dark:text-slate-400">Objetivos</div>
-                      <div className="text-2xl font-bold text-[#3cb371]">6</div>
-                    </div>
-                    <div className="h-24 md:h-32 bg-slate-50 dark:bg-slate-800 rounded-2xl p-4 flex flex-col justify-between">
-                      <div className="text-xs text-slate-600 dark:text-slate-400">Hábitos</div>
-                      <div className="text-2xl font-bold">12</div>
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-3 gap-4">
-                    {dimensions.slice(0, 3).map((dim, i) => {
-                      const Icon = dim.icon
-                      return (
-                        <div key={i} className="h-20 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-3 flex flex-col items-center justify-center gap-2">
-                          <div className="w-8 h-8 rounded-lg bg-[#3cb371]/10 text-[#3cb371] flex items-center justify-center">
-                            <Icon className="w-4 h-4" />
-                          </div>
-                          <div className="text-xs font-medium text-center">{dim.title}</div>
+
+                {/* Dashboard Stats - 6 Cards */}
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3 mb-4">
+                  {[
+                    { icon: Zap, label: 'Check-ins hoje', value: '8', color: 'text-blue-600' },
+                    { icon: CheckCircle2, label: 'Check-ins na semana', value: '24', color: 'text-green-600' },
+                    { icon: CircleDot, label: 'Hábitos sem check-in', value: '2', color: 'text-amber-600' },
+                    { icon: Target, label: 'Marcos em Janeiro', value: '3', color: 'text-purple-600' },
+                    { icon: Flame, label: 'Sequência', value: '12 dias', color: 'text-orange-600' },
+                    { icon: Clock, label: 'Última atividade', value: 'há 2h', color: 'text-slate-600' },
+                  ].map((stat, i) => {
+                    const Icon = stat.icon
+                    return (
+                      <div key={i} className="flex items-center gap-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-2 md:p-3 shadow-sm">
+                        <div className="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0">
+                          <Icon className={`w-3.5 h-3.5 md:w-4 md:h-4 ${stat.color}`} />
                         </div>
-                      )
-                    })}
+                        <div className="min-w-0 flex-1">
+                          <p className="text-[10px] md:text-xs text-slate-500 dark:text-slate-400 truncate">{stat.label}</p>
+                          <p className={`text-sm md:text-base font-semibold ${stat.color} truncate`}>{stat.value}</p>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+
+                {/* Charts Row */}
+                <div className="grid md:grid-cols-3 gap-3 md:gap-4 mb-4">
+                  {/* Donut Chart */}
+                  <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 flex items-center justify-center">
+                    <div className="relative w-24 h-24 md:w-32 md:h-32">
+                      <svg className="w-full h-full transform -rotate-90">
+                        <circle cx="50%" cy="50%" r="40%" fill="none" stroke="currentColor" strokeWidth="8" className="text-slate-200 dark:text-slate-800" />
+                        <circle cx="50%" cy="50%" r="40%" fill="none" stroke="currentColor" strokeWidth="8" strokeDasharray={`${2 * Math.PI * 40} ${2 * Math.PI * 40}`} strokeDashoffset={`${2 * Math.PI * 40 * 0.35}`} className="text-[#3cb371]" strokeLinecap="round" />
+                      </svg>
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="text-center">
+                          <div className="text-lg md:text-xl font-bold text-[#3cb371]">35%</div>
+                          <div className="text-[10px] md:text-xs text-slate-500">Marcos</div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
+
+                  {/* Week Progress Chart */}
+                  <div className="md:col-span-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4">
+                    <div className="flex items-center gap-2 mb-2">
+                      <CalendarDays className="w-3.5 h-3.5 text-slate-500" />
+                      <h3 className="text-xs font-semibold uppercase text-slate-500">Semana atual</h3>
+                      <Info className="w-3 h-3 text-slate-400" />
+                    </div>
+                    <div className="space-y-2">
+                      {dimensions.slice(0, 4).map((dim, i) => {
+                        const Icon = dim.icon
+                        const progress = [75, 60, 90, 45][i]
+                        return (
+                          <div key={i} className="flex items-center gap-2">
+                            <div className="w-6 h-6 rounded bg-[#3cb371]/10 flex items-center justify-center shrink-0">
+                              <Icon className="w-3 h-3 text-[#3cb371]" />
+                            </div>
+                            <div className="flex-1">
+                              <div className="flex items-center justify-between mb-1">
+                                <span className="text-[10px] text-slate-600 dark:text-slate-400">{dim.title}</span>
+                                <span className="text-[10px] font-semibold text-[#3cb371]">{progress}%</span>
+                              </div>
+                              <div className="h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                                <div className="h-full bg-[#3cb371] rounded-full" style={{ width: `${progress}%` }} />
+                              </div>
+                            </div>
+                          </div>
+                        )
+                      })}
+                    </div>
+                    <button className="mt-3 w-full flex items-center justify-center gap-1.5 rounded-lg border border-dashed border-slate-300 dark:border-slate-700 py-1.5 text-[10px] md:text-xs text-slate-500 hover:border-[#3cb371] hover:text-[#3cb371] transition-colors">
+                      <CheckSquare className="w-3 h-3" />
+                      Registrar check-in
+                    </button>
+                  </div>
+                </div>
+
+                {/* Link to Objetivos */}
+                <div className="flex items-center gap-1.5 text-xs text-[#3cb371] font-medium">
+                  Ver detalhes em Objetivos
+                  <ChevronRight className="w-3 h-3" />
                 </div>
               </div>
             </div>
