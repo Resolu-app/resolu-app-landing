@@ -114,7 +114,7 @@ function App() {
                   {/* Logo Resolu Real */}
                   <div className="flex items-center gap-1.5 font-bold tracking-tight text-xl" style={{ fontFamily: "'Comfortaa', sans-serif" }}>
                     <svg
-                      className="w-6 h-6 text-white"
+                      className="w-6 h-6 text-[#3cb371]"
                       viewBox="-8 -5 115 110"
                       fill="none"
                       stroke="currentColor"
@@ -126,7 +126,7 @@ function App() {
                       <path d="M 80,35 A 40,40 0 1,0 40,90" />
                       <polyline points="25,55 45,75 85,30" />
                     </svg>
-                    <span className="text-white tracking-[-0.03em]">resolu.app</span>
+                    <span className="text-white dark:text-slate-100 tracking-[-0.03em]">resolu.app</span>
                   </div>
                 </div>
                 <nav className="hidden md:flex items-center gap-2">
