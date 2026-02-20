@@ -108,21 +108,33 @@ function App() {
           <div className="mt-20 relative group">
             <div className="absolute -inset-4 bg-gradient-to-r from-[#3cb371] to-blue-500 rounded-[2.5rem] blur-2xl opacity-10 group-hover:opacity-20 transition-opacity" />
             <div className="relative rounded-[2rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xl overflow-hidden aspect-[16/10] md:aspect-[21/9]">
-              {/* Header Verde Real */}
-              <div className="h-14 bg-[#3cb371] text-white flex items-center justify-between px-4 md:px-6 border-b border-[#3cb371]/20">
+              {/* Header Verde Real - muda para dark no dark mode */}
+              <div className="h-14 bg-[#3cb371] dark:bg-slate-950 text-white dark:text-slate-100 flex items-center justify-between px-4 md:px-6 border-b border-[#3cb371]/20 dark:border-slate-800">
                 <div className="flex items-center gap-3">
-                  <div className="w-6 h-6 rounded bg-white/20 flex items-center justify-center">
-                    <div className="w-3 h-3 rounded-full border-2 border-white" />
+                  <div className="w-6 h-6 rounded bg-white/20 dark:bg-slate-800 flex items-center justify-center">
+                    <div className="w-3 h-3 rounded-full border-2 border-white dark:border-slate-600" />
                   </div>
                   <span className="text-sm font-bold">resolu<span className="opacity-80">.app</span></span>
                 </div>
-                <nav className="hidden md:flex items-center gap-1">
-                  <div className="px-3 py-1.5 rounded-lg bg-white/20 text-xs font-medium">Visão geral</div>
-                  <div className="px-3 py-1.5 rounded-lg text-white/70 text-xs font-medium hover:bg-white/10">Objetivos</div>
-                  <div className="px-3 py-1.5 rounded-lg text-white/70 text-xs font-medium hover:bg-white/10">Hábitos</div>
-                  <div className="px-3 py-1.5 rounded-lg text-white/70 text-xs font-medium hover:bg-white/10">Check-ins</div>
+                <nav className="hidden md:flex items-center gap-2">
+                  <div className="px-3 py-2 rounded-lg bg-white/20 dark:bg-[#3cb371]/20 dark:text-[#3cb371] dark:border-l-2 dark:border-[#3cb371] text-xs font-medium dark:font-semibold flex items-center gap-2">
+                    <LayoutDashboard className="w-3.5 h-3.5" />
+                    Visão geral
+                  </div>
+                  <div className="px-3 py-2 rounded-lg text-white/70 dark:text-slate-300/70 dark:hover:bg-slate-800 dark:hover:text-slate-100 text-xs font-medium hover:bg-white/10 flex items-center gap-2">
+                    <Target className="w-3.5 h-3.5" />
+                    Objetivos
+                  </div>
+                  <div className="px-3 py-2 rounded-lg text-white/70 dark:text-slate-300/70 dark:hover:bg-slate-800 dark:hover:text-slate-100 text-xs font-medium hover:bg-white/10 flex items-center gap-2">
+                    <Repeat className="w-3.5 h-3.5" />
+                    Hábitos
+                  </div>
+                  <div className="px-3 py-2 rounded-lg text-white/70 dark:text-slate-300/70 dark:hover:bg-slate-800 dark:hover:text-slate-100 text-xs font-medium hover:bg-white/10 flex items-center gap-2">
+                    <CalendarCheck className="w-3.5 h-3.5" />
+                    Check-ins
+                  </div>
                 </nav>
-                <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-xs font-semibold">RC</div>
+                <div className="w-8 h-8 rounded-full bg-white/20 dark:bg-slate-800 dark:text-slate-100 flex items-center justify-center text-xs font-semibold">RC</div>
               </div>
               
               {/* Dashboard Content */}
