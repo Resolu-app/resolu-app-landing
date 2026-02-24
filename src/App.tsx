@@ -296,7 +296,7 @@ function App() {
           {/* Core Engine - Sistemas > Resultados */}
           <div id="sistemas" className="container mx-auto px-6 max-w-6xl scroll-mt-24">
             <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl p-6 md:p-10 shadow-xl shadow-slate-200/50 dark:shadow-none overflow-hidden">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
                 <div className="lg:col-span-5">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#3cb371]/10 text-[#3cb371] text-xs font-bold uppercase tracking-wider mb-5">
                     <span>Métrica Lead</span>
@@ -312,16 +312,16 @@ function App() {
                   </p>
                 </div>
                 <div className="lg:col-span-7">
-                  <div className="bg-gradient-to-b from-slate-50 to-slate-100/80 dark:from-slate-800/40 dark:to-slate-900/40 p-6 md:p-8 rounded-3xl border border-slate-200/80 dark:border-slate-700 shadow-inner">
+                  <div className="bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 p-6 md:p-8 rounded-3xl border border-slate-200 dark:border-slate-600 shadow-inner">
                     <div className="flex flex-col items-center gap-1">
-                      {/* Objetivo */}
-                      <div className="w-full flex items-center gap-3 p-4 md:p-5 bg-slate-900 dark:bg-slate-950 text-white rounded-2xl shadow-lg">
-                        <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
-                          <Target className="w-5 h-5" />
+                      {/* Objetivo - Direção: tom frio em dark para destacar */}
+                      <div className="w-full flex items-center gap-3 p-4 md:p-5 bg-slate-200/90 dark:bg-slate-700 border border-slate-300 dark:border-slate-500 rounded-2xl shadow-md">
+                        <div className="w-10 h-10 rounded-xl bg-slate-400/30 dark:bg-sky-500/20 flex items-center justify-center shrink-0">
+                          <Target className="w-5 h-5 text-slate-600 dark:text-sky-400" />
                         </div>
                         <div className="text-left min-w-0 flex-1">
-                          <span className="text-[10px] font-bold uppercase tracking-widest opacity-70">Direção (OBJETIVO)</span>
-                          <p className="text-base md:text-lg font-bold mt-0.5">Conquistar Liberdade Física e Mental</p>
+                          <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-sky-400/90">Direção (O)</span>
+                          <p className="text-base md:text-lg font-bold mt-0.5 text-slate-800 dark:text-slate-100">Conquistar Liberdade Física e Mental</p>
                         </div>
                       </div>
                       <ChevronDown className="w-5 h-5 text-slate-400 dark:text-slate-500 shrink-0" strokeWidth={2.5} />
@@ -347,14 +347,14 @@ function App() {
                         </div>
                       </div>
                       <ChevronDown className="w-5 h-5 text-slate-400 dark:text-slate-500 shrink-0" strokeWidth={2.5} />
-                      {/* Tarefas */}
-                      <div className="w-[85%] flex items-center gap-3 p-3 bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-xl">
-                        <div className="w-8 h-8 rounded-lg bg-slate-400/20 dark:bg-slate-600/40 flex items-center justify-center shrink-0">
-                          <CheckSquare className="w-4 h-4 text-slate-500 dark:text-slate-400" />
+                      {/* Tarefas - Ativação: tom quente em dark para destacar */}
+                      <div className="w-[85%] flex items-center gap-3 p-3 bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-500 rounded-xl">
+                        <div className="w-8 h-8 rounded-lg bg-slate-400/20 dark:bg-amber-500/20 flex items-center justify-center shrink-0">
+                          <CheckSquare className="w-4 h-4 text-slate-500 dark:text-amber-400" />
                         </div>
                         <div className="text-left min-w-0 flex-1">
-                          <span className="text-[9px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">Ativação (Tarefas)</span>
-                          <p className="text-xs font-semibold mt-0.5 text-slate-600 dark:text-slate-400">Comprar suplementos • Agendar clínico</p>
+                          <span className="text-[9px] font-bold uppercase tracking-widest text-slate-500 dark:text-amber-400/90">Ativação (Tarefas)</span>
+                          <p className="text-xs font-semibold mt-0.5 text-slate-600 dark:text-slate-300">Comprar suplementos • Agendar clínico</p>
                         </div>
                       </div>
                     </div>
@@ -450,13 +450,13 @@ function App() {
 
             {/* IA */}
             <div id="ia" className="scroll-mt-24 mb-16 md:mb-20">
-              <div className="bg-slate-950 rounded-[3rem] p-8 md:p-16 relative overflow-hidden">
+              <div className="bg-[#1e3d32] dark:bg-slate-950 rounded-[3rem] p-8 md:p-16 relative overflow-hidden border border-[#3cb371]/20 dark:border-0">
                 <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#3cb371] opacity-10 blur-[120px] -mr-40 -mt-40" />
 
                 <div className="grid lg:grid-cols-2 gap-12 items-center relative z-10">
                   <div>
                     <div className="inline-flex items-center gap-3 mb-6 flex-wrap">
-                      <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#3cb371]/20 text-[#3cb371] text-sm font-semibold">
+                      <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#3cb371]/25 text-[#3cb371] text-sm font-semibold">
                         <Sparkles className="w-4 h-4" />
                         <span>Powered by AI</span>
                       </div>
@@ -469,7 +469,7 @@ function App() {
                       Seu assistente de IA para alcançar suas metas
                     </h3>
 
-                    <div className="space-y-4 text-slate-400">
+                    <div className="space-y-4 text-slate-300 dark:text-slate-400">
                       <div className="flex gap-4">
                         <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#3cb371] flex items-center justify-center mt-1">
                           <CheckCircle2 className="w-4 h-4 text-white" />
@@ -491,7 +491,7 @@ function App() {
                     </div>
                   </div>
 
-                  <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8">
+                  <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 dark:border-white/10 rounded-3xl p-8">
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-[#3cb371] to-emerald-400 flex items-center justify-center">
                         <Sparkles className="text-white w-6 h-6" />
@@ -503,10 +503,10 @@ function App() {
                     </div>
 
                     <div className="space-y-3">
-                      <div className="bg-white/10 p-4 rounded-2xl rounded-tl-none text-slate-200 text-sm">
+                      <div className="bg-white/15 dark:bg-white/10 p-4 rounded-2xl rounded-tl-none text-slate-200 text-sm">
                         Vi que você tem focado na <b>Saúde</b>. Um avanço de 80% em relação ao mês passado!
                       </div>
-                      <div className="bg-[#3cb371]/20 p-4 rounded-2xl rounded-tr-none text-white text-sm ml-auto max-w-[80%]">
+                      <div className="bg-[#3cb371]/25 dark:bg-[#3cb371]/20 p-4 rounded-2xl rounded-tr-none text-white text-sm ml-auto max-w-[80%]">
                         Obrigado pela informação!
                       </div>
                     </div>
@@ -517,7 +517,7 @@ function App() {
 
             {/* Comunidade */}
             <div className="text-center">
-              <h3 className="text-3xl md:text-4xl font-bold text-white mb-3">Comunidade</h3>
+              <h3 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-3">Comunidade</h3>
               <p className="text-slate-600 dark:text-slate-400 text-sm mb-8 max-w-2xl mx-auto">
                 Ferramentas de engajamento para manter a motivação com quem importa.
               </p>
@@ -551,43 +551,46 @@ function App() {
         {/* Footer científico - base */}
         <section className="py-16 bg-white dark:bg-slate-950">
           <div className="container mx-auto px-6 max-w-6xl">
-            <div className="bg-slate-900 dark:bg-slate-950 text-white p-10 md:p-12 rounded-[3rem] shadow-2xl">
+            <div className="bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-0 text-slate-700 dark:text-slate-300 p-10 md:p-12 rounded-[3rem] shadow-lg dark:shadow-2xl">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
                 <div>
                   <h4 className="text-[#3cb371] font-bold uppercase text-xs tracking-widest mb-4">A Tese</h4>
-                  <p className="text-sm text-slate-300 leading-relaxed">
+                  <p className="text-sm leading-relaxed">
                     Não somos um &quot;to-do list&quot;. Somos um sistema de engenharia comportamental que usa OKRs para alinhamento e Hábitos Atômicos para automação.
                   </p>
                 </div>
                 <div>
                   <h4 className="text-[#3cb371] font-bold uppercase text-xs tracking-widest mb-4">O Diferencial</h4>
-                  <p className="text-sm text-slate-300 leading-relaxed">
+                  <p className="text-sm leading-relaxed">
                     Ao priorizar sistemas sobre resultados, reduzimos a ansiedade de performance e aumentamos a taxa de sucesso anual em mais de 2x.
                   </p>
                 </div>
                 <div>
                   <h4 className="text-[#3cb371] font-bold uppercase text-xs tracking-widest mb-4">A Ciência</h4>
-                  <p className="text-sm text-slate-300 leading-relaxed">
+                  <p className="text-sm leading-relaxed">
                     Baseado em James Clear (Hábitos), John Doerr (OKRs) e Mihaly Csikszentmihalyi (Flow). Metodologia com 76% de validação empírica.
                   </p>
                 </div>
               </div>
-              <div className="mt-10 text-center text-[10px] uppercase tracking-[0.5em] text-slate-500">
+              <div className="mt-10 text-center text-[10px] uppercase tracking-[0.5em] text-slate-500 dark:text-slate-500">
                 Resolu.app • Strategic Personal Achievement
               </div>
             </div>
           </div>
         </section>
 
-        {/* Final CTA - faixa de fundo para separar de "O que vem por aí" */}
+        {/* Final CTA - mesmo fundo do card IA */}
         <section className="py-16 bg-slate-100 dark:bg-slate-900/70">
           <div className="container mx-auto px-6">
-            <div className="bg-[#3cb371] rounded-[3rem] p-12 md:p-20 text-center text-white">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">Pronto para transformar seu ano?</h2>
-              <p className="text-white/80 mb-10 text-lg">Junte-se a milhares de pessoas que já estão planejando com intenção.</p>
-              <a href={signupUrl} className="px-10 py-5 bg-white text-[#3cb371] rounded-full font-medium hover:bg-slate-100 text-lg inline-block">
-                Começar minha jornada grátis
-              </a>
+            <div className="bg-[#1e3d32] dark:bg-slate-950 rounded-[3rem] p-12 md:p-20 text-center text-white relative overflow-hidden border border-[#3cb371]/20 dark:border-0">
+              <div className="absolute top-1/2 left-1/2 w-[400px] h-[400px] bg-[#3cb371] opacity-10 blur-[100px] -translate-x-1/2 -translate-y-1/2" aria-hidden />
+              <div className="relative z-10">
+                <h2 className="text-4xl md:text-5xl font-bold mb-6">Pronto para transformar seu ano?</h2>
+                <p className="text-slate-300 dark:text-slate-400 mb-10 text-lg">Junte-se a milhares de pessoas que já estão planejando com intenção.</p>
+                <a href={signupUrl} className="px-10 py-5 bg-[#3cb371] text-white rounded-full font-medium hover:bg-[#2e8b57] text-lg inline-block">
+                  Começar minha jornada grátis
+                </a>
+              </div>
             </div>
           </div>
         </section>
