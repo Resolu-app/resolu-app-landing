@@ -21,6 +21,7 @@ import {
   Flame,
   Clock,
   ChevronRight,
+  ChevronDown,
   CheckSquare,
   CalendarDays,
   Info
@@ -75,9 +76,10 @@ function App() {
 
           <nav className="hidden md:flex items-center gap-6">
             <a href="#features" className="text-sm hover:text-[#3cb371]">Funcionalidades</a>
-            <a href="#sistemas" className="text-sm hover:text-[#3cb371]">Sistemas</a>
+            <a href="#metodologia" className="text-sm hover:text-[#3cb371]">Metodologia</a>
             <a href="#ciencia" className="text-sm hover:text-[#3cb371]">Ciência</a>
-            <a href="#ia" className="text-sm hover:text-[#3cb371]">IA</a>
+            <a href="#roadmap" className="text-sm hover:text-[#3cb371]">O que vem por aí</a>
+            <span className="w-px h-4 bg-slate-300 dark:bg-slate-600 mx-1" aria-hidden />
             <a href={`${APP_URL}/login`} className="text-sm hover:text-[#3cb371]">Entrar</a>
             <a href={signupUrl} className="px-4 py-2 bg-[#3cb371] text-white rounded-full text-sm font-medium hover:bg-[#2e8b57] inline-block">
               Criar conta
@@ -96,9 +98,10 @@ function App() {
         {menuOpen && (
           <div className="md:hidden absolute top-full left-0 right-0 bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 p-6 flex flex-col gap-4">
             <a href="#features" onClick={() => setMenuOpen(false)} className="text-sm hover:text-[#3cb371]">Funcionalidades</a>
-            <a href="#sistemas" onClick={() => setMenuOpen(false)} className="text-sm hover:text-[#3cb371]">Sistemas</a>
+            <a href="#metodologia" onClick={() => setMenuOpen(false)} className="text-sm hover:text-[#3cb371]">Metodologia</a>
             <a href="#ciencia" onClick={() => setMenuOpen(false)} className="text-sm hover:text-[#3cb371]">Ciência</a>
-            <a href="#ia" onClick={() => setMenuOpen(false)} className="text-sm hover:text-[#3cb371]">IA</a>
+            <a href="#roadmap" onClick={() => setMenuOpen(false)} className="text-sm hover:text-[#3cb371]">O que vem por aí</a>
+            <div className="border-t border-slate-200 dark:border-slate-700 my-2" />
             <a href={`${APP_URL}/login`} onClick={() => setMenuOpen(false)} className="text-sm hover:text-[#3cb371]">Entrar</a>
             <a href={signupUrl} onClick={() => setMenuOpen(false)} className="px-4 py-2 bg-[#3cb371] text-white rounded-full text-sm font-medium hover:bg-[#2e8b57] text-center">
               Criar conta
@@ -280,49 +283,80 @@ function App() {
         </section>
 
         {/* Faixa: Citação + Sistemas > Resultados */}
-        <section className="bg-slate-100 dark:bg-slate-900/70 py-16 md:py-20">
+        <section id="metodologia" className="bg-slate-100 dark:bg-slate-900/70 py-16 md:py-20 scroll-mt-24">
           <div className="container mx-auto px-6 max-w-4xl mb-12">
             <blockquote className="border-l-4 border-[#3cb371] bg-white/80 dark:bg-slate-800/80 p-6 md:p-8 rounded-2xl shadow-sm">
               <p className="text-lg md:text-xl font-semibold text-slate-700 dark:text-slate-300 leading-relaxed italic">
-                &quot;Aplicando os princípios de Hábitos Atômicos à execução de OKRs transformará metas ambiciosas em processos automáticos e sustentáveis, priorizando sistemas sobre resultados isolados.&quot;
+                &quot;Unir Hábitos Atômicos(James Clear) à execução de OKRs(John Doerr) transforma metas ambiciosas em rotinas sustentáveis. O segredo: priorizar sistemas — os hábitos que você mantém — em vez de resultados isolados.&quot;
               </p>
-              <p className="mt-3 text-sm text-[#3cb371] font-medium uppercase tracking-wider">Mecanismo Central Resolu.app</p>
+              <p className="mt-3 text-sm text-[#3cb371] font-medium uppercase tracking-wider">Metodologia Resolu.app</p>
             </blockquote>
           </div>
 
           {/* Core Engine - Sistemas > Resultados */}
           <div id="sistemas" className="container mx-auto px-6 max-w-6xl scroll-mt-24">
-            <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl p-6 md:p-10 shadow-lg">
+            <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl p-6 md:p-10 shadow-xl shadow-slate-200/50 dark:shadow-none overflow-hidden">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
                 <div className="lg:col-span-5">
-                  <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6">Sistemas &gt; Resultados</h2>
-                  <p className="text-slate-600 dark:text-slate-400 mb-4">
-                    O erro comum no planejamento anual é focar no <strong>Key Result (Métrica Lag)</strong>. O Resolu inverte a lógica: usamos o OKR para dar o <strong>Norte</strong>, mas o foco da execução está no <strong>Sistema de Hábitos (Métrica Lead)</strong>.
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#3cb371]/10 text-[#3cb371] text-xs font-bold uppercase tracking-wider mb-5">
+                    <span>Métrica Lead</span>
+                  </div>
+                  <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6 leading-tight">
+                    Sistemas <span className="text-[#3cb371]">&gt;</span> Resultados
+                  </h2>
+                  <p className="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                    O erro comum é focar no <strong className="text-slate-700 dark:text-slate-300">Key Result (Metas)</strong>. No Resolu invertemos: o OKR dá o <strong className="text-slate-700 dark:text-slate-300">Norte</strong>, e a execução vive no <strong className="text-[#3cb371]">sistema de hábitos</strong>.
                   </p>
-                  <p className="text-slate-600 dark:text-slate-400">
-                    Quando o hábito se torna automático, o KR é uma consequência inevitável.
+                  <p className="text-slate-600 dark:text-slate-400 text-sm border-l-2 border-[#3cb371]/50 pl-4 italic">
+                    Quando o hábito vira rotina, a meta é consequência.
                   </p>
                 </div>
-                <div className="lg:col-span-7 bg-slate-50 dark:bg-slate-800/50 p-6 md:p-8 rounded-3xl border border-slate-200 dark:border-slate-700">
-                  <div className="flex flex-col items-center gap-0">
-                    <div className="w-full p-5 md:p-6 bg-slate-900 dark:bg-slate-950 text-white rounded-2xl shadow-lg text-center">
-                      <span className="text-[9px] font-bold uppercase tracking-[0.2em] opacity-60">Direção (O)</span>
-                      <h3 className="text-lg md:text-xl font-bold mt-1">Conquistar Liberdade Física e Mental</h3>
-                    </div>
-                    <div className="w-0.5 h-6 bg-slate-300 dark:bg-slate-600" />
-                    <div className="w-full p-4 md:p-5 bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 rounded-2xl text-center">
-                      <span className="text-[9px] font-bold uppercase tracking-[0.2em] opacity-70">Validação (KRs)</span>
-                      <p className="text-sm font-bold mt-1 text-green-800 dark:text-green-300">✓ Correr Maratona em 4h • ✓ Perder 5kg de gordura</p>
-                    </div>
-                    <div className="w-0.5 h-6 bg-slate-300 dark:bg-slate-600" />
-                    <div className="w-full p-5 md:p-6 bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900/50 rounded-2xl text-center shadow-md">
-                      <span className="text-[9px] font-bold uppercase tracking-[0.2em] opacity-70">Execução Atômica (Hábitos)</span>
-                      <p className="text-sm md:text-base font-extrabold mt-1 text-blue-800 dark:text-blue-300">Treinar 45min (Seg/Qua/Sex) • 10min de Mobilidade Diária</p>
-                    </div>
-                    <div className="w-0.5 h-6 bg-slate-300 dark:bg-slate-600" />
-                    <div className="w-2/3 p-3 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-center opacity-80">
-                      <span className="text-[9px] font-bold uppercase tracking-[0.2em]">Ativação (Tarefas)</span>
-                      <p className="text-xs font-bold mt-1 text-slate-600 dark:text-slate-400">Comprar suplementos • Agendar clínico</p>
+                <div className="lg:col-span-7">
+                  <div className="bg-gradient-to-b from-slate-50 to-slate-100/80 dark:from-slate-800/40 dark:to-slate-900/40 p-6 md:p-8 rounded-3xl border border-slate-200/80 dark:border-slate-700 shadow-inner">
+                    <div className="flex flex-col items-center gap-1">
+                      {/* Objetivo */}
+                      <div className="w-full flex items-center gap-3 p-4 md:p-5 bg-slate-900 dark:bg-slate-950 text-white rounded-2xl shadow-lg">
+                        <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
+                          <Target className="w-5 h-5" />
+                        </div>
+                        <div className="text-left min-w-0 flex-1">
+                          <span className="text-[10px] font-bold uppercase tracking-widest opacity-70">Direção (OBJETIVO)</span>
+                          <p className="text-base md:text-lg font-bold mt-0.5">Conquistar Liberdade Física e Mental</p>
+                        </div>
+                      </div>
+                      <ChevronDown className="w-5 h-5 text-slate-400 dark:text-slate-500 shrink-0" strokeWidth={2.5} />
+                      {/* KRs */}
+                      <div className="w-full flex items-center gap-3 p-4 md:p-5 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900/50 rounded-2xl">
+                        <div className="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center shrink-0">
+                          <CheckCircle2 className="w-5 h-5 text-emerald-700 dark:text-emerald-400" />
+                        </div>
+                        <div className="text-left min-w-0 flex-1">
+                          <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-700/80 dark:text-emerald-400/80">Validação (Metas)</span>
+                          <p className="text-sm font-bold mt-0.5 text-emerald-800 dark:text-emerald-300">Correr Maratona em 4h • Perder 5kg de gordura</p>
+                        </div>
+                      </div>
+                      <ChevronDown className="w-5 h-5 text-slate-400 dark:text-slate-500 shrink-0" strokeWidth={2.5} />
+                      {/* Hábitos - destaque */}
+                      <div className="w-full flex items-center gap-3 p-4 md:p-5 bg-[#3cb371]/15 dark:bg-[#3cb371]/20 border-2 border-[#3cb371]/40 dark:border-[#3cb371]/50 rounded-2xl shadow-md ring-2 ring-[#3cb371]/10">
+                        <div className="w-10 h-10 rounded-xl bg-[#3cb371] flex items-center justify-center shrink-0">
+                          <Repeat className="w-5 h-5 text-white" />
+                        </div>
+                        <div className="text-left min-w-0 flex-1">
+                          <span className="text-[10px] font-bold uppercase tracking-widest text-[#2e8b57] dark:text-[#3cb371]">Execução (Hábitos Atômicos)</span>
+                          <p className="text-sm md:text-base font-bold mt-0.5 text-slate-800 dark:text-slate-200">Treinar 45min (Seg/Qua/Sex) • 10min Mobilidade diária</p>
+                        </div>
+                      </div>
+                      <ChevronDown className="w-5 h-5 text-slate-400 dark:text-slate-500 shrink-0" strokeWidth={2.5} />
+                      {/* Tarefas */}
+                      <div className="w-[85%] flex items-center gap-3 p-3 bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-xl">
+                        <div className="w-8 h-8 rounded-lg bg-slate-400/20 dark:bg-slate-600/40 flex items-center justify-center shrink-0">
+                          <CheckSquare className="w-4 h-4 text-slate-500 dark:text-slate-400" />
+                        </div>
+                        <div className="text-left min-w-0 flex-1">
+                          <span className="text-[9px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">Ativação (Tarefas)</span>
+                          <p className="text-xs font-semibold mt-0.5 text-slate-600 dark:text-slate-400">Comprar suplementos • Agendar clínico</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -392,7 +426,7 @@ function App() {
                   </p>
                   <div className="mt-6 p-4 bg-green-50 dark:bg-green-950/30 rounded-xl border border-green-100 dark:border-green-900/50">
                     <p className="text-xs text-green-800 dark:text-green-300 font-medium">
-                      <strong>Insight:</strong> O Resolu ajuda a manter esse equilíbrio: a carga de hábitos ajustada para que o KR não pareça impossível nem trivial.
+                      <strong>Diferencial:</strong> Nós monitoramos seus hábitos semanais para garantir que você esteja sempre na zona de crescimento ideal, evitando o abandono por frustração ou monotonia.
                     </p>
                   </div>
                 </div>
@@ -405,7 +439,7 @@ function App() {
         </section>
 
         {/* O que vem por aí: IA + Comunidade */}
-        <section className="py-16 md:py-20 bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800">
+        <section id="roadmap" className="py-16 md:py-20 bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 scroll-mt-24">
           <div className="container mx-auto px-6">
             <div className="text-center mb-14">
               <h2 className="text-3xl md:text-4xl font-bold mb-3 text-slate-900 dark:text-white">O que vem por aí</h2>
@@ -483,7 +517,7 @@ function App() {
 
             {/* Comunidade */}
             <div className="text-center">
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Comunidade</h3>
+              <h3 className="text-3xl md:text-4xl font-bold text-white mb-3">Comunidade</h3>
               <p className="text-slate-600 dark:text-slate-400 text-sm mb-8 max-w-2xl mx-auto">
                 Ferramentas de engajamento para manter a motivação com quem importa.
               </p>
