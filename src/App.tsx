@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react'
+import { CompoundingChart, RetentionChart, FlowDiagram } from './ScientificCharts'
 import { 
   Sparkles, 
   ArrowRight, 
@@ -74,6 +75,8 @@ function App() {
           
           <nav className="hidden md:flex items-center gap-6">
             <a href="#features" className="text-sm hover:text-[#3cb371]">Funcionalidades</a>
+            <a href="#sistemas" className="text-sm hover:text-[#3cb371]">Sistemas</a>
+            <a href="#ciencia" className="text-sm hover:text-[#3cb371]">Ciência</a>
             <a href="#ia" className="text-sm hover:text-[#3cb371]">IA</a>
             <a href={`${APP_URL}/login`} className="text-sm hover:text-[#3cb371]">Entrar</a>
             <a href={signupUrl} className="px-4 py-2 bg-[#3cb371] text-white rounded-full text-sm font-medium hover:bg-[#2e8b57] inline-block">
@@ -93,6 +96,8 @@ function App() {
         {menuOpen && (
           <div className="md:hidden absolute top-full left-0 right-0 bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 p-6 flex flex-col gap-4">
             <a href="#features" onClick={() => setMenuOpen(false)} className="text-sm hover:text-[#3cb371]">Funcionalidades</a>
+            <a href="#sistemas" onClick={() => setMenuOpen(false)} className="text-sm hover:text-[#3cb371]">Sistemas</a>
+            <a href="#ciencia" onClick={() => setMenuOpen(false)} className="text-sm hover:text-[#3cb371]">Ciência</a>
             <a href="#ia" onClick={() => setMenuOpen(false)} className="text-sm hover:text-[#3cb371]">IA</a>
             <a href={`${APP_URL}/login`} onClick={() => setMenuOpen(false)} className="text-sm hover:text-[#3cb371]">Entrar</a>
             <a href={signupUrl} onClick={() => setMenuOpen(false)} className="px-4 py-2 bg-[#3cb371] text-white rounded-full text-sm font-medium hover:bg-[#2e8b57] text-center">
@@ -102,9 +107,9 @@ function App() {
         )}
       </header>
 
-      <main className="pt-20">
-        {/* Hero */}
-        <section className="container mx-auto px-6 py-20 text-center">
+      <main className="pt-20 bg-white dark:bg-slate-950">
+        {/* Hero - base */}
+        <section className="container mx-auto px-6 py-20 text-center bg-white dark:bg-slate-950">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#3cb371]/10 text-[#3cb371] text-sm font-medium mb-6">
             <Sparkles className="w-4 h-4" />
             <span>O novo padrão para planejamento anual</span>
@@ -274,8 +279,60 @@ function App() {
           </div>
         </section>
 
-        {/* Dimensions */}
-        <section id="features" className="py-20 bg-slate-50 dark:bg-slate-900/50">
+        {/* Faixa: Citação + Sistemas > Resultados */}
+        <section className="bg-slate-100 dark:bg-slate-900/70 py-16 md:py-20">
+          <div className="container mx-auto px-6 max-w-4xl mb-12">
+            <blockquote className="border-l-4 border-[#3cb371] bg-white/80 dark:bg-slate-800/80 p-6 md:p-8 rounded-2xl shadow-sm">
+              <p className="text-lg md:text-xl font-semibold text-slate-700 dark:text-slate-300 leading-relaxed italic">
+                &quot;Aplicando os princípios de Hábitos Atômicos à execução de OKRs transformará metas ambiciosas em processos automáticos e sustentáveis, priorizando sistemas sobre resultados isolados.&quot;
+              </p>
+              <p className="mt-3 text-sm text-[#3cb371] font-medium uppercase tracking-wider">Mecanismo Central Resolu.app</p>
+            </blockquote>
+          </div>
+
+          {/* Core Engine - Sistemas > Resultados */}
+          <div id="sistemas" className="container mx-auto px-6 max-w-6xl scroll-mt-24">
+            <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl p-6 md:p-10 shadow-lg">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <div className="lg:col-span-5">
+                  <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6">Sistemas &gt; Resultados</h2>
+                  <p className="text-slate-600 dark:text-slate-400 mb-4">
+                    O erro comum no planejamento anual é focar no <strong>Key Result (Métrica Lag)</strong>. O Resolu inverte a lógica: usamos o OKR para dar o <strong>Norte</strong>, mas o foco da execução está no <strong>Sistema de Hábitos (Métrica Lead)</strong>.
+                  </p>
+                  <p className="text-slate-600 dark:text-slate-400">
+                    Quando o hábito se torna automático, o KR é uma consequência inevitável.
+                  </p>
+                </div>
+                <div className="lg:col-span-7 bg-slate-50 dark:bg-slate-800/50 p-6 md:p-8 rounded-3xl border border-slate-200 dark:border-slate-700">
+                  <div className="flex flex-col items-center gap-0">
+                    <div className="w-full p-5 md:p-6 bg-slate-900 dark:bg-slate-950 text-white rounded-2xl shadow-lg text-center">
+                      <span className="text-[9px] font-bold uppercase tracking-[0.2em] opacity-60">Direção (O)</span>
+                      <h3 className="text-lg md:text-xl font-bold mt-1">Conquistar Liberdade Física e Mental</h3>
+                    </div>
+                    <div className="w-0.5 h-6 bg-slate-300 dark:bg-slate-600" />
+                    <div className="w-full p-4 md:p-5 bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 rounded-2xl text-center">
+                      <span className="text-[9px] font-bold uppercase tracking-[0.2em] opacity-70">Validação (KRs)</span>
+                      <p className="text-sm font-bold mt-1 text-green-800 dark:text-green-300">✓ Correr Maratona em 4h • ✓ Perder 5kg de gordura</p>
+                    </div>
+                    <div className="w-0.5 h-6 bg-slate-300 dark:bg-slate-600" />
+                    <div className="w-full p-5 md:p-6 bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900/50 rounded-2xl text-center shadow-md">
+                      <span className="text-[9px] font-bold uppercase tracking-[0.2em] opacity-70">Execução Atômica (Hábitos)</span>
+                      <p className="text-sm md:text-base font-extrabold mt-1 text-blue-800 dark:text-blue-300">Treinar 45min (Seg/Qua/Sex) • 10min de Mobilidade Diária</p>
+                    </div>
+                    <div className="w-0.5 h-6 bg-slate-300 dark:bg-slate-600" />
+                    <div className="w-2/3 p-3 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-center opacity-80">
+                      <span className="text-[9px] font-bold uppercase tracking-[0.2em]">Ativação (Tarefas)</span>
+                      <p className="text-xs font-bold mt-1 text-slate-600 dark:text-slate-400">Comprar suplementos • Agendar clínico</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Dimensions - base */}
+        <section id="features" className="py-20 bg-white dark:bg-slate-950">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl mb-12">
               <h2 className="text-4xl font-bold mb-4">Equilíbrio em todas as áreas</h2>
@@ -301,8 +358,54 @@ function App() {
           </div>
         </section>
 
-        {/* AI Section */}
-        <section id="ia" className="pt-20 pb-10">
+        {/* Data Analytics - faixa */}
+        <section id="ciencia" className="py-16 md:py-20 bg-slate-100 dark:bg-slate-900/70 scroll-mt-24">
+          <div className="container mx-auto px-6 max-w-6xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-lg">
+                <h3 className="text-xl font-bold mb-4 text-slate-900 dark:text-white">Efeito Juros Compostos</h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">
+                  A ciência de James Clear aplicada: hábitos constantes parecem não mover o KR no início, mas geram um rompimento exponencial após o &quot;Platô do Potencial Latente&quot;.
+                </p>
+                <CompoundingChart />
+              </div>
+              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-lg">
+                <h3 className="text-xl font-bold mb-4 text-slate-900 dark:text-white">A Retenção da Metodologia</h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">
+                  Comprovação da Dominican University: Objetivos escritos + Definição de Sistemas (Hábitos) + Check-in semanal geram 76% de sucesso contra 35% de listas simples.
+                </p>
+                <RetentionChart />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* A Convergência - base */}
+        <section className="py-16 md:py-20 bg-white dark:bg-slate-950">
+          <div className="container mx-auto px-6 max-w-6xl">
+            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 md:p-10 shadow-lg">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
+                <div className="md:col-span-5">
+                  <h3 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">A Convergência</h3>
+                  <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                    No diagrama, a relação entre <strong>Habilidade</strong> (construída pelos hábitos) e <strong>Nível de Desafio</strong> (definido pelos KRs). No centro está o &quot;Canal de Flow&quot;.
+                  </p>
+                  <div className="mt-6 p-4 bg-green-50 dark:bg-green-950/30 rounded-xl border border-green-100 dark:border-green-900/50">
+                    <p className="text-xs text-green-800 dark:text-green-300 font-medium">
+                      <strong>Insight:</strong> O Resolu ajuda a manter esse equilíbrio: a carga de hábitos ajustada para que o KR não pareça impossível nem trivial.
+                    </p>
+                  </div>
+                </div>
+                <div className="md:col-span-7 flex items-center justify-center bg-slate-50/50 dark:bg-slate-800/30 rounded-2xl min-h-[280px] p-6">
+                  <FlowDiagram />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* AI Section - bloco escuro próprio */}
+        <section id="ia" className="pt-20 pb-10 bg-white dark:bg-slate-950">
           <div className="container mx-auto px-6">
             <div className="bg-slate-950 rounded-[3rem] p-8 md:p-16 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#3cb371] opacity-10 blur-[120px] -mr-40 -mt-40" />
@@ -365,8 +468,8 @@ function App() {
           </div>
         </section>
 
-        {/* Future Features */}
-        <section className="pb-20 pt-2">
+        {/* Future Features - faixa */}
+        <section className="py-16 md:py-20 bg-slate-100 dark:bg-slate-900/70">
           <div className="container mx-auto px-6">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4">O que vem por aí</h2>
@@ -399,8 +502,39 @@ function App() {
           </div>
         </section>
 
-        {/* Final CTA */}
-        <section className="pb-20">
+        {/* Footer científico - base */}
+        <section className="py-16 bg-white dark:bg-slate-950">
+          <div className="container mx-auto px-6 max-w-6xl">
+            <div className="bg-slate-900 dark:bg-slate-950 text-white p-10 md:p-12 rounded-[3rem] shadow-2xl">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
+                <div>
+                  <h4 className="text-[#3cb371] font-bold uppercase text-xs tracking-widest mb-4">A Tese</h4>
+                  <p className="text-sm text-slate-300 leading-relaxed">
+                    Não somos um &quot;to-do list&quot;. Somos um sistema de engenharia comportamental que usa OKRs para alinhamento e Hábitos Atômicos para automação.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="text-[#3cb371] font-bold uppercase text-xs tracking-widest mb-4">O Diferencial</h4>
+                  <p className="text-sm text-slate-300 leading-relaxed">
+                    Ao priorizar sistemas sobre resultados, reduzimos a ansiedade de performance e aumentamos a taxa de sucesso anual em mais de 2x.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="text-[#3cb371] font-bold uppercase text-xs tracking-widest mb-4">A Ciência</h4>
+                  <p className="text-sm text-slate-300 leading-relaxed">
+                    Baseado em James Clear (Hábitos), John Doerr (OKRs) e Mihaly Csikszentmihalyi (Flow). Metodologia com 76% de validação empírica.
+                  </p>
+                </div>
+              </div>
+              <div className="mt-10 text-center text-[10px] uppercase tracking-[0.5em] text-slate-500">
+                Resolu.app • Strategic Personal Achievement
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Final CTA - base para o verde destacar */}
+        <section className="pb-20 pt-2 bg-white dark:bg-slate-950">
           <div className="container mx-auto px-6">
             <div className="bg-[#3cb371] rounded-[3rem] p-12 md:p-20 text-center text-white">
               <h2 className="text-4xl md:text-5xl font-bold mb-6">Pronto para transformar seu ano?</h2>
@@ -414,7 +548,7 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="py-12 border-t border-slate-200 dark:border-slate-800">
+      <footer className="py-12 bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800">
         <div className="container mx-auto px-6 text-center text-sm text-slate-500">
           © {new Date().getFullYear()} Resolu.app. Todos os direitos reservados.
         </div>
