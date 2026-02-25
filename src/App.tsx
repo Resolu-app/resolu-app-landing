@@ -227,7 +227,7 @@ function App() {
           </h1>
 
           <p className="text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto">
-            Do objetivo à rotina: defina metas claras, crie hábitos e veja o resultado acumular com a nova metodologia Resolu de planejamento anual.
+            Do objetivo à rotina: defina metas claras, crie hábitos e veja o resultado acumular com a nossa metodologia de planejamento anual.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
@@ -389,8 +389,27 @@ function App() {
         {/* Core Features Workflow */}
         <section id="features" className="py-20 bg-white dark:bg-slate-950">
           <div className="container mx-auto px-6">
-            <div className="max-w-3xl mb-12 text-center md:text-left mx-auto md:mx-0 text-balance">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Como funciona na prática</h2>
+            <div className="max-w-3xl mb-12 text-center mx-auto text-balance">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 flex items-center justify-center gap-2 md:gap-3 flex-wrap">
+                Como o
+                <span className="inline-flex items-center gap-1.5 font-bold tracking-tight text-3xl md:text-4xl pt-1" style={{ fontFamily: "'Comfortaa', sans-serif" }}>
+                  <svg
+                    className="w-7 h-7 md:w-9 md:h-9 text-[#3cb371]"
+                    viewBox="-8 -5 115 110"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="12"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden
+                  >
+                    <path d="M 80,35 A 40,40 0 1,0 40,90" />
+                    <polyline points="25,55 45,75 85,30" />
+                  </svg>
+                  <span className="text-slate-900 dark:text-slate-100 tracking-[-0.03em]">resolu<span className="text-slate-400 dark:text-slate-500">.app</span></span>
+                </span>
+                funciona
+              </h2>
               <p className="text-lg text-slate-600 dark:text-slate-400">
                 Uma esteira completa de engenharia comportamental: do planejamento macro à execução diária de hábitos.
               </p>
@@ -415,7 +434,25 @@ function App() {
 
         <section id="metodologia" className="bg-white dark:bg-slate-950 py-16 md:py-20 scroll-mt-24 border-t border-slate-100 dark:border-slate-800/60">
           <div className="container mx-auto px-6 mb-14 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-3 text-slate-900 dark:text-white">A Ciência por trás do Resolu.App</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-3 flex items-center justify-center gap-2 md:gap-3 flex-wrap text-slate-900 dark:text-white">
+              A Ciência por trás do
+              <span className="inline-flex items-center gap-1.5 font-bold tracking-tight text-3xl md:text-4xl pt-1" style={{ fontFamily: "'Comfortaa', sans-serif" }}>
+                <svg
+                  className="w-7 h-7 md:w-9 md:h-9 text-[#3cb371]"
+                  viewBox="-8 -5 115 110"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="12"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden
+                >
+                  <path d="M 80,35 A 40,40 0 1,0 40,90" />
+                  <polyline points="25,55 45,75 85,30" />
+                </svg>
+                <span className="text-slate-900 dark:text-slate-100 tracking-[-0.03em]">resolu<span className="text-slate-400 dark:text-slate-500">.app</span></span>
+              </span>
+            </h2>
             <p className="text-slate-600 dark:text-slate-400 text-lg max-w-2xl mx-auto">
               Abandone a motivação vazia. Construímos o app baseados em estudos empíricos de comportamento humano.
             </p>
@@ -498,7 +535,25 @@ function App() {
               <p className="text-lg md:text-xl font-semibold text-slate-700 dark:text-slate-300 leading-relaxed italic">
                 &quot;Unir Hábitos Atômicos(James Clear) à execução de OKRs(John Doerr) transforma metas ambiciosas em rotinas sustentáveis. O segredo: priorizar sistemas — os hábitos que você mantém — em vez de resultados isolados.&quot;
               </p>
-              <p className="mt-3 text-sm text-[#3cb371] font-medium uppercase tracking-wider">Metodologia Resolu.app</p>
+              <div className="mt-3 text-sm text-[#3cb371] font-medium uppercase tracking-wider flex items-center gap-1.5">
+                Metodologia
+                <span className="inline-flex items-center gap-1 font-bold tracking-tight text-sm normal-case pt-0.5" style={{ fontFamily: "'Comfortaa', sans-serif" }}>
+                  <svg
+                    className="w-4 h-4 text-[#3cb371]"
+                    viewBox="-8 -5 115 110"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="12"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden
+                  >
+                    <path d="M 80,35 A 40,40 0 1,0 40,90" />
+                    <polyline points="25,55 45,75 85,30" />
+                  </svg>
+                  <span className="text-slate-900 dark:text-slate-100 tracking-[-0.03em]">resolu<span className="text-slate-400 dark:text-slate-500">.app</span></span>
+                </span>
+              </div>
             </blockquote>
           </div>
 
@@ -715,7 +770,23 @@ function App() {
                 </div>
               </div>
               <div className="mt-10 text-center text-[10px] uppercase tracking-[0.5em] text-slate-500 dark:text-slate-500">
-                Resolu.app • Strategic Personal Achievement
+                <span className="inline-flex items-center gap-1 font-bold tracking-tight text-xs pt-0.5" style={{ fontFamily: "'Comfortaa', sans-serif" }}>
+                  <svg
+                    className="w-3 h-3 text-[#3cb371]"
+                    viewBox="-8 -5 115 110"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="12"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden
+                  >
+                    <path d="M 80,35 A 40,40 0 1,0 40,90" />
+                    <polyline points="25,55 45,75 85,30" />
+                  </svg>
+                  <span className="text-slate-900 dark:text-slate-100 tracking-[-0.03em]">resolu<span className="text-slate-400 dark:text-slate-500">.app</span></span>
+                </span>
+                <span className="px-1.5">•</span> Strategic Personal Achievement
               </div>
             </div>
           </div>
