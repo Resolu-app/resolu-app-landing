@@ -1,19 +1,32 @@
-import { useState, useEffect } from 'react'
+import { useState, useMemo, useEffect } from 'react'
+import { CompoundingChart, RetentionChart, FlowDiagram } from './ScientificCharts'
 import {
-  Target,
+  Sun,
+  Moon,
+  Laptop,
   Sparkles,
-  ChevronRight,
-  Menu,
-  X,
+  ArrowRight,
   CheckCircle2,
-  TrendingUp,
   Share2,
-  PieChart,
-  GitBranch,
-  LineChart,
+  LayoutDashboard,
+  Target,
+  Repeat,
+  CalendarCheck,
+  Zap,
+  CircleDot,
+  Flame,
+  Clock,
+  ChevronRight,
+  ChevronDown,
+  CheckSquare,
+  CalendarDays,
+  Info,
   ShieldCheck,
   Gift,
-  Trophy
+  Trophy,
+  PieChart,
+  GitBranch,
+  LineChart
 } from 'lucide-react'
 
 const APP_URL = (import.meta.env.VITE_APP_URL ?? 'https://my.resolu.app').replace(/\/$/, '')
@@ -27,22 +40,69 @@ function getSignupUrl(): string {
   return `${SIGNUP_BASE}?token=${encodeURIComponent(token)}`
 }
 
+function ResoluLogo({ className = "w-6 h-6 text-[#3cb371]" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="-8 -5 115 110"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="12"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <path d="M 80,35 A 40,40 0 1,0 40,90" />
+      <polyline points="25,55 45,75 85,30" />
+    </svg>
+  )
+}
+
 function App() {
-  const [signupUrl, setSignupUrl] = useState(SIGNUP_BASE)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const signupUrl = useMemo(getSignupUrl, [])
+
+  const [theme, setTheme] = useState<'light' | 'dark' | 'system'>(() => {
+    if (typeof window !== 'undefined') {
+      return (localStorage.getItem('resolu-theme') as 'light' | 'dark' | 'system') || 'system'
+    }
+    return 'system'
+  })
 
   useEffect(() => {
-    setSignupUrl(getSignupUrl())
+    const root = window.document.documentElement
+    root.classList.remove('light', 'dark')
 
-  }, [])
+    if (theme === 'system') {
+      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+      root.classList.add(systemTheme)
+    } else {
+      root.classList.add(theme)
+    }
+
+    localStorage.setItem('resolu-theme', theme)
+  }, [theme])
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+    const handleChange = () => {
+      if (theme === 'system') {
+        const root = window.document.documentElement
+        root.classList.remove('light', 'dark')
+        root.classList.add(mediaQuery.matches ? 'dark' : 'light')
+      }
+    }
+    mediaQuery.addEventListener('change', handleChange)
+    return () => mediaQuery.removeEventListener('change', handleChange)
+  }, [theme])
 
   const coreFeatures = [
     {
       icon: PieChart,
       title: '1. Dimensões & Foco',
-      desc: 'Comece dividindo sua vida em áreas como Saúde, Carreira ou Família. Encontre de forma clara onde focar no seu ano.',
-      colorClass: 'bg-[#3cb371]/10 text-[#3cb371]',
-      borderClass: 'hover:border-[#3cb371]/50'
+      desc: 'Divida sua vida nas dimensões que mais importam para você (ex: Saúde, Finanças, Carreira) para garantir um crescimento equilibrado e direcionado.',
+      colorClass: 'bg-emerald-500/10 text-emerald-500',
+      borderClass: 'hover:border-emerald-500/50'
     },
     {
       icon: Target,
@@ -74,242 +134,246 @@ function App() {
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           {/* Logo Resolu Real */}
           <div className="flex items-center gap-1.5 font-bold tracking-tight text-xl" style={{ fontFamily: "'Comfortaa', sans-serif" }}>
-            <svg
-              className="w-6 h-6 text-[#3cb371]"
-              viewBox="-8 -5 115 110"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="12"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden
-            >
-              <path d="M 80,35 A 40,40 0 1,0 40,90" />
-              <polyline points="25,55 45,75 85,30" />
-            </svg>
+            <ResoluLogo className="w-6 h-6 text-[#3cb371]" />
             <span className="text-slate-900 dark:text-slate-100 tracking-[-0.03em]">resolu<span className="text-slate-400 dark:text-slate-500">.app</span></span>
           </div>
 
           <nav className="hidden md:flex items-center gap-6">
             <a href="#features" className="text-sm hover:text-[#3cb371]">Funcionalidades</a>
-            <a href="#assistente-ia" className="text-sm hover:text-[#3cb371] font-semibold text-[#3cb371]">Assistente IA</a>
             <a href="#metodologia" className="text-sm hover:text-[#3cb371]">Metodologia & Ciência</a>
             <a href="#roadmap" className="text-sm hover:text-[#3cb371]">O que vem por aí</a>
             <span className="w-px h-4 bg-slate-300 dark:bg-slate-600 mx-1" aria-hidden />
-            <a href={APP_URL} className="text-sm font-medium hover:text-[#3cb371] transition-colors">Entrar</a>
-            <a href={signupUrl} className="px-5 py-2 text-sm font-medium text-white bg-[#3cb371] hover:bg-[#2e8b57] rounded-full transition-colors hidden lg:block">
-              Começar Agora
+            <a href={`${APP_URL}/login`} className="text-sm hover:text-[#3cb371]">Entrar</a>
+            <a href={signupUrl} className="px-4 py-2 bg-[#3cb371] text-white rounded-full text-sm font-medium hover:bg-[#2e8b57] inline-block">
+              Criar conta
             </a>
+            <div className="flex items-center gap-1 bg-slate-100 dark:bg-slate-900 rounded-full p-1 ml-2 border border-slate-200 dark:border-slate-800">
+              <button
+                onClick={() => setTheme('light')}
+                className={`p-1.5 rounded-full transition-colors ${theme === 'light' ? 'bg-white text-amber-500 shadow-sm' : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-300'}`}
+                title="Claro"
+              >
+                <Sun className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => setTheme('system')}
+                className={`p-1.5 rounded-full transition-colors ${theme === 'system' ? 'bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 shadow-sm' : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-300'}`}
+                title="Sistema"
+              >
+                <Laptop className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => setTheme('dark')}
+                className={`p-1.5 rounded-full transition-colors ${theme === 'dark' ? 'bg-slate-800 text-blue-400 shadow-sm' : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-300'}`}
+                title="Escuro"
+              >
+                <Moon className="w-4 h-4" />
+              </button>
+            </div>
           </nav>
 
-          <button className="md:hidden p-2" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} aria-label="Toggle menu">
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          <button
+            className="md:hidden p-2"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            {menuOpen ? '✕' : '☰'}
           </button>
         </div>
 
-        {/* Mobile menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 p-4">
-            <div className="flex flex-col space-y-4">
-              <a href="#features" className="text-sm" onClick={() => setIsMobileMenuOpen(false)}>Funcionalidades</a>
-              <a href="#assistente-ia" className="text-sm font-semibold text-[#3cb371]" onClick={() => setIsMobileMenuOpen(false)}>Assistente IA</a>
-              <a href="#metodologia" className="text-sm" onClick={() => setIsMobileMenuOpen(false)}>Metodologia & Ciência</a>
-              <a href="#roadmap" className="text-sm" onClick={() => setIsMobileMenuOpen(false)}>O que vem por aí</a>
-              <hr className="border-slate-200 dark:border-slate-800" />
-              <a href={APP_URL} className="text-sm font-medium">Entrar na conta</a>
-              <a href={signupUrl} className="px-5 py-2 text-sm font-medium text-white bg-[#3cb371] rounded-full text-center">
-                Começar agora gratuitamente
-              </a>
+        {/* Mobile Menu */}
+        {menuOpen && (
+          <div className="md:hidden absolute top-full left-0 right-0 bg-white/95 dark:bg-slate-950/95 backdrop-blur-md shadow-xl border-b border-slate-200 dark:border-slate-800 p-6 flex flex-col gap-3">
+            <a href="#features" onClick={() => setMenuOpen(false)} className="p-3 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-[#3cb371] transition-colors">Funcionalidades</a>
+            <a href="#metodologia" onClick={() => setMenuOpen(false)} className="p-3 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-[#3cb371] transition-colors">Metodologia & ciência</a>
+            <a href="#roadmap" onClick={() => setMenuOpen(false)} className="p-3 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-[#3cb371] transition-colors">O que vem por aí</a>
+            <div className="border-t border-slate-200 dark:border-slate-800 my-2" />
+
+            <div className="flex items-center justify-between p-3">
+              <span className="text-sm font-medium text-slate-500">Tema</span>
+              <div className="flex items-center gap-1 bg-slate-100 dark:bg-slate-900 rounded-full p-1 border border-slate-200 dark:border-slate-800">
+                <button
+                  onClick={() => setTheme('light')}
+                  className={`p-2 rounded-full transition-colors ${theme === 'light' ? 'bg-white text-amber-500 shadow-sm' : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-300'}`}
+                >
+                  <Sun className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => setTheme('system')}
+                  className={`p-2 rounded-full transition-colors ${theme === 'system' ? 'bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 shadow-sm' : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-300'}`}
+                >
+                  <Laptop className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => setTheme('dark')}
+                  className={`p-2 rounded-full transition-colors ${theme === 'dark' ? 'bg-slate-800 text-blue-400 shadow-sm' : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-300'}`}
+                >
+                  <Moon className="w-4 h-4" />
+                </button>
+              </div>
             </div>
+
+            <a href={`${APP_URL}/login`} onClick={() => setMenuOpen(false)} className="p-3 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-[#3cb371] transition-colors">Entrar</a>
+            <a href={signupUrl} onClick={() => setMenuOpen(false)} className="mt-2 px-4 py-3 bg-[#3cb371] text-white rounded-full text-sm font-medium hover:bg-[#2e8b57] text-center shadow-md">
+              Criar conta
+            </a>
           </div>
         )}
       </header>
 
-      <main className="pt-24 lg:pt-32">
-        {/* Hero Section */}
-        <section className="relative overflow-hidden pb-20">
-          <div className="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-[#3cb371] opacity-5 dark:opacity-10 blur-[120px] -translate-x-1/2 -translate-y-1/2" aria-hidden />
-          <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-blue-500 opacity-5 dark:opacity-10 blur-[100px]" aria-hidden />
-
-          <div className="container mx-auto px-6 text-center relative z-10">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 mb-8 mt-10 md:mt-20">
-              <Sparkles className="w-4 h-4 text-[#3cb371]" />
-              <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
-                Lançamento Oficial: O Novo Planejador Inteligente 2026
-              </span>
-            </div>
-
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 text-slate-900 dark:text-white tracking-tight leading-tight max-w-4xl mx-auto">
-              Para quem constrói o{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3cb371] to-emerald-400">futuro</span>
-              {' '}no presente.
-            </h1>
-
-            <p className="text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto">
-              Do objetivo à rotina: defina metas claras, crie hábitos e veja o resultado acumular com a nossa <strong className="text-[#3cb371]">ai-powered</strong> metodologia{' '}
-              <span className="inline-flex items-center gap-1 font-bold tracking-tight text-xl pt-0.5" style={{ fontFamily: "'Comfortaa', sans-serif" }}>
-                <svg
-                  className="w-5 h-5 text-[#3cb371]"
-                  viewBox="-8 -5 115 110"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="12"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden
-                >
-                  <path d="M 80,35 A 40,40 0 1,0 40,90" />
-                  <polyline points="25,55 45,75 85,30" />
-                </svg>
-                <span className="text-slate-900 dark:text-slate-100 tracking-[-0.03em]">resolu<span className="text-slate-400 dark:text-slate-500">.app</span></span>
-              </span>{' '}
-              de planejamento anual.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-              <a href={signupUrl} className="w-full sm:w-auto px-8 py-4 bg-[#3cb371] text-white rounded-full font-medium hover:bg-[#2e8b57] transition-colors flex items-center justify-center gap-2 group shadow-lg shadow-green-500/20">
-                Criar uma conta gratuita
-                <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a href="#features" className="w-full sm:w-auto px-8 py-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-full font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-                Como funciona
-              </a>
-            </div>
+      <main className="pt-20 bg-white dark:bg-slate-950">
+        {/* Hero - base */}
+        <section className="container mx-auto px-6 py-20 text-center bg-white dark:bg-slate-950">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#3cb371]/10 text-[#3cb371] text-sm font-medium mb-6">
+            <Sparkles className="w-4 h-4" />
+            <span>O novo padrão para planejamento anual</span>
           </div>
-        </section>
 
-        {/* Dashboard Preview - Light base / Dark base */}
-        <section className="pb-24 -mt-8 relative z-20">
-          <div className="container mx-auto px-6">
-            <div className="relative rounded-[2rem] bg-white dark:bg-[#0B1120] border border-slate-200 dark:border-slate-800 p-2 shadow-2xl">
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-100/50 dark:from-slate-900/50 to-transparent rounded-[2rem] pointer-events-none" />
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-b from-slate-900 to-slate-600 dark:from-white dark:to-slate-400 bg-clip-text text-transparent">
+            Em 2026, suas metas saem do papel
+          </h1>
 
-              <div className="bg-slate-50 dark:bg-slate-950 rounded-[1.75rem] border border-slate-200 dark:border-slate-800 overflow-hidden relative">
-                {/* Fake browser header */}
-                <div className="h-12 border-b border-slate-200 dark:border-slate-800 flex items-center px-4 gap-2 bg-slate-100 dark:bg-slate-900">
-                  <div className="flex gap-1.5">
-                    <div className="w-3 h-3 rounded-full bg-slate-300 dark:bg-slate-700" />
-                    <div className="w-3 h-3 rounded-full bg-slate-300 dark:bg-slate-700" />
-                    <div className="w-3 h-3 rounded-full bg-slate-300 dark:bg-slate-700" />
+          <p className="text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto">
+            Do objetivo à rotina: defina metas claras, crie hábitos e veja o resultado acumular com a nossa metodologia de planejamento anual.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+            <a href={signupUrl} className="px-8 py-4 bg-[#3cb371] text-white rounded-full font-medium hover:bg-[#2e8b57] flex items-center gap-2 inline-flex">
+              Começar agora <ArrowRight className="w-5 h-5" />
+            </a>
+            <a href="#features" className="px-8 py-4 border-2 border-slate-300 dark:border-slate-700 rounded-full font-medium hover:bg-slate-50 dark:hover:bg-slate-900 inline-block">
+              Ver como funciona
+            </a>
+          </div>
+
+          {/* Mockup Preview - Interface Real do App */}
+          <div className="mt-20 relative group">
+            <div className="absolute -inset-4 bg-gradient-to-r from-[#3cb371] to-blue-500 rounded-[2.5rem] blur-2xl opacity-10 group-hover:opacity-20 transition-opacity" />
+            <div className="relative rounded-[2rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xl overflow-hidden flex flex-col h-[600px] md:h-[600px]">
+              {/* Header Verde Real - muda para dark no dark mode */}
+              <div className="h-12 md:h-14 bg-[#3cb371] dark:bg-slate-950 text-white dark:text-slate-100 flex items-center justify-between px-4 md:px-6 border-b border-[#3cb371]/20 dark:border-slate-800 shrink-0">
+                <div className="flex items-center gap-3">
+                  {/* Logo Resolu Real */}
+                  <div className="flex items-center gap-1.5 font-bold tracking-tight text-xl" style={{ fontFamily: "'Comfortaa', sans-serif" }}>
+                    <ResoluLogo className="w-6 h-6 text-[#3cb371]" />
+                    <span className="text-white dark:text-slate-100 tracking-[-0.03em]">resolu.app</span>
                   </div>
-                  <div className="mx-auto bg-white dark:bg-slate-800 rounded-md px-32 py-1.5 text-xs text-slate-400 font-medium flex items-center justify-center border border-slate-200 dark:border-slate-700">
-                    <span className="text-slate-900 dark:text-slate-100 tracking-[-0.03em] font-bold" style={{ fontFamily: "'Comfortaa', sans-serif" }}>resolu<span className="text-slate-400 dark:text-slate-500">.app</span></span>
+                </div>
+                <nav className="hidden md:flex items-center gap-2">
+                  <div className="px-3 py-2 rounded-lg bg-white/20 dark:bg-[#3cb371]/20 dark:text-[#3cb371] dark:border-l-2 dark:border-[#3cb371] text-xs font-medium dark:font-semibold flex items-center gap-2">
+                    <LayoutDashboard className="w-3.5 h-3.5" />
+                    Visão geral
+                  </div>
+                  <div className="px-3 py-2 rounded-lg text-white/70 dark:text-slate-300/70 dark:hover:bg-slate-800 dark:hover:text-slate-100 text-xs font-medium hover:bg-white/10 flex items-center gap-2">
+                    <Target className="w-3.5 h-3.5" />
+                    Objetivos
+                  </div>
+                  <div className="px-3 py-2 rounded-lg text-white/70 dark:text-slate-300/70 dark:hover:bg-slate-800 dark:hover:text-slate-100 text-xs font-medium hover:bg-white/10 flex items-center gap-2">
+                    <Repeat className="w-3.5 h-3.5" />
+                    Hábitos
+                  </div>
+                  <div className="px-3 py-2 rounded-lg text-white/70 dark:text-slate-300/70 dark:hover:bg-slate-800 dark:hover:text-slate-100 text-xs font-medium hover:bg-white/10 flex items-center gap-2">
+                    <CalendarCheck className="w-3.5 h-3.5" />
+                    Check-ins
+                  </div>
+                </nav>
+                <div className="w-8 h-8 rounded-full bg-white/20 dark:bg-slate-800 dark:text-slate-100 flex items-center justify-center text-xs font-semibold">RC</div>
+              </div>
+
+              {/* Dashboard Content */}
+              <div className="p-3 md:p-6 flex-1 flex flex-col overflow-hidden bg-slate-50 dark:bg-slate-950">
+                {/* Greeting */}
+                <div className="flex items-center justify-between mb-2 md:mb-4">
+                  <h1 className="text-sm md:text-lg font-semibold">Bom dia, Maria!</h1>
+                  <div className="flex items-center gap-2 text-xs text-slate-500">
+                    <span className="hidden md:inline">Ano:</span>
+                    <div className="px-2 py-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded text-xs">2025</div>
                   </div>
                 </div>
 
-                {/* Dashboard layout */}
-                <div className="flex flex-col md:flex-row h-[600px] overflow-hidden bg-slate-50 dark:bg-slate-950">
-                  {/* Fake Sidebar */}
-                  <div className="hidden md:flex flex-col w-64 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4">
-                    <div className="flex items-center gap-2 mb-8 px-2 mt-2">
-                      <svg viewBox="-8 -5 115 110" className="w-6 h-6 text-[#3cb371]" fill="none" stroke="currentColor" strokeWidth="12" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M 80,35 A 40,40 0 1,0 40,90" />
-                        <polyline points="25,55 45,75 85,30" />
+                {/* Dashboard Stats - 6 Cards */}
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-1.5 md:gap-3 mb-2 md:mb-4">
+                  {[
+                    { icon: Zap, label: 'Check-ins hoje', value: '8', color: 'text-blue-600' },
+                    { icon: CheckCircle2, label: 'Check-ins na semana', value: '24', color: 'text-green-600' },
+                    { icon: CircleDot, label: 'Hábitos sem check-in', value: '2', color: 'text-amber-600' },
+                    { icon: Target, label: 'Marcos em Janeiro', value: '3', color: 'text-purple-600' },
+                    { icon: Flame, label: 'Sequência', value: '12 dias', color: 'text-orange-600' },
+                    { icon: Clock, label: 'Última atividade', value: 'há 2h', color: 'text-slate-600' },
+                  ].map((stat, i) => {
+                    const Icon = stat.icon
+                    return (
+                      <div key={i} className="flex items-center gap-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-2 md:p-3 shadow-sm">
+                        <div className="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0">
+                          <Icon className={`w-3.5 h-3.5 md:w-4 md:h-4 ${stat.color}`} />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <p className="text-[10px] md:text-xs text-slate-500 dark:text-slate-400 truncate">{stat.label}</p>
+                          <p className={`text-sm md:text-base font-semibold ${stat.color} truncate`}>{stat.value}</p>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+
+                {/* Charts Row */}
+                <div className="grid md:grid-cols-3 gap-2 md:gap-4 mb-2 md:mb-4 flex-1 min-h-0">
+                  {/* Donut Chart */}
+                  <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-3 md:p-4 flex items-center justify-center">
+                    <div className="relative w-20 h-20 md:w-32 md:h-32">
+                      <svg className="w-full h-full transform -rotate-90">
+                        <circle cx="50%" cy="50%" r="40%" fill="none" stroke="currentColor" strokeWidth="6" className="text-slate-200 dark:text-slate-800 md:strokeWidth-8" />
+                        <circle cx="50%" cy="50%" r="40%" fill="none" stroke="currentColor" strokeWidth="6" className="md:strokeWidth-8 text-[#3cb371]" strokeDasharray={`${2 * Math.PI * 40} ${2 * Math.PI * 40}`} strokeDashoffset={`${2 * Math.PI * 40 * 0.35}`} strokeLinecap="round" />
                       </svg>
-                      <span className="font-bold">resolu</span>
-                    </div>
-                    <div className="space-y-1">
-                      <div className="bg-[#3cb371]/10 text-[#3cb371] px-3 py-2 rounded-lg text-sm font-medium flex items-center gap-2">
-                        <TrendingUp className="w-4 h-4" /> Visão Geral
-                      </div>
-                      <div className="hover:bg-slate-100 dark:hover:bg-slate-800 px-3 py-2 rounded-lg text-sm font-medium flex items-center gap-2 text-slate-600 dark:text-slate-400">
-                        <Target className="w-4 h-4" /> Objetivos
-                      </div>
-                      <div className="hover:bg-slate-100 dark:hover:bg-slate-800 px-3 py-2 rounded-lg text-sm font-medium flex items-center gap-2 text-slate-600 dark:text-slate-400">
-                        <GitBranch className="w-4 h-4" /> Tarefas & Hábitos
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="text-center">
+                          <div className="text-sm md:text-xl font-bold text-[#3cb371]">35%</div>
+                          <div className="text-[9px] md:text-xs text-slate-500">Marcos</div>
+                        </div>
                       </div>
                     </div>
                   </div>
 
-                  {/* Fake Content Area */}
-                  <div className="flex-1 p-6 md:p-8 bg-slate-50 dark:bg-slate-950 overflow-hidden relative">
-                    <div className="flex justify-between items-end mb-8">
-                      <div>
-                        <h2 className="text-2xl font-bold mb-1">Bem-vindo(a) de volta 👋</h2>
-                        <p className="text-slate-500 text-sm">Seu progresso esta semana está excelente.</p>
-                      </div>
-                      <div className="hidden sm:inline-flex px-3 py-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-full text-xs font-medium text-slate-500">
-                        Semana 42 / 2026
-                      </div>
+                  {/* Week Progress Chart */}
+                  <div className="md:col-span-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-2 md:p-4 flex flex-col min-h-0">
+                    <div className="flex items-center gap-1.5 md:gap-2 mb-1.5 md:mb-2">
+                      <CalendarDays className="w-3 h-3 md:w-3.5 md:h-3.5 text-slate-500" />
+                      <h3 className="text-[10px] md:text-xs font-semibold uppercase text-slate-500">Semana atual</h3>
+                      <Info className="w-2.5 h-2.5 md:w-3 md:h-3 text-slate-400 hidden md:block" />
                     </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-                      {/* Metric cards */}
-                      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 rounded-xl">
-                        <div className="text-slate-500 text-xs font-semibold mb-1 uppercase tracking-wider">Hábitos Concluídos</div>
-                        <div className="text-2xl font-bold">24 <span className="text-sm font-normal text-slate-400">/ 30</span></div>
-                        <div className="mt-2 text-xs text-[#3cb371] flex items-center gap-1"><TrendingUp className="w-3 h-3" /> +12% qto anterior</div>
-                      </div>
-                      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 rounded-xl">
-                        <div className="text-slate-500 text-xs font-semibold mb-1 uppercase tracking-wider">Metas Ativas</div>
-                        <div className="text-2xl font-bold">5</div>
-                        <div className="mt-2 text-xs text-slate-500">2 próximas do fim</div>
-                      </div>
-                      <div className="bg-[#3cb371] text-white p-4 rounded-xl relative overflow-hidden">
-                        <div className="absolute -right-4 -bottom-4 opacity-20">
-                          <Target className="w-24 h-24" />
-                        </div>
-                        <div className="relative z-10">
-                          <div className="text-green-100 text-xs font-semibold mb-1 uppercase tracking-wider">Score Semanal</div>
-                          <div className="text-3xl font-bold">A+</div>
-                          <div className="mt-1 text-xs text-green-50">Você está no top 10%</div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                      {/* Dashboard skeleton items */}
-                      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 h-64 flex flex-col">
-                        <div className="text-sm font-bold mb-4">Seus Hábitos de Hoje</div>
-                        <div className="space-y-3 flex-1">
-                          {[
-                            { title: 'Ler 20 páginas', tag: 'Desenvolvimento' },
-                            { title: 'Treino de força (45min)', tag: 'Saúde' },
-                            { title: 'Meditar', tag: 'Mentalidade' }
-                          ].map((habit, i) => (
-                            <div key={i} className="flex items-center justify-between p-3 border border-slate-100 dark:border-slate-800/60 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-default">
-                              <div className="flex gap-3 items-center">
-                                <div className={`w-5 h-5 rounded-md border-2 ${i === 0 ? 'bg-[#3cb371] border-[#3cb371]' : 'border-slate-300 dark:border-slate-600'} flex items-center justify-center`}>
-                                  {i === 0 && <CheckCircle2 className="w-3 h-3 text-white" />}
-                                </div>
-                                <div className="text-sm font-medium">{habit.title}</div>
-                              </div>
-                              <span className="text-[10px] uppercase font-bold text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">
-                                {habit.tag}
-                              </span>
+                    <div className="space-y-1 md:space-y-2 flex-1 min-h-0">
+                      {coreFeatures.slice(0, 3).map((feat, i) => {
+                        const Icon = feat.icon
+                        const progress = [75, 60, 90][i]
+                        return (
+                          <div key={i} className="flex items-center gap-1.5 md:gap-2">
+                            <div className="w-5 h-5 md:w-6 md:h-6 rounded bg-[#3cb371]/10 flex items-center justify-center shrink-0">
+                              <Icon className="w-2.5 h-2.5 md:w-3 md:h-3 text-[#3cb371]" />
                             </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 h-64 flex flex-col">
-                        <div className="flex justify-between items-center mb-4">
-                          <div className="text-sm font-bold">Progresso das Metas</div>
-                          <span className="text-xs text-[#3cb371] font-medium cursor-pointer">Ver todas</span>
-                        </div>
-                        <div className="space-y-5 mt-2">
-                          {[
-                            { title: 'Guardar fundo de emergência', perc: 65, color: 'bg-[#3cb371]' },
-                            { title: 'Certificação AWS', perc: 30, color: 'bg-blue-500' },
-                            { title: 'Correr 10km', perc: 85, color: 'bg-purple-500' }
-                          ].map((meta, i) => (
-                            <div key={i}>
-                              <div className="flex justify-between text-xs mb-1.5">
-                                <span className="font-medium">{meta.title}</span>
-                                <span className="text-slate-500">{meta.perc}%</span>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center justify-between mb-0.5 md:mb-1">
+                                <span className="text-[9px] md:text-[10px] text-slate-600 dark:text-slate-400 truncate">{feat.title.split('. ')[1] || feat.title}</span>
+                                <span className="text-[9px] md:text-[10px] font-semibold text-[#3cb371] ml-1">{progress}%</span>
                               </div>
-                              <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2 overflow-hidden">
-                                <div className={`${meta.color} h-2 rounded-full`} style={{ width: `${meta.perc}%` }} />
+                              <div className="h-1 md:h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                                <div className="h-full bg-[#3cb371] rounded-full" style={{ width: `${progress}%` }} />
                               </div>
                             </div>
-                          ))}
-                        </div>
-                      </div>
+                          </div>
+                        )
+                      })}
                     </div>
-
-                    {/* Gradient overlay to fake scrolling content fading out */}
-                    <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-slate-50 dark:from-slate-950 to-transparent pointer-events-none" />
+                    <button className="mt-1.5 md:mt-3 w-full flex items-center justify-center gap-1 rounded-lg border border-dashed border-slate-300 dark:border-slate-700 py-1 md:py-1.5 text-[9px] md:text-xs text-slate-500 hover:border-[#3cb371] hover:text-[#3cb371] transition-colors">
+                      <CheckSquare className="w-2.5 h-2.5 md:w-3 md:h-3" />
+                      <span className="hidden md:inline">Registrar check-in</span>
+                      <span className="md:hidden">Check-in</span>
+                    </button>
                   </div>
+                </div>
+
+                {/* Link to Objetivos */}
+                <div className="hidden md:flex items-center gap-1.5 text-xs text-[#3cb371] font-medium mt-auto">
+                  Ver detalhes em Objetivos
+                  <ChevronRight className="w-3 h-3" />
                 </div>
               </div>
             </div>
@@ -323,19 +387,7 @@ function App() {
               <h2 className="text-3xl md:text-4xl font-bold mb-4 flex items-center justify-center gap-2 md:gap-3 flex-wrap">
                 Como o
                 <span className="inline-flex items-center gap-1.5 font-bold tracking-tight text-3xl md:text-4xl pt-1" style={{ fontFamily: "'Comfortaa', sans-serif" }}>
-                  <svg
-                    className="w-7 h-7 md:w-9 md:h-9 text-[#3cb371]"
-                    viewBox="-8 -5 115 110"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="12"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden
-                  >
-                    <path d="M 80,35 A 40,40 0 1,0 40,90" />
-                    <polyline points="25,55 45,75 85,30" />
-                  </svg>
+                  <ResoluLogo className="w-7 h-7 md:w-9 md:h-9 text-[#3cb371]" />
                   <span className="text-slate-900 dark:text-slate-100 tracking-[-0.03em]">resolu<span className="text-slate-400 dark:text-slate-500">.app</span></span>
                 </span>
                 funciona
@@ -349,14 +401,12 @@ function App() {
               {coreFeatures.map((feat, i) => {
                 const Icon = feat.icon
                 return (
-                  <div key={i} className={`bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 transition-colors ${feat.borderClass} flex flex-col h-full`}>
-                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 ${feat.colorClass}`}>
-                      <Icon className="w-6 h-6" />
+                  <div key={i} className={`bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 transition-colors ${feat.borderClass} shadow-sm dark:shadow-none flex flex-col`}>
+                    <div className={`w-14 h-14 rounded-2xl ${feat.colorClass} flex items-center justify-center mb-6`}>
+                      <Icon className="w-7 h-7" />
                     </div>
-                    <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-white">{feat.title}</h3>
-                    <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed flex-1">
-                      {feat.desc}
-                    </p>
+                    <h3 className="text-xl font-bold mb-3">{feat.title}</h3>
+                    <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">{feat.desc}</p>
                   </div>
                 )
               })}
@@ -369,19 +419,7 @@ function App() {
             <h2 className="text-3xl md:text-4xl font-bold mb-3 flex items-center justify-center gap-2 md:gap-3 flex-wrap text-slate-900 dark:text-white">
               A Ciência por trás do
               <span className="inline-flex items-center gap-1.5 font-bold tracking-tight text-3xl md:text-4xl pt-1" style={{ fontFamily: "'Comfortaa', sans-serif" }}>
-                <svg
-                  className="w-7 h-7 md:w-9 md:h-9 text-[#3cb371]"
-                  viewBox="-8 -5 115 110"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="12"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden
-                >
-                  <path d="M 80,35 A 40,40 0 1,0 40,90" />
-                  <polyline points="25,55 45,75 85,30" />
-                </svg>
+                <ResoluLogo className="w-7 h-7 md:w-9 md:h-9 text-[#3cb371]" />
                 <span className="text-slate-900 dark:text-slate-100 tracking-[-0.03em]">resolu<span className="text-slate-400 dark:text-slate-500">.app</span></span>
               </span>
             </h2>
@@ -391,56 +429,148 @@ function App() {
           </div>
 
           {/* Core Engine - Sistemas > Resultados */}
-          <div id="sistemas" className="container mx-auto px-6 max-w-6xl">
-            <div className="bg-emerald-50/50 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-900/50 rounded-3xl p-8 md:p-12 text-center relative overflow-hidden shadow-sm">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-200 dark:bg-emerald-800 opacity-20 blur-[80px] -mr-32 -mt-32" aria-hidden />
-
-              <div className="inline-flex items-center justify-center p-3 bg-white dark:bg-slate-900 rounded-2xl shadow-sm mb-6 relative z-10 mx-auto">
-                <Target className="w-8 h-8 text-emerald-500" />
-              </div>
-
-              <h3 className="text-2xl md:text-3xl font-bold mb-4 text-slate-900 dark:text-white relative z-10">
-                Sistemas são maiores que objetivos
-              </h3>
-
-              <p className="text-slate-600 dark:text-slate-400 text-lg max-w-3xl mx-auto mb-8 relative z-10">
-                Perdedores e vencedores têm os mesmos objetivos. A diferença está nos sistemas que constroem. No Resolu, o objetivo é apenas a bússola; <strong className="text-emerald-600 dark:text-emerald-400">os hábitos são a esteira de execução</strong>.
-              </p>
-
-              {/* James Clear Quote Block */}
-              <blockquote className="bg-white/80 dark:bg-slate-900/80 backdrop-blur border border-slate-100 dark:border-slate-800 p-6 md:p-8 rounded-2xl max-w-4xl mx-auto text-left relative z-10 shadow-sm">
-                <p className="text-lg md:text-xl font-semibold text-slate-700 dark:text-slate-300 leading-relaxed italic">
-                  &quot;Unir Hábitos Atômicos(James Clear) à execução de OKRs(John Doerr) transforma metas ambiciosas em rotinas sustentáveis. O segredo: priorizar sistemas — os hábitos que você mantém — em vez de resultados isolados.&quot;
-                </p>
-                <div className="mt-3 text-sm text-[#3cb371] font-medium uppercase tracking-wider flex items-center gap-1.5">
-                  Metodologia
-                  <span className="inline-flex items-center gap-1 font-bold tracking-tight text-sm normal-case pt-0.5" style={{ fontFamily: "'Comfortaa', sans-serif" }}>
-                    <svg
-                      className="w-4 h-4 text-[#3cb371]"
-                      viewBox="-8 -5 115 110"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="12"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      aria-hidden
-                    >
-                      <path d="M 80,35 A 40,40 0 1,0 40,90" />
-                      <polyline points="25,55 45,75 85,30" />
-                    </svg>
-                    <span className="text-slate-900 dark:text-slate-100 tracking-[-0.03em]">resolu<span className="text-slate-400 dark:text-slate-500">.app</span></span>
-                  </span>
+          <div id="sistemas" className="container mx-auto px-6 max-w-6xl scroll-mt-24">
+            <div className="bg-slate-50/50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 md:p-10 shadow-sm dark:shadow-inner overflow-hidden">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+                <div className="lg:col-span-5">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#3cb371]/10 text-[#3cb371] text-xs font-bold uppercase tracking-wider mb-5">
+                    <span>Métrica Lead</span>
+                  </div>
+                  <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6 leading-tight">
+                    Sistemas <span className="text-[#3cb371]">&gt;</span> Resultados
+                  </h2>
+                  <p className="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                    O erro comum é focar no <strong className="text-slate-700 dark:text-slate-300">Key Result (Metas)</strong>. No Resolu invertemos: o OKR dá o <strong className="text-slate-700 dark:text-slate-300">Norte</strong>, e a execução vive no <strong className="text-[#3cb371]">sistema de hábitos</strong>.
+                  </p>
+                  <p className="text-slate-600 dark:text-slate-400 text-sm border-l-2 border-[#3cb371]/50 pl-4 italic">
+                    Quando o hábito vira rotina, a meta é consequência.
+                  </p>
                 </div>
-              </blockquote>
+                <div className="lg:col-span-7">
+                  <div className="bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 p-6 md:p-8 rounded-3xl border border-slate-200 dark:border-slate-600 shadow-inner">
+                    <div className="flex flex-col items-center gap-1">
+                      {/* Objetivo - Direção: tom frio em dark para destacar */}
+                      <div className="w-full flex items-center gap-3 p-4 md:p-5 bg-slate-200/90 dark:bg-slate-700 border border-slate-300 dark:border-slate-500 rounded-2xl shadow-md">
+                        <div className="w-10 h-10 rounded-xl bg-slate-400/30 dark:bg-sky-500/20 flex items-center justify-center shrink-0">
+                          <Target className="w-5 h-5 text-slate-600 dark:text-sky-400" />
+                        </div>
+                        <div className="text-left min-w-0 flex-1">
+                          <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-sky-400/90">Direção (O)</span>
+                          <p className="text-base md:text-lg font-bold mt-0.5 text-slate-800 dark:text-slate-100">Conquistar Liberdade Física e Mental</p>
+                        </div>
+                      </div>
+                      <ChevronDown className="w-5 h-5 text-slate-400 dark:text-slate-500 shrink-0" strokeWidth={2.5} />
+                      {/* KRs */}
+                      <div className="w-full flex items-center gap-3 p-4 md:p-5 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900/50 rounded-2xl">
+                        <div className="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center shrink-0">
+                          <CheckCircle2 className="w-5 h-5 text-emerald-700 dark:text-emerald-400" />
+                        </div>
+                        <div className="text-left min-w-0 flex-1">
+                          <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-700/80 dark:text-emerald-400/80">Validação (Metas)</span>
+                          <p className="text-sm font-bold mt-0.5 text-emerald-800 dark:text-emerald-300">Correr Maratona em 4h • Perder 5kg de gordura</p>
+                        </div>
+                      </div>
+                      <ChevronDown className="w-5 h-5 text-slate-400 dark:text-slate-500 shrink-0" strokeWidth={2.5} />
+                      {/* Hábitos - destaque */}
+                      <div className="w-full flex items-center gap-3 p-4 md:p-5 bg-[#3cb371]/15 dark:bg-[#3cb371]/20 border-2 border-[#3cb371]/40 dark:border-[#3cb371]/50 rounded-2xl shadow-md ring-2 ring-[#3cb371]/10">
+                        <div className="w-10 h-10 rounded-xl bg-[#3cb371] flex items-center justify-center shrink-0">
+                          <Repeat className="w-5 h-5 text-white" />
+                        </div>
+                        <div className="text-left min-w-0 flex-1">
+                          <span className="text-[10px] font-bold uppercase tracking-widest text-[#2e8b57] dark:text-[#3cb371]">Execução (Hábitos Atômicos)</span>
+                          <p className="text-sm md:text-base font-bold mt-0.5 text-slate-800 dark:text-slate-200">Treinar 45min (Seg/Qua/Sex) • 10min Mobilidade diária</p>
+                        </div>
+                      </div>
+                      <ChevronDown className="w-5 h-5 text-slate-400 dark:text-slate-500 shrink-0" strokeWidth={2.5} />
+                      {/* Tarefas - Ativação: tom quente em dark para destacar */}
+                      <div className="w-[85%] flex items-center gap-3 p-3 bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-500 rounded-xl">
+                        <div className="w-8 h-8 rounded-lg bg-slate-400/20 dark:bg-amber-500/20 flex items-center justify-center shrink-0">
+                          <CheckSquare className="w-4 h-4 text-slate-500 dark:text-amber-400" />
+                        </div>
+                        <div className="text-left min-w-0 flex-1">
+                          <span className="text-[9px] font-bold uppercase tracking-widest text-slate-500 dark:text-amber-400/90">Ativação (Tarefas)</span>
+                          <p className="text-xs font-semibold mt-0.5 text-slate-600 dark:text-slate-300">Comprar suplementos • Agendar clínico</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Faixa: Citação + Sistemas > Resultados */}
+          <div className="container mx-auto px-6 max-w-4xl mt-20">
+            <blockquote className="border-l-4 border-[#3cb371] bg-white/80 dark:bg-slate-800/80 p-6 md:p-8 rounded-2xl shadow-sm">
+              <p className="text-lg md:text-xl font-semibold text-slate-700 dark:text-slate-300 leading-relaxed italic">
+                &quot;Unir Hábitos Atômicos(James Clear) à execução de OKRs(John Doerr) transforma metas ambiciosas em rotinas sustentáveis. O segredo: priorizar sistemas — os hábitos que você mantém — em vez de resultados isolados.&quot;
+              </p>
+              <div className="mt-3 text-sm text-[#3cb371] font-medium uppercase tracking-wider flex items-center gap-1.5">
+                Metodologia
+                <span className="inline-flex items-center gap-1 font-bold tracking-tight text-sm normal-case pt-0.5" style={{ fontFamily: "'Comfortaa', sans-serif" }}>
+                  <ResoluLogo className="w-4 h-4 text-[#3cb371]" />
+                  <span className="text-slate-900 dark:text-slate-100 tracking-[-0.03em]">resolu<span className="text-slate-400 dark:text-slate-500">.app</span></span>
+                </span>
+              </div>
+            </blockquote>
+          </div>
+
+          {/* Data Analytics - faixa */}
+          <div className="container mt-20 mx-auto px-6 max-w-6xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-3xl p-6 shadow-sm">
+                <h3 className="text-xl font-bold mb-4 text-slate-900 dark:text-white">Efeito Juros Compostos</h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">
+                  A ciência de James Clear aplicada: hábitos constantes parecem não mover o KR no início, mas geram um rompimento exponencial após o &quot;Platô do Potencial Latente&quot;.
+                </p>
+                <CompoundingChart />
+              </div>
+              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-3xl p-6 shadow-sm">
+                <h3 className="text-xl font-bold mb-4 text-slate-900 dark:text-white">A Retenção da Metodologia</h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">
+                  Comprovação da Dominican University: Objetivos escritos + Definição de Sistemas (Hábitos) + Check-in semanal geram 76% de sucesso contra 35% de listas simples.
+                </p>
+                <RetentionChart />
+              </div>
+            </div>
+          </div>
+
+          {/* A Convergência - mesma faixa que Ciência (metodologia), separada da IA */}
+          <div className="container mx-auto px-6 max-w-6xl">
+            <div className="mt-20 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-3xl p-6 md:p-10 shadow-sm">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
+                <div className="md:col-span-5">
+                  <h3 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">A Convergência</h3>
+                  <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                    No diagrama, a relação entre <strong>Habilidade</strong> (construída pelos hábitos) e <strong>Nível de Desafio</strong> (definido pelos KRs). No centro está o &quot;Canal de Flow&quot;.
+                  </p>
+                  <div className="mt-6 p-4 bg-green-50 dark:bg-green-950/30 rounded-xl border border-green-100 dark:border-green-900/50">
+                    <p className="text-xs text-green-800 dark:text-green-300 font-medium">
+                      <strong>Diferencial:</strong> Nós monitoramos seus hábitos semanais para garantir que você esteja sempre na zona de crescimento ideal, evitando o abandono por frustração ou monotonia.
+                    </p>
+                  </div>
+                </div>
+                <div className="md:col-span-7 flex items-center justify-center bg-slate-50/50 dark:bg-slate-800/30 rounded-2xl min-h-[280px] p-6">
+                  <FlowDiagram />
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Assistente IA - Solo Section */}
-        <section id="assistente-ia" className="py-16 md:py-20 bg-white dark:bg-slate-950 border-t border-slate-100 dark:border-slate-800/60 scroll-mt-24">
-          <div className="container mx-auto px-6 flex items-center justify-center">
-            <div className="w-full max-w-6xl">
-              <div className="bg-emerald-50/50 dark:bg-slate-950 rounded-[3rem] p-8 md:p-16 relative overflow-hidden border border-emerald-100 dark:border-slate-800/60 shadow-sm dark:shadow-none">
+        {/* O que vem por aí: IA + Comunidade */}
+        <section id="roadmap" className="py-16 md:py-20 bg-white dark:bg-slate-950 border-t border-slate-100 dark:border-slate-800/60 scroll-mt-24">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-14">
+              <h2 className="text-3xl md:text-4xl font-bold mb-3 text-slate-900 dark:text-white">O que vem por aí</h2>
+              <p className="text-slate-600 dark:text-slate-400 text-lg max-w-2xl mx-auto">
+                <strong className="text-[#3cb371]">IA</strong> para potencializar suas metas e <strong className="text-[#3cb371]">Comunidade</strong> para engajar sua jornada.
+              </p>
+            </div>
+
+            {/* IA */}
+            <div id="ia" className="scroll-mt-24 mb-16 md:mb-20">
+              <div className="bg-green-50/50 dark:bg-slate-950 rounded-[3rem] p-8 md:p-16 relative overflow-hidden border border-green-100 dark:border-0">
                 <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#3cb371] opacity-10 blur-[120px] -mr-40 -mt-40" />
 
                 <div className="grid lg:grid-cols-2 gap-12 items-center relative z-10">
@@ -487,10 +617,7 @@ function App() {
                         <Sparkles className="text-white w-6 h-6" />
                       </div>
                       <div>
-                        <div className="flex items-center gap-1.5 font-bold tracking-tight" style={{ fontFamily: "'Comfortaa', sans-serif" }}>
-                          Assistente
-                          <span className="text-slate-900 dark:text-slate-100 tracking-[-0.03em]">resolu<span className="text-slate-400 dark:text-slate-500">.app</span></span>
-                        </div>
+                        <div className="text-slate-900 dark:text-white font-bold">Assistente</div>
                         <div className="text-[#3cb371] text-xs">Analista de Planejamento</div>
                       </div>
                     </div>
@@ -507,19 +634,8 @@ function App() {
                 </div>
               </div>
             </div>
-          </div>
-        </section>
 
-        {/* O que vem por aí: Comunidade */}
-        <section id="roadmap" className="py-16 md:py-20 bg-white dark:bg-slate-950 border-t border-slate-100 dark:border-slate-800/60 scroll-mt-24">
-          <div className="container mx-auto px-6">
-            <div className="text-center mb-14">
-              <h2 className="text-3xl md:text-4xl font-bold mb-3 text-slate-900 dark:text-white">O que vem por aí</h2>
-              <p className="text-slate-600 dark:text-slate-400 text-lg max-w-2xl mx-auto">
-                <strong className="text-blue-500">Comunidade</strong> para manter o engajamento na jornada com quem você mais importa.
-              </p>
-            </div>
-
+            {/* Comunidade */}
             <div className="bg-blue-50/50 dark:bg-slate-950 rounded-[3rem] p-8 md:p-16 relative overflow-hidden border border-blue-100 dark:border-slate-800/60 shadow-sm dark:shadow-none">
               <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-500 opacity-5 blur-[120px] -ml-40 -mb-40" />
 
@@ -588,7 +704,7 @@ function App() {
         </section>
 
         {/* Footer científico - base */}
-        <section className="py-16 md:py-20 bg-white dark:bg-slate-950 border-t border-slate-100 dark:border-slate-800/60">
+        <section className="py-16 md:py-20 bg-white dark:bg-slate-950">
           <div className="container mx-auto px-6 max-w-6xl">
             <div className="bg-slate-50/50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800/80 text-slate-700 dark:text-slate-300 p-10 md:p-12 rounded-[3rem] shadow-sm">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
@@ -611,30 +727,18 @@ function App() {
                   </p>
                 </div>
               </div>
-            </div>
-            <div className="mt-10 text-center text-[10px] uppercase tracking-[0.5em] text-slate-500 dark:text-slate-500">
-              <span className="inline-flex items-center gap-1 font-bold tracking-tight text-xs pt-0.5" style={{ fontFamily: "'Comfortaa', sans-serif" }}>
-                <svg
-                  className="w-3 h-3 text-[#3cb371]"
-                  viewBox="-8 -5 115 110"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="12"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden
-                >
-                  <path d="M 80,35 A 40,40 0 1,0 40,90" />
-                  <polyline points="25,55 45,75 85,30" />
-                </svg>
-                <span className="text-slate-900 dark:text-slate-100 tracking-[-0.03em]">resolu<span className="text-slate-400 dark:text-slate-500">.app</span></span>
-              </span>
-              <span className="px-1.5">•</span> Strategic Personal Achievement
+              <div className="mt-10 text-center text-[10px] uppercase tracking-[0.5em] text-slate-500 dark:text-slate-500">
+                <span className="inline-flex items-center gap-1 font-bold tracking-tight text-xs pt-0.5" style={{ fontFamily: "'Comfortaa', sans-serif" }}>
+                  <ResoluLogo className="w-3 h-3 text-[#3cb371]" />
+                  <span className="text-slate-900 dark:text-slate-100 tracking-[-0.03em]">resolu<span className="text-slate-400 dark:text-slate-500">.app</span></span>
+                </span>
+                <span className="px-1.5">•</span> Strategic Personal Achievement
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Final CTA */}
+        {/* Final CTA - mesmo fundo do card IA */}
         <section className="py-16 md:py-20 bg-white dark:bg-slate-950 border-t border-slate-100 dark:border-slate-800/60">
           <div className="container mx-auto px-6">
             <div className="bg-slate-50 dark:bg-slate-950 rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden border border-slate-200 dark:border-0 shadow-sm dark:shadow-none">
