@@ -595,31 +595,46 @@ function App() {
             </div>
 
             {/* Comunidade */}
-            <div className="text-center">
-              <h3 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-3">Comunidade</h3>
-              <p className="text-slate-600 dark:text-slate-400 text-sm mb-8 max-w-2xl mx-auto">
-                Ferramentas de engajamento para manter a motivação com quem importa.
-              </p>
-              <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                <div className="flex gap-4 p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
-                  <div className="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center flex-shrink-0">
-                    <Share2 className="w-6 h-6" />
+            <div className="bg-blue-50/50 dark:bg-slate-950 rounded-[3rem] p-8 md:p-16 relative overflow-hidden border border-blue-100 dark:border-slate-800/60 shadow-sm dark:shadow-none">
+              <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-500 opacity-5 blur-[120px] -ml-40 -mb-40" />
+
+              <div className="relative z-10">
+                <div className="text-center mb-12">
+                  <div className="inline-flex items-center gap-3 mb-6 justify-center flex-wrap">
+                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 dark:bg-blue-500/20 text-blue-600 dark:text-blue-400 text-sm font-semibold">
+                      <Share2 className="w-4 h-4" />
+                      <span>Comunidade</span>
+                    </div>
+                    <span className="text-xs font-bold text-blue-600 dark:text-blue-400 bg-blue-500/10 dark:bg-blue-500/20 px-2.5 py-1 rounded-full border border-blue-500/20 dark:border-blue-500/40">
+                      Em planejamento
+                    </span>
                   </div>
-                  <div>
-                    <div className="text-xs font-bold text-blue-600 bg-blue-500/20 px-2 py-0.5 rounded-full inline-block mb-2">Em breve</div>
-                    <h4 className="text-lg font-bold mb-1">Compartilhamento Social</h4>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">Compartilhe seu quadro de objetivos com quem você ama e receba apoio mútuo.</p>
-                  </div>
+
+                  <h3 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">Apoio Mútuo</h3>
+                  <p className="text-slate-600 dark:text-slate-400 text-lg max-w-2xl mx-auto">
+                    Ferramentas de engajamento para manter a motivação com quem importa.
+                  </p>
                 </div>
 
-                <div className="flex gap-4 p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
-                  <div className="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center flex-shrink-0">
-                    <Trophy className="w-6 h-6" />
+                <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                  <div className="flex gap-4 p-8 rounded-3xl bg-white/80 dark:bg-white/5 backdrop-blur-sm border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-none">
+                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-blue-500 to-cyan-400 flex items-center justify-center flex-shrink-0">
+                      <Share2 className="text-white w-6 h-6" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold mb-2 text-slate-900 dark:text-white">Compartilhamento Social</h4>
+                      <p className="text-sm text-slate-600 dark:text-slate-400">Compartilhe seu quadro de objetivos com quem você ama e receba apoio mútuo.</p>
+                    </div>
                   </div>
-                  <div>
-                    <div className="text-xs font-bold text-amber-600 bg-amber-500/20 px-2 py-0.5 rounded-full inline-block mb-2">Em breve</div>
-                    <h4 className="text-lg font-bold mb-1">Competição Saudável</h4>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">Desafie amigos e família em hábitos saudáveis para manter a motivação.</p>
+
+                  <div className="flex gap-4 p-8 rounded-3xl bg-white/80 dark:bg-white/5 backdrop-blur-sm border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-none">
+                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-500 to-yellow-400 flex items-center justify-center flex-shrink-0">
+                      <Trophy className="text-white w-6 h-6" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold mb-2 text-slate-900 dark:text-white">Competição Saudável</h4>
+                      <p className="text-sm text-slate-600 dark:text-slate-400">Desafie amigos e família em hábitos saudáveis para manter a motivação.</p>
+                    </div>
                   </div>
                 </div>
               </div>
