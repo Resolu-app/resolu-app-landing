@@ -1,6 +1,9 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { CompoundingChart, RetentionChart, FlowDiagram } from './ScientificCharts'
 import {
+  Sun,
+  Moon,
+  Laptop,
   Sparkles,
   ArrowRight,
   CheckCircle2,
@@ -42,6 +45,40 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const signupUrl = useMemo(getSignupUrl, [])
 
+  const [theme, setTheme] = useState<'light' | 'dark' | 'system'>(() => {
+    if (typeof window !== 'undefined') {
+      return (localStorage.getItem('resolu-theme') as 'light' | 'dark' | 'system') || 'system'
+    }
+    return 'system'
+  })
+
+  useEffect(() => {
+    const root = window.document.documentElement
+    root.classList.remove('light', 'dark')
+
+    if (theme === 'system') {
+      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+      root.classList.add(systemTheme)
+    } else {
+      root.classList.add(theme)
+    }
+
+    localStorage.setItem('resolu-theme', theme)
+  }, [theme])
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+    const handleChange = () => {
+      if (theme === 'system') {
+        const root = window.document.documentElement
+        root.classList.remove('light', 'dark')
+        root.classList.add(mediaQuery.matches ? 'dark' : 'light')
+      }
+    }
+    mediaQuery.addEventListener('change', handleChange)
+    return () => mediaQuery.removeEventListener('change', handleChange)
+  }, [theme])
+
   const dimensions = [
     { icon: Users2, title: "Família", desc: "Relações familiares e tempo de qualidade" },
     { icon: DollarSign, title: "Financeiro", desc: "Finanças pessoais e investimentos" },
@@ -76,14 +113,36 @@ function App() {
 
           <nav className="hidden md:flex items-center gap-6">
             <a href="#features" className="text-sm hover:text-[#3cb371]">Funcionalidades</a>
-            <a href="#metodologia" className="text-sm hover:text-[#3cb371]">Metodologia</a>
-            <a href="#ciencia" className="text-sm hover:text-[#3cb371]">Ciência</a>
+            <a href="#metodologia" className="text-sm hover:text-[#3cb371]">Metodologia & Ciência</a>
             <a href="#roadmap" className="text-sm hover:text-[#3cb371]">O que vem por aí</a>
             <span className="w-px h-4 bg-slate-300 dark:bg-slate-600 mx-1" aria-hidden />
             <a href={`${APP_URL}/login`} className="text-sm hover:text-[#3cb371]">Entrar</a>
             <a href={signupUrl} className="px-4 py-2 bg-[#3cb371] text-white rounded-full text-sm font-medium hover:bg-[#2e8b57] inline-block">
               Criar conta
             </a>
+            <div className="flex items-center gap-1 bg-slate-100 dark:bg-slate-900 rounded-full p-1 ml-2 border border-slate-200 dark:border-slate-800">
+              <button
+                onClick={() => setTheme('light')}
+                className={`p-1.5 rounded-full transition-colors ${theme === 'light' ? 'bg-white text-amber-500 shadow-sm' : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-300'}`}
+                title="Claro"
+              >
+                <Sun className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => setTheme('system')}
+                className={`p-1.5 rounded-full transition-colors ${theme === 'system' ? 'bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 shadow-sm' : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-300'}`}
+                title="Sistema"
+              >
+                <Laptop className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => setTheme('dark')}
+                className={`p-1.5 rounded-full transition-colors ${theme === 'dark' ? 'bg-slate-800 text-blue-400 shadow-sm' : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-300'}`}
+                title="Escuro"
+              >
+                <Moon className="w-4 h-4" />
+              </button>
+            </div>
           </nav>
 
           <button
@@ -96,14 +155,38 @@ function App() {
 
         {/* Mobile Menu */}
         {menuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 p-6 flex flex-col gap-4">
-            <a href="#features" onClick={() => setMenuOpen(false)} className="text-sm hover:text-[#3cb371]">Funcionalidades</a>
-            <a href="#metodologia" onClick={() => setMenuOpen(false)} className="text-sm hover:text-[#3cb371]">Metodologia</a>
-            <a href="#ciencia" onClick={() => setMenuOpen(false)} className="text-sm hover:text-[#3cb371]">Ciência</a>
-            <a href="#roadmap" onClick={() => setMenuOpen(false)} className="text-sm hover:text-[#3cb371]">O que vem por aí</a>
-            <div className="border-t border-slate-200 dark:border-slate-700 my-2" />
-            <a href={`${APP_URL}/login`} onClick={() => setMenuOpen(false)} className="text-sm hover:text-[#3cb371]">Entrar</a>
-            <a href={signupUrl} onClick={() => setMenuOpen(false)} className="px-4 py-2 bg-[#3cb371] text-white rounded-full text-sm font-medium hover:bg-[#2e8b57] text-center">
+          <div className="md:hidden absolute top-full left-0 right-0 bg-white/95 dark:bg-slate-950/95 backdrop-blur-md shadow-xl border-b border-slate-200 dark:border-slate-800 p-6 flex flex-col gap-3">
+            <a href="#features" onClick={() => setMenuOpen(false)} className="p-3 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-[#3cb371] transition-colors">Funcionalidades</a>
+            <a href="#metodologia" onClick={() => setMenuOpen(false)} className="p-3 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-[#3cb371] transition-colors">Metodologia & ciência</a>
+            <a href="#roadmap" onClick={() => setMenuOpen(false)} className="p-3 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-[#3cb371] transition-colors">O que vem por aí</a>
+            <div className="border-t border-slate-200 dark:border-slate-800 my-2" />
+
+            <div className="flex items-center justify-between p-3">
+              <span className="text-sm font-medium text-slate-500">Tema</span>
+              <div className="flex items-center gap-1 bg-slate-100 dark:bg-slate-900 rounded-full p-1 border border-slate-200 dark:border-slate-800">
+                <button
+                  onClick={() => setTheme('light')}
+                  className={`p-2 rounded-full transition-colors ${theme === 'light' ? 'bg-white text-amber-500 shadow-sm' : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-300'}`}
+                >
+                  <Sun className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => setTheme('system')}
+                  className={`p-2 rounded-full transition-colors ${theme === 'system' ? 'bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 shadow-sm' : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-300'}`}
+                >
+                  <Laptop className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => setTheme('dark')}
+                  className={`p-2 rounded-full transition-colors ${theme === 'dark' ? 'bg-slate-800 text-blue-400 shadow-sm' : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-300'}`}
+                >
+                  <Moon className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+
+            <a href={`${APP_URL}/login`} onClick={() => setMenuOpen(false)} className="p-3 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-[#3cb371] transition-colors">Entrar</a>
+            <a href={signupUrl} onClick={() => setMenuOpen(false)} className="mt-2 px-4 py-3 bg-[#3cb371] text-white rounded-full text-sm font-medium hover:bg-[#2e8b57] text-center shadow-md">
               Criar conta
             </a>
           </div>
@@ -119,11 +202,11 @@ function App() {
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-b from-slate-900 to-slate-600 dark:from-white dark:to-slate-400 bg-clip-text text-transparent">
-            Transforme suas resoluções em realidade
+            Em 2026, suas metas saem do papel
           </h1>
 
           <p className="text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto">
-            Planeje e acompanhe seus objetivos em todas as áreas da vida com o sistema estruturado de dimensões do Resolu.app.
+            Do objetivo à rotina: defina metas claras, crie hábitos e veja o resultado acumular com a nova metodologia Resolu de planejamento anual.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
@@ -282,20 +365,37 @@ function App() {
           </div>
         </section>
 
-        {/* Faixa: Citação + Sistemas > Resultados */}
-        <section id="metodologia" className="bg-slate-100 dark:bg-slate-900/70 py-16 md:py-20 scroll-mt-24">
-          <div className="container mx-auto px-6 max-w-4xl mb-12">
-            <blockquote className="border-l-4 border-[#3cb371] bg-white/80 dark:bg-slate-800/80 p-6 md:p-8 rounded-2xl shadow-sm">
-              <p className="text-lg md:text-xl font-semibold text-slate-700 dark:text-slate-300 leading-relaxed italic">
-                &quot;Unir Hábitos Atômicos(James Clear) à execução de OKRs(John Doerr) transforma metas ambiciosas em rotinas sustentáveis. O segredo: priorizar sistemas — os hábitos que você mantém — em vez de resultados isolados.&quot;
+        {/* Dimensions - base */}
+        <section id="features" className="py-20 bg-white dark:bg-slate-950">
+          <div className="container mx-auto px-6">
+            <div className="max-w-3xl mb-12">
+              <h2 className="text-4xl font-bold mb-4">Equilíbrio em todas as áreas</h2>
+              <p className="text-lg text-slate-600 dark:text-slate-400">
+                Organizamos seus objetivos em 6 dimensões fundamentais para garantir crescimento equilibrado.
               </p>
-              <p className="mt-3 text-sm text-[#3cb371] font-medium uppercase tracking-wider">Metodologia Resolu.app</p>
-            </blockquote>
-          </div>
+            </div>
 
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {dimensions.map((dim, i) => {
+                const Icon = dim.icon
+                return (
+                  <div key={i} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 hover:border-[#3cb371]/50 transition-colors">
+                    <div className="w-12 h-12 rounded-xl bg-[#3cb371]/10 text-[#3cb371] flex items-center justify-center mb-4">
+                      <Icon className="w-6 h-6" />
+                    </div>
+                    <h3 className="text-xl font-bold mb-2">{dim.title}</h3>
+                    <p className="text-slate-600 dark:text-slate-400">{dim.desc}</p>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+
+        <section id="metodologia" className="bg-white dark:bg-slate-950 py-16 md:py-20 scroll-mt-24 border-t border-slate-100 dark:border-slate-800/60">
           {/* Core Engine - Sistemas > Resultados */}
           <div id="sistemas" className="container mx-auto px-6 max-w-6xl scroll-mt-24">
-            <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl p-6 md:p-10 shadow-xl shadow-slate-200/50 dark:shadow-none overflow-hidden">
+            <div className="bg-slate-50/50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 md:p-10 shadow-sm dark:shadow-inner overflow-hidden">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
                 <div className="lg:col-span-5">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#3cb371]/10 text-[#3cb371] text-xs font-bold uppercase tracking-wider mb-5">
@@ -363,47 +463,28 @@ function App() {
               </div>
             </div>
           </div>
-        </section>
 
-        {/* Dimensions - base */}
-        <section id="features" className="py-20 bg-white dark:bg-slate-950">
-          <div className="container mx-auto px-6">
-            <div className="max-w-3xl mb-12">
-              <h2 className="text-4xl font-bold mb-4">Equilíbrio em todas as áreas</h2>
-              <p className="text-lg text-slate-600 dark:text-slate-400">
-                Organizamos seus objetivos em 6 dimensões fundamentais para garantir crescimento equilibrado.
+          {/* Faixa: Citação + Sistemas > Resultados */}
+          <div className="container mx-auto px-6 max-w-4xl mt-20">
+            <blockquote className="border-l-4 border-[#3cb371] bg-white/80 dark:bg-slate-800/80 p-6 md:p-8 rounded-2xl shadow-sm">
+              <p className="text-lg md:text-xl font-semibold text-slate-700 dark:text-slate-300 leading-relaxed italic">
+                &quot;Unir Hábitos Atômicos(James Clear) à execução de OKRs(John Doerr) transforma metas ambiciosas em rotinas sustentáveis. O segredo: priorizar sistemas — os hábitos que você mantém — em vez de resultados isolados.&quot;
               </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {dimensions.map((dim, i) => {
-                const Icon = dim.icon
-                return (
-                  <div key={i} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 hover:border-[#3cb371]/50 transition-colors">
-                    <div className="w-12 h-12 rounded-xl bg-[#3cb371]/10 text-[#3cb371] flex items-center justify-center mb-4">
-                      <Icon className="w-6 h-6" />
-                    </div>
-                    <h3 className="text-xl font-bold mb-2">{dim.title}</h3>
-                    <p className="text-slate-600 dark:text-slate-400">{dim.desc}</p>
-                  </div>
-                )
-              })}
-            </div>
+              <p className="mt-3 text-sm text-[#3cb371] font-medium uppercase tracking-wider">Metodologia Resolu.app</p>
+            </blockquote>
           </div>
-        </section>
 
-        {/* Data Analytics - faixa */}
-        <section id="ciencia" className="py-16 md:py-20 bg-slate-100 dark:bg-slate-900/70 scroll-mt-24">
-          <div className="container mx-auto px-6 max-w-6xl">
+          {/* Data Analytics - faixa */}
+          <div className="container mt-20 mx-auto px-6 max-w-6xl">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-lg">
+              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-3xl p-6 shadow-sm">
                 <h3 className="text-xl font-bold mb-4 text-slate-900 dark:text-white">Efeito Juros Compostos</h3>
                 <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">
                   A ciência de James Clear aplicada: hábitos constantes parecem não mover o KR no início, mas geram um rompimento exponencial após o &quot;Platô do Potencial Latente&quot;.
                 </p>
                 <CompoundingChart />
               </div>
-              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-lg">
+              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-3xl p-6 shadow-sm">
                 <h3 className="text-xl font-bold mb-4 text-slate-900 dark:text-white">A Retenção da Metodologia</h3>
                 <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">
                   Comprovação da Dominican University: Objetivos escritos + Definição de Sistemas (Hábitos) + Check-in semanal geram 76% de sucesso contra 35% de listas simples.
@@ -412,12 +493,10 @@ function App() {
               </div>
             </div>
           </div>
-        </section>
 
-        {/* A Convergência - mesma faixa que Ciência (metodologia), separada da IA */}
-        <section className="py-16 md:py-20 bg-slate-100 dark:bg-slate-900/70">
+          {/* A Convergência - mesma faixa que Ciência (metodologia), separada da IA */}
           <div className="container mx-auto px-6 max-w-6xl">
-            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 md:p-10 shadow-lg">
+            <div className="mt-20 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-3xl p-6 md:p-10 shadow-sm">
               <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
                 <div className="md:col-span-5">
                   <h3 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">A Convergência</h3>
@@ -439,7 +518,7 @@ function App() {
         </section>
 
         {/* O que vem por aí: IA + Comunidade */}
-        <section id="roadmap" className="py-16 md:py-20 bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 scroll-mt-24">
+        <section id="roadmap" className="py-16 md:py-20 bg-white dark:bg-slate-950 border-t border-slate-100 dark:border-slate-800/60 scroll-mt-24">
           <div className="container mx-auto px-6">
             <div className="text-center mb-14">
               <h2 className="text-3xl md:text-4xl font-bold mb-3 text-slate-900 dark:text-white">O que vem por aí</h2>
@@ -522,7 +601,7 @@ function App() {
                 Ferramentas de engajamento para manter a motivação com quem importa.
               </p>
               <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                <div className="flex gap-4 p-6 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <div className="flex gap-4 p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
                   <div className="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center flex-shrink-0">
                     <Share2 className="w-6 h-6" />
                   </div>
@@ -533,7 +612,7 @@ function App() {
                   </div>
                 </div>
 
-                <div className="flex gap-4 p-6 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <div className="flex gap-4 p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
                   <div className="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center flex-shrink-0">
                     <Trophy className="w-6 h-6" />
                   </div>
@@ -549,9 +628,9 @@ function App() {
         </section>
 
         {/* Footer científico - base */}
-        <section className="py-16 bg-white dark:bg-slate-950">
+        <section className="py-16 md:py-20 bg-white dark:bg-slate-950">
           <div className="container mx-auto px-6 max-w-6xl">
-            <div className="bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-0 text-slate-700 dark:text-slate-300 p-10 md:p-12 rounded-[3rem] shadow-lg dark:shadow-2xl">
+            <div className="bg-slate-50/50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800/80 text-slate-700 dark:text-slate-300 p-10 md:p-12 rounded-[3rem] shadow-sm">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
                 <div>
                   <h4 className="text-[#3cb371] font-bold uppercase text-xs tracking-widest mb-4">A Tese</h4>
@@ -580,7 +659,7 @@ function App() {
         </section>
 
         {/* Final CTA - mesmo fundo do card IA */}
-        <section className="py-16 bg-slate-100 dark:bg-slate-900/70">
+        <section className="py-16 md:py-20 bg-white dark:bg-slate-950 border-t border-slate-100 dark:border-slate-800/60">
           <div className="container mx-auto px-6">
             <div className="bg-[#1e3d32] dark:bg-slate-950 rounded-[3rem] p-12 md:p-20 text-center text-white relative overflow-hidden border border-[#3cb371]/20 dark:border-0">
               <div className="absolute top-1/2 left-1/2 w-[400px] h-[400px] bg-[#3cb371] opacity-10 blur-[100px] -translate-x-1/2 -translate-y-1/2" aria-hidden />

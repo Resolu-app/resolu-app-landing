@@ -108,7 +108,7 @@ export function FlowDiagram() {
       <img
         src="/flow-diagram.png"
         alt="Diagrama do Canal de Flow: eixo Habilidade (hábitos) e eixo Desafio (KRs), com a faixa verde do Flow no centro; zonas Ansiedade e Tédio nas extremidades."
-        className="w-full h-auto rounded-xl shadow-md object-contain"
+        className="w-full h-auto rounded-xl shadow-md object-contain dark:invert dark:hue-rotate-180 dark:brightness-110 dark:contrast-90 dark:opacity-90"
         width={480}
         height={400}
       />
