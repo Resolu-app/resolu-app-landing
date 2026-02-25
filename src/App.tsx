@@ -617,7 +617,7 @@ function App() {
                         <Sparkles className="text-white w-6 h-6" />
                       </div>
                       <div>
-                        <div className="text-slate-900 dark:text-white font-bold">Assistente</div>
+                        <div className="text-slate-900 dark:text-white font-bold">Assistente Resolú</div>
                         <div className="text-[#3cb371] text-xs">Analista de Planejamento</div>
                       </div>
                     </div>
@@ -727,12 +727,11 @@ function App() {
                   </p>
                 </div>
               </div>
-              <div className="mt-10 text-center text-[10px] uppercase tracking-[0.5em] text-slate-500 dark:text-slate-500">
+              <div className="mt-10 text-center text-[10px] tracking-[0.5em] text-slate-500 dark:text-slate-500">
                 <span className="inline-flex items-center gap-1 font-bold tracking-tight text-xs pt-0.5" style={{ fontFamily: "'Comfortaa', sans-serif" }}>
                   <ResoluLogo className="w-3 h-3 text-[#3cb371]" />
                   <span className="text-slate-900 dark:text-slate-100 tracking-[-0.03em]">resolu<span className="text-slate-400 dark:text-slate-500">.app</span></span>
                 </span>
-                <span className="px-1.5">•</span> Strategic Personal Achievement
               </div>
             </div>
           </div>
