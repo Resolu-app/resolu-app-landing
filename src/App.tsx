@@ -610,7 +610,7 @@ function App() {
                     </span>
                   </div>
 
-                  <h3 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">Apoio Mútuo</h3>
+                  <h3 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">Modo Família</h3>
                   <p className="text-slate-600 dark:text-slate-400 text-lg max-w-2xl mx-auto">
                     Ferramentas de engajamento para manter a motivação com quem importa.
                   </p>
