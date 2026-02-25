@@ -14,7 +14,6 @@ import {
   HeartPulse,
   Star,
   Share2,
-  Trophy,
   LayoutDashboard,
   Target,
   Repeat,
@@ -27,7 +26,10 @@ import {
   ChevronDown,
   CheckSquare,
   CalendarDays,
-  Info
+  Info,
+  ShieldCheck,
+  Gift,
+  Trophy
 } from 'lucide-react'
 
 const APP_URL = (import.meta.env.VITE_APP_URL ?? 'https://my.resolu.app').replace(/\/$/, '')
@@ -616,24 +618,44 @@ function App() {
                   </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                  <div className="flex gap-4 p-8 rounded-3xl bg-white/80 dark:bg-white/5 backdrop-blur-sm border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-none">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                  <div className="flex flex-col gap-4 p-6 rounded-3xl bg-white/80 dark:bg-white/5 backdrop-blur-sm border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-none items-start">
                     <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-blue-500 to-cyan-400 flex items-center justify-center flex-shrink-0">
-                      <Share2 className="text-white w-6 h-6" />
+                      <Target className="text-white w-6 h-6" />
                     </div>
                     <div>
-                      <h4 className="text-lg font-bold mb-2 text-slate-900 dark:text-white">Compartilhamento Social</h4>
-                      <p className="text-sm text-slate-600 dark:text-slate-400">Compartilhe seu quadro de objetivos com quem você ama e receba apoio mútuo.</p>
+                      <h4 className="text-lg font-bold mb-2 text-slate-900 dark:text-white">Metas Compartilhadas</h4>
+                      <p className="text-sm text-slate-600 dark:text-slate-400">O esforço de todos conta. Crie metas conjuntas e vejam a barra de progresso encher com a colaboração da casa.</p>
                     </div>
                   </div>
 
-                  <div className="flex gap-4 p-8 rounded-3xl bg-white/80 dark:bg-white/5 backdrop-blur-sm border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-none">
+                  <div className="flex flex-col gap-4 p-6 rounded-3xl bg-white/80 dark:bg-white/5 backdrop-blur-sm border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-none items-start">
+                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-500 to-purple-400 flex items-center justify-center flex-shrink-0">
+                      <ShieldCheck className="text-white w-6 h-6" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold mb-2 text-slate-900 dark:text-white">Modo Guardião</h4>
+                      <p className="text-sm text-slate-600 dark:text-slate-400">Assuma compromissos! Um familiar se torna seu &apos;Guardião&apos;, recebendo status semanais para te cobrar ou celebrar.</p>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col gap-4 p-6 rounded-3xl bg-white/80 dark:bg-white/5 backdrop-blur-sm border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-none items-start">
                     <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-500 to-yellow-400 flex items-center justify-center flex-shrink-0">
+                      <Gift className="text-white w-6 h-6" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold mb-2 text-slate-900 dark:text-white">Recompensas Familiares</h4>
+                      <p className="text-sm text-slate-600 dark:text-slate-400">Atingiram 80% dos hábitos juntos? Destravem recompensas conjuntas, como a Noite da Pizza.</p>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col gap-4 p-6 rounded-3xl bg-white/80 dark:bg-white/5 backdrop-blur-sm border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-none items-start">
+                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center flex-shrink-0">
                       <Trophy className="text-white w-6 h-6" />
                     </div>
                     <div>
                       <h4 className="text-lg font-bold mb-2 text-slate-900 dark:text-white">Competição Saudável</h4>
-                      <p className="text-sm text-slate-600 dark:text-slate-400">Desafie amigos e família em hábitos saudáveis para manter a motivação.</p>
+                      <p className="text-sm text-slate-600 dark:text-slate-400">Desafie amigos e família em hábitos saudáveis para manter a motivação em alta.</p>
                     </div>
                   </div>
                 </div>
