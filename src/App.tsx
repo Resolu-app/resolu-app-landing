@@ -140,6 +140,7 @@ function App() {
 
           <nav className="hidden md:flex items-center gap-6">
             <a href="#features" className="text-sm hover:text-[#3cb371]">Funcionalidades</a>
+            <a href="#assistente-ia" className="text-sm hover:text-[#3cb371] font-semibold text-[#3cb371]">Assistente IA</a>
             <a href="#metodologia" className="text-sm hover:text-[#3cb371]">Metodologia & Ciência</a>
             <a href="#roadmap" className="text-sm hover:text-[#3cb371]">O que vem por aí</a>
             <span className="w-px h-4 bg-slate-300 dark:bg-slate-600 mx-1" aria-hidden />
@@ -184,7 +185,8 @@ function App() {
         {menuOpen && (
           <div className="md:hidden absolute top-full left-0 right-0 bg-white/95 dark:bg-slate-950/95 backdrop-blur-md shadow-xl border-b border-slate-200 dark:border-slate-800 p-6 flex flex-col gap-3">
             <a href="#features" onClick={() => setMenuOpen(false)} className="p-3 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-[#3cb371] transition-colors">Funcionalidades</a>
-            <a href="#metodologia" onClick={() => setMenuOpen(false)} className="p-3 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-[#3cb371] transition-colors">Metodologia & ciência</a>
+            <a href="#assistente-ia" onClick={() => setMenuOpen(false)} className="p-3 rounded-lg text-sm font-semibold text-[#3cb371] hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors">Assistente IA</a>
+            <a href="#metodologia" onClick={() => setMenuOpen(false)} className="p-3 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-[#3cb371] transition-colors">Metodologia & Ciência</a>
             <a href="#roadmap" onClick={() => setMenuOpen(false)} className="p-3 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-[#3cb371] transition-colors">O que vem por aí</a>
             <div className="border-t border-slate-200 dark:border-slate-800 my-2" />
 
@@ -233,7 +235,7 @@ function App() {
           </h1>
 
           <p className="text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto">
-            Do objetivo à rotina: defina metas claras, crie hábitos e veja o resultado acumular com a nossa metodologia de planejamento anual.
+            Do objetivo à rotina: defina metas claras, crie hábitos e veja o resultado acumular com a nossa <strong className="text-[#3cb371]">ai-powered</strong> metodologia de planejamento anual.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
@@ -414,6 +416,77 @@ function App() {
           </div>
         </section>
 
+        {/* Assistente IA - Solo Section */}
+        <section id="assistente-ia" className="py-16 md:py-20 bg-white dark:bg-slate-950 border-t border-slate-100 dark:border-slate-800/60 scroll-mt-24">
+          <div className="container mx-auto px-6 flex items-center justify-center">
+            <div className="w-full max-w-6xl">
+              <div className="bg-emerald-50/50 dark:bg-slate-950 rounded-[3rem] p-8 md:p-16 relative overflow-hidden border border-emerald-100 dark:border-slate-800/60 shadow-sm dark:shadow-none">
+                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#3cb371] opacity-10 blur-[120px] -mr-40 -mt-40" />
+
+                <div className="grid lg:grid-cols-2 gap-12 items-center relative z-10">
+                  <div>
+                    <div className="inline-flex items-center gap-3 mb-6 flex-wrap">
+                      <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#3cb371]/10 dark:bg-[#3cb371]/25 text-[#3cb371] text-sm font-semibold">
+                        <Sparkles className="w-4 h-4" />
+                        <span>Powered by AI</span>
+                      </div>
+                      <span className="text-xs font-bold text-[#3cb371] bg-[#3cb371]/10 dark:bg-[#3cb371]/20 px-2.5 py-1 rounded-full border border-[#3cb371]/20 dark:border-[#3cb371]/40">
+                        Em breve
+                      </span>
+                    </div>
+
+                    <h3 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6">
+                      Seu assistente de IA para alcançar suas metas
+                    </h3>
+
+                    <div className="space-y-4 text-slate-600 dark:text-slate-400">
+                      <div className="flex gap-4">
+                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#3cb371] flex items-center justify-center mt-1">
+                          <CheckCircle2 className="w-4 h-4 text-white" />
+                        </div>
+                        <p><strong className="text-slate-900 dark:text-white">Começo é sempre difícil:</strong> Transforme objetivos ambiciosos em metas quantitativas e realizáveis com auxílio de IA.</p>
+                      </div>
+                      <div className="flex gap-4">
+                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#3cb371] flex items-center justify-center mt-1">
+                          <CheckCircle2 className="w-4 h-4 text-white" />
+                        </div>
+                        <p><strong className="text-slate-900 dark:text-white">Divisão inteligente:</strong> O agente de IA ajuda você a construir hábitos semanais a partir das suas metas.</p>
+                      </div>
+                      <div className="flex gap-4">
+                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#3cb371] flex items-center justify-center mt-1">
+                          <CheckCircle2 className="w-4 h-4 text-white" />
+                        </div>
+                        <p><strong className="text-slate-900 dark:text-white">Feedbacks semanais:</strong> Receba conselhos personalizados e ajustes baseados no seu progresso real.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-white/80 dark:bg-white/5 backdrop-blur-sm border border-slate-200 dark:border-white/10 rounded-3xl p-8 shadow-sm dark:shadow-none">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-[#3cb371] to-emerald-400 flex items-center justify-center">
+                        <Sparkles className="text-white w-6 h-6" />
+                      </div>
+                      <div>
+                        <div className="text-slate-900 dark:text-white font-bold">Assistente Resolú</div>
+                        <div className="text-[#3cb371] text-xs">Analista de Planejamento</div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-3">
+                      <div className="bg-slate-100 dark:bg-white/10 p-4 rounded-2xl rounded-tl-none text-slate-700 dark:text-slate-200 text-sm">
+                        Vi que você tem focado na <b>Saúde</b>. Um avanço de 80% em relação ao mês passado!
+                      </div>
+                      <div className="bg-[#3cb371]/10 dark:bg-[#3cb371]/20 p-4 rounded-2xl rounded-tr-none text-slate-800 dark:text-white text-sm ml-auto max-w-[80%]">
+                        Obrigado pela informação!
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section id="metodologia" className="bg-white dark:bg-slate-950 py-16 md:py-20 scroll-mt-24 border-t border-slate-100 dark:border-slate-800/60">
           <div className="container mx-auto px-6 mb-14 text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-3 flex items-center justify-center gap-2 md:gap-3 flex-wrap text-slate-900 dark:text-white">
@@ -558,84 +631,17 @@ function App() {
           </div>
         </section>
 
-        {/* O que vem por aí: IA + Comunidade */}
+
+        {/* O que vem por aí: Comunidade */}
         <section id="roadmap" className="py-16 md:py-20 bg-white dark:bg-slate-950 border-t border-slate-100 dark:border-slate-800/60 scroll-mt-24">
           <div className="container mx-auto px-6">
             <div className="text-center mb-14">
               <h2 className="text-3xl md:text-4xl font-bold mb-3 text-slate-900 dark:text-white">O que vem por aí</h2>
               <p className="text-slate-600 dark:text-slate-400 text-lg max-w-2xl mx-auto">
-                <strong className="text-[#3cb371]">IA</strong> para potencializar suas metas e <strong className="text-[#3cb371]">Comunidade</strong> para engajar sua jornada.
+                <strong className="text-blue-500">Comunidade</strong> para manter o engajamento na jornada com quem você mais importa.
               </p>
             </div>
 
-            {/* IA */}
-            <div id="ia" className="scroll-mt-24 mb-16 md:mb-20">
-              <div className="bg-green-50/50 dark:bg-slate-950 rounded-[3rem] p-8 md:p-16 relative overflow-hidden border border-green-100 dark:border-0">
-                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#3cb371] opacity-10 blur-[120px] -mr-40 -mt-40" />
-
-                <div className="grid lg:grid-cols-2 gap-12 items-center relative z-10">
-                  <div>
-                    <div className="inline-flex items-center gap-3 mb-6 flex-wrap">
-                      <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#3cb371]/10 dark:bg-[#3cb371]/25 text-[#3cb371] text-sm font-semibold">
-                        <Sparkles className="w-4 h-4" />
-                        <span>Powered by AI</span>
-                      </div>
-                      <span className="text-xs font-bold text-[#3cb371] bg-[#3cb371]/10 dark:bg-[#3cb371]/20 px-2.5 py-1 rounded-full border border-[#3cb371]/20 dark:border-[#3cb371]/40">
-                        Em breve
-                      </span>
-                    </div>
-
-                    <h3 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6">
-                      Seu assistente de IA para alcançar suas metas
-                    </h3>
-
-                    <div className="space-y-4 text-slate-600 dark:text-slate-400">
-                      <div className="flex gap-4">
-                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#3cb371] flex items-center justify-center mt-1">
-                          <CheckCircle2 className="w-4 h-4 text-white" />
-                        </div>
-                        <p><strong className="text-slate-900 dark:text-white">Começo é sempre difícil:</strong> Transforme objetivos ambiciosos em metas quantitativas e realizáveis com auxílio de IA.</p>
-                      </div>
-                      <div className="flex gap-4">
-                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#3cb371] flex items-center justify-center mt-1">
-                          <CheckCircle2 className="w-4 h-4 text-white" />
-                        </div>
-                        <p><strong className="text-slate-900 dark:text-white">Divisão inteligente:</strong> O agente de IA ajuda você a construir hábitos semanais a partir das suas metas.</p>
-                      </div>
-                      <div className="flex gap-4">
-                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#3cb371] flex items-center justify-center mt-1">
-                          <CheckCircle2 className="w-4 h-4 text-white" />
-                        </div>
-                        <p><strong className="text-slate-900 dark:text-white">Feedbacks semanais:</strong> Receba conselhos personalizados e ajustes baseados no seu progresso real.</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="bg-white/80 dark:bg-white/5 backdrop-blur-sm border border-slate-200 dark:border-white/10 rounded-3xl p-8 shadow-sm dark:shadow-none">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-[#3cb371] to-emerald-400 flex items-center justify-center">
-                        <Sparkles className="text-white w-6 h-6" />
-                      </div>
-                      <div>
-                        <div className="text-slate-900 dark:text-white font-bold">Assistente Resolú</div>
-                        <div className="text-[#3cb371] text-xs">Analista de Planejamento</div>
-                      </div>
-                    </div>
-
-                    <div className="space-y-3">
-                      <div className="bg-slate-100 dark:bg-white/10 p-4 rounded-2xl rounded-tl-none text-slate-700 dark:text-slate-200 text-sm">
-                        Vi que você tem focado na <b>Saúde</b>. Um avanço de 80% em relação ao mês passado!
-                      </div>
-                      <div className="bg-[#3cb371]/10 dark:bg-[#3cb371]/20 p-4 rounded-2xl rounded-tr-none text-slate-800 dark:text-white text-sm ml-auto max-w-[80%]">
-                        Obrigado pela informação!
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Comunidade */}
             <div className="bg-blue-50/50 dark:bg-slate-950 rounded-[3rem] p-8 md:p-16 relative overflow-hidden border border-blue-100 dark:border-slate-800/60 shadow-sm dark:shadow-none">
               <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-500 opacity-5 blur-[120px] -ml-40 -mb-40" />
 
