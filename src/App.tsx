@@ -529,63 +529,63 @@ function App() {
 
             {/* IA */}
             <div id="ia" className="scroll-mt-24 mb-16 md:mb-20">
-              <div className="bg-[#1e3d32] dark:bg-slate-950 rounded-[3rem] p-8 md:p-16 relative overflow-hidden border border-[#3cb371]/20 dark:border-0">
+              <div className="bg-green-50/50 dark:bg-slate-950 rounded-[3rem] p-8 md:p-16 relative overflow-hidden border border-green-100 dark:border-0">
                 <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#3cb371] opacity-10 blur-[120px] -mr-40 -mt-40" />
 
                 <div className="grid lg:grid-cols-2 gap-12 items-center relative z-10">
                   <div>
                     <div className="inline-flex items-center gap-3 mb-6 flex-wrap">
-                      <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#3cb371]/25 text-[#3cb371] text-sm font-semibold">
+                      <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#3cb371]/10 dark:bg-[#3cb371]/25 text-[#3cb371] text-sm font-semibold">
                         <Sparkles className="w-4 h-4" />
                         <span>Powered by AI</span>
                       </div>
-                      <span className="text-xs font-bold text-[#3cb371] bg-[#3cb371]/20 px-2.5 py-1 rounded-full border border-[#3cb371]/40">
+                      <span className="text-xs font-bold text-[#3cb371] bg-[#3cb371]/10 dark:bg-[#3cb371]/20 px-2.5 py-1 rounded-full border border-[#3cb371]/20 dark:border-[#3cb371]/40">
                         Em breve
                       </span>
                     </div>
 
-                    <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                    <h3 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6">
                       Seu assistente de IA para alcançar suas metas
                     </h3>
 
-                    <div className="space-y-4 text-slate-300 dark:text-slate-400">
+                    <div className="space-y-4 text-slate-600 dark:text-slate-400">
                       <div className="flex gap-4">
                         <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#3cb371] flex items-center justify-center mt-1">
                           <CheckCircle2 className="w-4 h-4 text-white" />
                         </div>
-                        <p><strong className="text-white">Começo é sempre difícil:</strong> Transforme objetivos ambiciosos em metas quantitativas e realizáveis com auxílio de IA.</p>
+                        <p><strong className="text-slate-900 dark:text-white">Começo é sempre difícil:</strong> Transforme objetivos ambiciosos em metas quantitativas e realizáveis com auxílio de IA.</p>
                       </div>
                       <div className="flex gap-4">
                         <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#3cb371] flex items-center justify-center mt-1">
                           <CheckCircle2 className="w-4 h-4 text-white" />
                         </div>
-                        <p><strong className="text-white">Divisão inteligente:</strong> O agente de IA ajuda você a construir hábitos semanais a partir das suas metas.</p>
+                        <p><strong className="text-slate-900 dark:text-white">Divisão inteligente:</strong> O agente de IA ajuda você a construir hábitos semanais a partir das suas metas.</p>
                       </div>
                       <div className="flex gap-4">
                         <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#3cb371] flex items-center justify-center mt-1">
                           <CheckCircle2 className="w-4 h-4 text-white" />
                         </div>
-                        <p><strong className="text-white">Feedbacks semanais:</strong> Receba conselhos personalizados e ajustes baseados no seu progresso real.</p>
+                        <p><strong className="text-slate-900 dark:text-white">Feedbacks semanais:</strong> Receba conselhos personalizados e ajustes baseados no seu progresso real.</p>
                       </div>
                     </div>
                   </div>
 
-                  <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 dark:border-white/10 rounded-3xl p-8">
+                  <div className="bg-white/80 dark:bg-white/5 backdrop-blur-sm border border-slate-200 dark:border-white/10 rounded-3xl p-8 shadow-sm dark:shadow-none">
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-[#3cb371] to-emerald-400 flex items-center justify-center">
                         <Sparkles className="text-white w-6 h-6" />
                       </div>
                       <div>
-                        <div className="text-white font-bold">Assistente Resolu</div>
+                        <div className="text-slate-900 dark:text-white font-bold">Assistente Resolu</div>
                         <div className="text-[#3cb371] text-xs">Analista de Planejamento</div>
                       </div>
                     </div>
 
                     <div className="space-y-3">
-                      <div className="bg-white/15 dark:bg-white/10 p-4 rounded-2xl rounded-tl-none text-slate-200 text-sm">
+                      <div className="bg-slate-100 dark:bg-white/10 p-4 rounded-2xl rounded-tl-none text-slate-700 dark:text-slate-200 text-sm">
                         Vi que você tem focado na <b>Saúde</b>. Um avanço de 80% em relação ao mês passado!
                       </div>
-                      <div className="bg-[#3cb371]/25 dark:bg-[#3cb371]/20 p-4 rounded-2xl rounded-tr-none text-white text-sm ml-auto max-w-[80%]">
+                      <div className="bg-[#3cb371]/10 dark:bg-[#3cb371]/20 p-4 rounded-2xl rounded-tr-none text-slate-800 dark:text-white text-sm ml-auto max-w-[80%]">
                         Obrigado pela informação!
                       </div>
                     </div>
@@ -661,11 +661,11 @@ function App() {
         {/* Final CTA - mesmo fundo do card IA */}
         <section className="py-16 md:py-20 bg-white dark:bg-slate-950 border-t border-slate-100 dark:border-slate-800/60">
           <div className="container mx-auto px-6">
-            <div className="bg-[#1e3d32] dark:bg-slate-950 rounded-[3rem] p-12 md:p-20 text-center text-white relative overflow-hidden border border-[#3cb371]/20 dark:border-0">
-              <div className="absolute top-1/2 left-1/2 w-[400px] h-[400px] bg-[#3cb371] opacity-10 blur-[100px] -translate-x-1/2 -translate-y-1/2" aria-hidden />
+            <div className="bg-slate-50 dark:bg-slate-950 rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden border border-slate-200 dark:border-0 shadow-sm dark:shadow-none">
+              <div className="absolute top-1/2 left-1/2 w-[400px] h-[400px] bg-[#3cb371] opacity-5 dark:opacity-10 blur-[100px] -translate-x-1/2 -translate-y-1/2" aria-hidden />
               <div className="relative z-10">
-                <h2 className="text-4xl md:text-5xl font-bold mb-6">Pronto para transformar seu ano?</h2>
-                <p className="text-slate-300 dark:text-slate-400 mb-10 text-lg">Junte-se a milhares de pessoas que já estão planejando com intenção.</p>
+                <h2 className="text-4xl md:text-5xl font-bold mb-6 text-slate-900 dark:text-white">Pronto para transformar seu ano?</h2>
+                <p className="text-slate-600 dark:text-slate-400 mb-10 text-lg">Junte-se a milhares de pessoas que já estão planejando com intenção.</p>
                 <a href={signupUrl} className="px-10 py-5 bg-[#3cb371] text-white rounded-full font-medium hover:bg-[#2e8b57] text-lg inline-block">
                   Começar minha jornada grátis
                 </a>
