@@ -7,12 +7,6 @@ import {
   Sparkles,
   ArrowRight,
   CheckCircle2,
-  Users2,
-  DollarSign,
-  Briefcase,
-  BookOpen,
-  HeartPulse,
-  Star,
   Share2,
   LayoutDashboard,
   Target,
@@ -29,7 +23,10 @@ import {
   Info,
   ShieldCheck,
   Gift,
-  Trophy
+  Trophy,
+  PieChart,
+  GitBranch,
+  LineChart
 } from 'lucide-react'
 
 const APP_URL = (import.meta.env.VITE_APP_URL ?? 'https://my.resolu.app').replace(/\/$/, '')
@@ -81,13 +78,35 @@ function App() {
     return () => mediaQuery.removeEventListener('change', handleChange)
   }, [theme])
 
-  const dimensions = [
-    { icon: Users2, title: "Família", desc: "Relações familiares e tempo de qualidade" },
-    { icon: DollarSign, title: "Financeiro", desc: "Finanças pessoais e investimentos" },
-    { icon: Briefcase, title: "Carreira", desc: "Crescimento profissional" },
-    { icon: BookOpen, title: "Intelectual", desc: "Aprendizado, leitura e idiomas" },
-    { icon: HeartPulse, title: "Saúde", desc: "Condicionamento, alimentação e sono" },
-    { icon: Star, title: "Realização", desc: "Propósito, sonhos e bem-estar" },
+  const coreFeatures = [
+    {
+      icon: PieChart,
+      title: '1. Dimensões & Foco',
+      desc: 'Divida sua vida nas dimensões que mais importam para você (ex: Saúde, Finanças, Carreira) para garantir um crescimento equilibrado e direcionado.',
+      colorClass: 'bg-emerald-500/10 text-emerald-500',
+      borderClass: 'hover:border-emerald-500/50'
+    },
+    {
+      icon: Target,
+      title: '2. Definição de Objetivos',
+      desc: 'Crie objetivos claros e audaciosos para cada dimensão. Estabeleça exatamente o que o sucesso significa para o seu ano de forma tangível.',
+      colorClass: 'bg-blue-500/10 text-blue-500',
+      borderClass: 'hover:border-blue-500/50'
+    },
+    {
+      icon: GitBranch,
+      title: '3. Quebra & Execução',
+      desc: 'Desdobre os grandes objetivos em Metas atingíveis, Tarefas pontuais e, o mais importante, Hábitos recorrentes para automação do sucesso.',
+      colorClass: 'bg-purple-500/10 text-purple-500',
+      borderClass: 'hover:border-purple-500/50'
+    },
+    {
+      icon: LineChart,
+      title: '4. Dashboards de Hábitos',
+      desc: 'Acompanhe seu progresso real com gráficos e dashboards diários. Marque seus check-ins de hábitos e veja a evolução macro acontecer.',
+      colorClass: 'bg-amber-500/10 text-amber-500',
+      borderClass: 'hover:border-amber-500/50'
+    }
   ]
 
   return (
@@ -328,8 +347,8 @@ function App() {
                       <Info className="w-2.5 h-2.5 md:w-3 md:h-3 text-slate-400 hidden md:block" />
                     </div>
                     <div className="space-y-1 md:space-y-2 flex-1 min-h-0">
-                      {dimensions.slice(0, 3).map((dim, i) => {
-                        const Icon = dim.icon
+                      {coreFeatures.slice(0, 3).map((feat, i) => {
+                        const Icon = feat.icon
                         const progress = [75, 60, 90][i]
                         return (
                           <div key={i} className="flex items-center gap-1.5 md:gap-2">
@@ -338,7 +357,7 @@ function App() {
                             </div>
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center justify-between mb-0.5 md:mb-1">
-                                <span className="text-[9px] md:text-[10px] text-slate-600 dark:text-slate-400 truncate">{dim.title}</span>
+                                <span className="text-[9px] md:text-[10px] text-slate-600 dark:text-slate-400 truncate">{feat.title.split('. ')[1] || feat.title}</span>
                                 <span className="text-[9px] md:text-[10px] font-semibold text-[#3cb371] ml-1">{progress}%</span>
                               </div>
                               <div className="h-1 md:h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
@@ -367,26 +386,26 @@ function App() {
           </div>
         </section>
 
-        {/* Dimensions - base */}
+        {/* Core Features Workflow */}
         <section id="features" className="py-20 bg-white dark:bg-slate-950">
           <div className="container mx-auto px-6">
-            <div className="max-w-3xl mb-12">
-              <h2 className="text-4xl font-bold mb-4">Equilíbrio em todas as áreas</h2>
+            <div className="max-w-3xl mb-12 text-center md:text-left mx-auto md:mx-0 text-balance">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Como funciona na prática</h2>
               <p className="text-lg text-slate-600 dark:text-slate-400">
-                Organizamos seus objetivos em 6 dimensões fundamentais para garantir crescimento equilibrado.
+                Uma esteira completa de engenharia comportamental: do planejamento macro à execução diária de hábitos.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {dimensions.map((dim, i) => {
-                const Icon = dim.icon
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {coreFeatures.map((feat, i) => {
+                const Icon = feat.icon
                 return (
-                  <div key={i} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 hover:border-[#3cb371]/50 transition-colors">
-                    <div className="w-12 h-12 rounded-xl bg-[#3cb371]/10 text-[#3cb371] flex items-center justify-center mb-4">
-                      <Icon className="w-6 h-6" />
+                  <div key={i} className={`bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 transition-colors ${feat.borderClass} shadow-sm dark:shadow-none flex flex-col`}>
+                    <div className={`w-14 h-14 rounded-2xl ${feat.colorClass} flex items-center justify-center mb-6`}>
+                      <Icon className="w-7 h-7" />
                     </div>
-                    <h3 className="text-xl font-bold mb-2">{dim.title}</h3>
-                    <p className="text-slate-600 dark:text-slate-400">{dim.desc}</p>
+                    <h3 className="text-xl font-bold mb-3">{feat.title}</h3>
+                    <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">{feat.desc}</p>
                   </div>
                 )
               })}
@@ -395,6 +414,13 @@ function App() {
         </section>
 
         <section id="metodologia" className="bg-white dark:bg-slate-950 py-16 md:py-20 scroll-mt-24 border-t border-slate-100 dark:border-slate-800/60">
+          <div className="container mx-auto px-6 mb-14 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-3 text-slate-900 dark:text-white">A Ciência por trás do Resolu.App</h2>
+            <p className="text-slate-600 dark:text-slate-400 text-lg max-w-2xl mx-auto">
+              Abandone a motivação vazia. Construímos o app baseados em estudos empíricos de comportamento humano.
+            </p>
+          </div>
+
           {/* Core Engine - Sistemas > Resultados */}
           <div id="sistemas" className="container mx-auto px-6 max-w-6xl scroll-mt-24">
             <div className="bg-slate-50/50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 md:p-10 shadow-sm dark:shadow-inner overflow-hidden">
