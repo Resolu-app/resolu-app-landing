@@ -185,7 +185,7 @@ function App() {
         {menuOpen && (
           <div className="md:hidden absolute top-full left-0 right-0 bg-white/95 dark:bg-slate-950/95 backdrop-blur-md shadow-xl border-b border-slate-200 dark:border-slate-800 p-6 flex flex-col gap-3">
             <a href="#features" onClick={() => setMenuOpen(false)} className="p-3 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-[#3cb371] transition-colors">Funcionalidades</a>
-            <a href="#assistente-ia" onClick={() => setMenuOpen(false)} className="p-3 rounded-lg text-sm font-semibold text-[#3cb371] hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors">Assistente IA</a>
+            <a href="#assistente-ia" onClick={() => setMenuOpen(false)} className="p-3 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors">Assistente IA</a>
             <a href="#metodologia" onClick={() => setMenuOpen(false)} className="p-3 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-[#3cb371] transition-colors">Metodologia & Ciência</a>
             <a href="#roadmap" onClick={() => setMenuOpen(false)} className="p-3 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-[#3cb371] transition-colors">O que vem por aí</a>
             <div className="border-t border-slate-200 dark:border-slate-800 my-2" />
