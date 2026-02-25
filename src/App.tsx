@@ -133,14 +133,14 @@ function App() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           {/* Logo Resolu Real */}
-          <div className="flex items-center gap-1.5 font-bold tracking-tight text-xl" style={{ fontFamily: "'Comfortaa', sans-serif" }}>
+          <a href="#" className="flex items-center gap-1.5 font-bold tracking-tight text-xl transition-opacity hover:opacity-80" style={{ fontFamily: "'Comfortaa', sans-serif" }}>
             <ResoluLogo className="w-6 h-6 text-[#3cb371]" />
             <span className="text-slate-900 dark:text-slate-100 tracking-[-0.03em]">resolu<span className="text-slate-400 dark:text-slate-500">.app</span></span>
-          </div>
+          </a>
 
           <nav className="hidden md:flex items-center gap-6">
             <a href="#features" className="text-sm hover:text-[#3cb371]">Funcionalidades</a>
-            <a href="#assistente-ia" className="text-sm hover:text-[#3cb371] font-semibold text-[#3cb371]">Assistente IA</a>
+            <a href="#assistente-ia" className="text-sm hover:text-[#3cb371]">Assistente IA</a>
             <a href="#metodologia" className="text-sm hover:text-[#3cb371]">Metodologia & Ciência</a>
             <a href="#roadmap" className="text-sm hover:text-[#3cb371]">O que vem por aí</a>
             <span className="w-px h-4 bg-slate-300 dark:bg-slate-600 mx-1" aria-hidden />
