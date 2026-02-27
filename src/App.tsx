@@ -99,15 +99,15 @@ function App() {
   const coreFeatures = [
     {
       icon: PieChart,
-      title: '1. Dimensões & Foco',
-      desc: 'Divida sua vida nas dimensões que mais importam para você (ex: Saúde, Finanças, Carreira) para garantir um crescimento equilibrado e direcionado.',
+      title: '1. Áreas da Vida & Foco',
+      desc: 'Divida sua vida nas áreas da Roda da Vida que mais importam para você (ex: Saúde, Finanças, Carreira) para garantir um crescimento equilibrado e direcionado.',
       colorClass: 'bg-emerald-500/10 text-emerald-500',
       borderClass: 'hover:border-emerald-500/50'
     },
     {
       icon: Target,
       title: '2. Definição de Objetivos',
-      desc: 'Crie objetivos claros e audaciosos para cada dimensão. Estabeleça exatamente o que o sucesso significa para o seu ano de forma tangível.',
+      desc: 'Crie objetivos claros e audaciosos para cada área. Estabeleça exatamente o que o sucesso significa para o seu ano de forma tangível.',
       colorClass: 'bg-blue-500/10 text-blue-500',
       borderClass: 'hover:border-blue-500/50'
     },
@@ -528,7 +528,7 @@ function App() {
                           <Target className="w-5 h-5 text-slate-600 dark:text-sky-400" />
                         </div>
                         <div className="text-left min-w-0 flex-1">
-                          <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-sky-400/90">Direção (O)</span>
+                          <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-sky-400/90">Direção (Objetivo)</span>
                           <p className="text-base md:text-lg font-bold mt-0.5 text-slate-800 dark:text-slate-100">Conquistar Liberdade Física e Mental</p>
                         </div>
                       </div>
@@ -576,7 +576,7 @@ function App() {
           <div className="container mx-auto px-6 max-w-4xl mt-20">
             <blockquote className="border-l-4 border-[#3cb371] bg-white/80 dark:bg-slate-800/80 p-6 md:p-8 rounded-2xl shadow-sm">
               <p className="text-lg md:text-xl font-semibold text-slate-700 dark:text-slate-300 leading-relaxed italic">
-                &quot;Unir Hábitos Atômicos(James Clear) à execução de OKRs(John Doerr) transforma metas ambiciosas em rotinas sustentáveis. O segredo: priorizar sistemas — os hábitos que você mantém — em vez de resultados isolados.&quot;
+                &quot;Unir a visão holística e espiritual da Roda da Vida (Paul J. Meyer) à execução implacável e corporativa dos OKRs (John Doerr), alicerçado no desenvolvimento pessoal dos Hábitos Atômicos (James Clear), é o nosso diferencial.&quot;
               </p>
               <div className="mt-3 text-sm text-[#3cb371] font-medium uppercase tracking-wider flex items-center gap-1.5">
                 Metodologia
@@ -717,7 +717,7 @@ function App() {
                 <div>
                   <h4 className="text-[#3cb371] font-bold uppercase text-xs tracking-widest mb-4">A Tese</h4>
                   <p className="text-sm leading-relaxed">
-                    Não somos um &quot;to-do list&quot;. Somos um sistema de engenharia comportamental que usa OKRs para alinhamento e Hábitos Atômicos para automação.
+                    Não somos um &quot;to-do list&quot;. Somos a convergência entre a visão holística da Roda da Vida, a precisão corporativa dos OKRs e o desenvolvimento atômico de hábitos.
                   </p>
                 </div>
                 <div>
@@ -729,7 +729,7 @@ function App() {
                 <div>
                   <h4 className="text-[#3cb371] font-bold uppercase text-xs tracking-widest mb-4">A Ciência</h4>
                   <p className="text-sm leading-relaxed">
-                    Baseado em James Clear (Hábitos), John Doerr (OKRs) e Mihaly Csikszentmihalyi (Flow). Metodologia com 76% de validação empírica.
+                    Baseado na tríade: Paul J. Meyer (Visão Holística), John Doerr (Foco e Execução Corporativa) e James Clear (Microcomportamentos). Metodologia com 76% de validação empírica.
                   </p>
                 </div>
               </div>
