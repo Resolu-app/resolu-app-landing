@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect } from 'react'
+import { appInsights } from './lib/appInsights'
 import { CompoundingChart, RetentionChart, FlowDiagram } from './ScientificCharts'
 import {
   Sun,
@@ -61,6 +62,14 @@ function ResoluLogo({ className = "w-6 h-6 text-[#3cb371]" }: { className?: stri
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const signupUrl = useMemo(getSignupUrl, [])
+
+  useEffect(() => {
+    const connectionString = import.meta.env.VITE_APPINSIGHTS_CONNECTION_STRING
+    if (typeof connectionString === 'string' && connectionString.length > 0) {
+      appInsights.trackPageView({ name: 'Landing Page' })
+    }
+  }, [])
+
 
   const [theme, setTheme] = useState<'light' | 'dark' | 'system'>(() => {
     if (typeof window !== 'undefined') {
