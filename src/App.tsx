@@ -25,8 +25,8 @@ import {
   ShieldCheck,
   Gift,
   Trophy,
-  PieChart,
-  GitBranch,
+  Apple,
+  LayoutGrid,
   LineChart
 } from 'lucide-react'
 
@@ -107,30 +107,30 @@ function App() {
 
   const coreFeatures = [
     {
-      icon: PieChart,
-      title: '1. Áreas da Vida & Foco',
-      desc: 'Divida sua vida nas áreas da Roda da Vida que mais importam para você (ex: Saúde, Finanças, Carreira) para garantir um crescimento equilibrado e direcionado.',
+      icon: LayoutGrid,
+      title: '1. Foco & Equilíbrio',
+      desc: 'Divida sua vida nas áreas que mais importam para você. Crescimento equilibrado entre carreira, saúde, finanças e espiritualidade.',
       colorClass: 'bg-emerald-500/10 text-emerald-500',
       borderClass: 'hover:border-emerald-500/50'
     },
     {
-      icon: Target,
-      title: '2. Definição de Objetivos',
-      desc: 'Crie objetivos claros e audaciosos para cada área. Estabeleça exatamente o que o sucesso significa para o seu ano de forma tangível.',
+      icon: Repeat,
+      title: '2. Sistemas de Conquista',
+      desc: 'Desdobre grandes objetivos em hábitos atômicos. No Resolu, o sucesso não é um evento, é um sistema diário.',
       colorClass: 'bg-blue-500/10 text-blue-500',
       borderClass: 'hover:border-blue-500/50'
     },
     {
-      icon: GitBranch,
-      title: '3. Quebra & Execução',
-      desc: 'Desdobre os grandes objetivos em Metas atingíveis, Tarefas pontuais e, o mais importante, Hábitos recorrentes para automação do sucesso.',
+      icon: Zap,
+      title: '3. Vitalidade & Saúde',
+      desc: 'Monitore o tripé da longevidade: sono, alimentação e exercício. Saiba exatamente como sua biologia afeta sua performance.',
       colorClass: 'bg-purple-500/10 text-purple-500',
       borderClass: 'hover:border-purple-500/50'
     },
     {
       icon: LineChart,
-      title: '4. Dashboards de Hábitos',
-      desc: 'Acompanhe seu progresso real com gráficos e dashboards diários. Marque seus check-ins de hábitos e veja a evolução macro acontecer.',
+      title: '4. Score Resolu AI',
+      desc: 'Nossa inteligência correlaciona seu progresso e vitalidade. Insights automáticos para você nunca perder o momentum.',
       colorClass: 'bg-amber-500/10 text-amber-500',
       borderClass: 'hover:border-amber-500/50'
     }
@@ -148,10 +148,10 @@ function App() {
           </a>
 
           <nav className="hidden md:flex items-center gap-6">
-            <a href="#features" className="text-sm hover:text-[#3cb371]">Funcionalidades</a>
+            <a href="#features" className="text-sm hover:text-[#3cb371]">Metodologia</a>
+            <a href="#score-resolu" className="text-sm hover:text-[#3cb371]">Score AI</a>
             <a href="#assistente-ia" className="text-sm hover:text-[#3cb371]">Assistente IA</a>
-            <a href="#metodologia" className="text-sm hover:text-[#3cb371]">Metodologia & Ciência</a>
-            <a href="#roadmap" className="text-sm hover:text-[#3cb371]">O que vem por aí</a>
+            <a href="#bem-estar" className="text-sm hover:text-[#3cb371]">Bem-Estar</a>
             <span className="w-px h-4 bg-slate-300 dark:bg-slate-600 mx-1" aria-hidden />
             <a href={`${APP_URL}/login`} className="text-sm hover:text-[#3cb371]">Entrar</a>
             <a href={signupUrl} className="px-4 py-2 bg-[#3cb371] text-white rounded-full text-sm font-medium hover:bg-[#2e8b57] inline-block">
@@ -193,10 +193,10 @@ function App() {
         {/* Mobile Menu */}
         {menuOpen && (
           <div className="md:hidden absolute top-full left-0 right-0 bg-white/95 dark:bg-slate-950/95 backdrop-blur-md shadow-xl border-b border-slate-200 dark:border-slate-800 p-6 flex flex-col gap-3">
-            <a href="#features" onClick={() => setMenuOpen(false)} className="p-3 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-[#3cb371] transition-colors">Funcionalidades</a>
-            <a href="#assistente-ia" onClick={() => setMenuOpen(false)} className="p-3 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors">Assistente IA</a>
-            <a href="#metodologia" onClick={() => setMenuOpen(false)} className="p-3 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-[#3cb371] transition-colors">Metodologia & Ciência</a>
-            <a href="#roadmap" onClick={() => setMenuOpen(false)} className="p-3 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-[#3cb371] transition-colors">O que vem por aí</a>
+            <a href="#features" onClick={() => setMenuOpen(false)} className="p-3 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-[#3cb371] transition-colors">Metodologia</a>
+            <a href="#score-resolu" onClick={() => setMenuOpen(false)} className="p-3 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-[#3cb371] transition-colors">Score AI</a>
+            <a href="#assistente-ia" onClick={() => setMenuOpen(false)} className="p-3 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-[#3cb371] transition-colors">Assistente IA</a>
+            <a href="#bem-estar" onClick={() => setMenuOpen(false)} className="p-3 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-[#3cb371] transition-colors">Bem-Estar</a>
             <div className="border-t border-slate-200 dark:border-slate-800 my-2" />
 
             <div className="flex items-center justify-between p-3">
@@ -240,11 +240,11 @@ function App() {
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-b from-slate-900 to-slate-600 dark:from-white dark:to-slate-400 bg-clip-text text-transparent">
-            Em 2026, suas metas saem do papel
+            A ciência da conquista e do bem-estar
           </h1>
 
           <p className="text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto">
-            Do objetivo à rotina: defina metas claras, crie hábitos e veja o resultado acumular com a nossa <strong className="text-[#3cb371]">ai-powered</strong> metodologia de planejamento anual.
+            Vá além das listas de tarefas. Una <strong className="text-[#3cb371]">foco implacável</strong> em metas com o cuidado científico do seu bem-estar através de uma plataforma <strong className="text-[#3cb371]">ai-powered</strong>.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
@@ -337,8 +337,8 @@ function App() {
                       </svg>
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="text-center">
-                          <div className="text-sm md:text-xl font-bold text-[#3cb371]">35%</div>
-                          <div className="text-[9px] md:text-xs text-slate-500">Marcos</div>
+                          <div className="text-xl md:text-3xl font-bold text-[#3cb371]">84</div>
+                          <div className="text-[9px] md:text-xs text-slate-500 font-semibold uppercase tracking-wider">Score</div>
                         </div>
                       </div>
                     </div>
@@ -425,6 +425,74 @@ function App() {
           </div>
         </section>
 
+        {/* Score Resolu - Scientific Section */}
+        <section id="score-resolu" className="py-20 bg-slate-50 dark:bg-slate-900/50 border-y border-slate-100 dark:border-slate-800/60 scroll-mt-24">
+          <div className="container mx-auto px-6">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#3cb371]/10 text-[#3cb371] text-xs font-bold uppercase tracking-wider mb-6">
+                  <Zap className="w-3 h-3" />
+                  <span>A Métrica Mestra</span>
+                </div>
+                <h2 className="text-4xl md:text-5xl font-bold mb-6 text-slate-900 dark:text-white leading-tight">
+                  Conheça o seu <br /><span className="text-[#3cb371]">Score AI</span>
+                </h2>
+                <p className="text-lg text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
+                  Diferente de apps que apenas contam tarefas, o Resolu utiliza uma <strong className="text-[#3cb371]">engine de inteligência artificial</strong> para medir seu desempenho holístico. O seu Score é o equilíbrio dinâmico entre conquista e vitalidade.
+                </p>
+
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <div className="text-2xl font-bold text-slate-900 dark:text-white">30%</div>
+                    <div className="text-sm font-semibold uppercase text-slate-500">Progresso</div>
+                    <p className="text-xs text-slate-500">Alinhamento com seus grandes marcos anuais.</p>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="text-2xl font-bold text-slate-900 dark:text-white">25%</div>
+                    <div className="text-sm font-semibold uppercase text-slate-500">Constância</div>
+                    <p className="text-xs text-slate-500">Sua disciplina em manter hábitos nos últimos 30 dias.</p>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="text-2xl font-bold text-slate-900 dark:text-white">25%</div>
+                    <div className="text-sm font-semibold uppercase text-[#3cb371]">Vitalidade</div>
+                    <p className="text-xs text-slate-500">Como você está cuidando do seu sono e bem-estar emocional.</p>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="text-2xl font-bold text-slate-900 dark:text-white">20%</div>
+                    <div className="text-sm font-semibold uppercase text-blue-500">Momentum</div>
+                    <p className="text-xs text-slate-500">Sua velocidade e tendência nos últimos 7 dias.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="relative">
+                <div className="absolute inset-0 bg-[#3cb371] opacity-10 blur-[100px] -z-10" />
+                <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-200 dark:border-slate-800 p-8 md:p-12 shadow-2xl relative overflow-hidden">
+                  <div className="flex flex-col items-center justify-center text-center">
+                    <div className="relative w-48 h-48 md:w-64 md:h-64 mb-6">
+                      <svg className="w-full h-full transform -rotate-90">
+                        <circle cx="50%" cy="50%" r="42%" fill="none" stroke="currentColor" strokeWidth="12" className="text-slate-100 dark:text-slate-800" />
+                        <circle cx="50%" cy="50%" r="42%" fill="none" stroke="currentColor" strokeWidth="12" className="text-[#3cb371]" strokeDasharray="100 100" strokeDashoffset="15" strokeLinecap="round" style={{ strokeDasharray: 'calc(2 * 3.14 * 42%)', strokeDashoffset: 'calc(2 * 3.14 * 42% * (1 - 0.85))' }} />
+                      </svg>
+                      <div className="absolute inset-0 flex flex-col items-center justify-center">
+                        <span className="text-5xl md:text-7xl font-black text-slate-900 dark:text-white">85</span>
+                        <span className="text-xs md:text-sm font-bold text-[#3cb371] uppercase tracking-widest mt-1">Ótimo Ritmo</span>
+                      </div>
+                    </div>
+                    <div className="space-y-4 w-full">
+                      <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-800">
+                        <span className="text-sm font-medium">Análise AI: Vitalidade subiu 12%</span>
+                        <span className="text-xs font-bold text-emerald-500">+12 pts</span>
+                      </div>
+                      <p className="text-sm text-slate-500 italic">"Nossa IA detectou que seu foco em sono elevou sua constância nos hábitos em 25% esta semana."</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Assistente IA - Solo Section */}
         <section id="assistente-ia" className="py-16 md:py-20 bg-white dark:bg-slate-950 border-t border-slate-100 dark:border-slate-800/60 scroll-mt-24">
           <div className="container mx-auto px-6 flex items-center justify-center">
@@ -439,13 +507,11 @@ function App() {
                         <Sparkles className="w-4 h-4" />
                         <span>Powered by AI</span>
                       </div>
-                      <span className="text-xs font-bold text-[#3cb371] bg-[#3cb371]/10 dark:bg-[#3cb371]/20 px-2.5 py-1 rounded-full border border-[#3cb371]/20 dark:border-[#3cb371]/40">
-                        Em breve
-                      </span>
                     </div>
 
+
                     <h3 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6">
-                      Seu assistente de IA para alcançar suas metas
+                      O cérebro por trás da sua evolução
                     </h3>
 
                     <div className="space-y-4 text-slate-600 dark:text-slate-400">
@@ -465,7 +531,13 @@ function App() {
                         <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#3cb371] flex items-center justify-center mt-1">
                           <CheckCircle2 className="w-4 h-4 text-white" />
                         </div>
-                        <p><strong className="text-slate-900 dark:text-white">Feedbacks semanais:</strong> Receba conselhos personalizados e ajustes baseados no seu progresso real.</p>
+                        <p>
+                          <strong className="text-slate-900 dark:text-white">Feedbacks semanais:</strong> Receba conselhos personalizados e ajustes baseados no seu progresso real.
+                          <span className="ml-2 inline-flex items-center text-[10px] font-bold text-[#3cb371] bg-[#3cb371]/10 dark:bg-[#3cb371]/20 px-1.5 py-0.5 rounded-full border border-[#3cb371]/20 dark:border-[#3cb371]/40 whitespace-nowrap">
+                            Em breve
+                          </span>
+                        </p>
+
                       </div>
                     </div>
                   </div>
@@ -476,17 +548,154 @@ function App() {
                         <Sparkles className="text-white w-6 h-6" />
                       </div>
                       <div>
-                        <div className="text-slate-900 dark:text-white font-bold">Assistente Resolú</div>
+                        <div className="text-slate-900 dark:text-white font-bold">Assistente Inteligente</div>
                         <div className="text-[#3cb371] text-xs">Analista de Planejamento</div>
                       </div>
                     </div>
 
                     <div className="space-y-3">
                       <div className="bg-slate-100 dark:bg-white/10 p-4 rounded-2xl rounded-tl-none text-slate-700 dark:text-slate-200 text-sm">
-                        Vi que você tem focado na <b>Saúde</b>. Um avanço de 80% em relação ao mês passado!
+                        Vi que você focou em <b>Saúde</b> esta semana. Sua constância subiu 80% porque você priorizou o sono!
                       </div>
                       <div className="bg-[#3cb371]/10 dark:bg-[#3cb371]/20 p-4 rounded-2xl rounded-tr-none text-slate-800 dark:text-white text-sm ml-auto max-w-[80%]">
                         Obrigado pela informação!
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Bem-Estar - New Pillar - Redesigned for Premium Look */}
+        <section id="bem-estar" className="py-24 bg-white dark:bg-slate-950 scroll-mt-24 relative overflow-hidden">
+          {/* Background decorative elements */}
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-emerald-500/5 blur-[120px] rounded-full -z-10" />
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/5 blur-[120px] rounded-full -z-10" />
+
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto text-center mb-20">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold uppercase tracking-widest mb-6">
+                <ShieldCheck className="w-3 h-3" />
+                <span>Base Biológica</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-slate-900 dark:text-white leading-tight">
+                O Tripé da Longevidade
+              </h2>
+              <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+                Sua biologia é o motor da sua performance. O Resolu monitora os três pilares que definem sua clareza mental e energia diária.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8 relative">
+              {[
+                {
+                  icon: Moon,
+                  title: 'Sono',
+                  desc: 'A base da regulação hormonal. No Resolu, o sono é o primeiro passo para um dia de alta performance.',
+                  color: 'blue',
+                  gradient: 'from-blue-500 to-indigo-600',
+                  bg: 'bg-blue-50 dark:bg-blue-500/5',
+                  border: 'border-blue-100 dark:border-blue-500/20'
+                },
+                {
+                  icon: Apple,
+                  title: 'Alimentação',
+                  desc: 'Combustível limpo para o seu cérebro. Controle inflamatório direto no seu dashboard de vitalidade.',
+                  color: 'emerald',
+                  gradient: 'from-emerald-500 to-teal-600',
+                  bg: 'bg-emerald-50 dark:bg-emerald-500/5',
+                  border: 'border-emerald-100 dark:border-emerald-500/20'
+                },
+                {
+                  icon: Flame,
+                  title: 'Movimento',
+                  desc: 'Neurogênese e foco. O exercício é o catalisador que acelera seus resultados no Score AI.',
+                  color: 'orange',
+                  gradient: 'from-orange-500 to-red-600',
+                  bg: 'bg-orange-50 dark:bg-orange-500/5',
+                  border: 'border-orange-100 dark:border-orange-500/20'
+                }
+              ].map((item, i) => {
+                const Icon = item.icon
+                return (
+                  <div
+                    key={i}
+                    className={`group p-10 rounded-[2.5rem] ${item.bg} border ${item.border} hover:shadow-2xl hover:shadow-${item.color}-500/10 transition-all duration-500 flex flex-col items-center text-center relative overflow-hidden`}
+                  >
+                    <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-5 transition-opacity blur-3xl`} />
+                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${item.gradient} text-white flex items-center justify-center mb-8 shadow-xl shadow-${item.color}-500/20 group-hover:scale-110 transition-transform duration-500`}>
+                      <Icon className="w-8 h-8" />
+                    </div>
+                    <h3 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">{item.title}</h3>
+                    <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">
+                      {item.desc}
+                    </p>
+                  </div>
+                )
+              })}
+            </div>
+
+            <div className="mt-20 p-1 md:p-1.5 rounded-[3.5rem] bg-gradient-to-r from-emerald-500/20 via-[#3cb371]/20 to-blue-500/20 shadow-2xl">
+              <div className="bg-white dark:bg-slate-900 rounded-[3rem] p-10 md:p-16 border border-white/50 dark:border-slate-800/50 backdrop-blur-3xl overflow-hidden relative">
+                <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#3cb371]/10 blur-[80px] rounded-full" />
+                <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-blue-500/10 blur-[80px] rounded-full" />
+
+                <div className="grid lg:grid-cols-2 gap-16 items-center relative z-10">
+                  <div>
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-bold uppercase tracking-widest mb-6">
+                      <Sparkles className="w-3 h-3" />
+                      <span>Análise Preditiva</span>
+                    </div>
+                    <h3 className="text-3xl md:text-4xl font-bold mb-6 text-slate-900 dark:text-white">Bem-Estar Emocional</h3>
+                    <p className="text-lg text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
+                      Não é sobre "bom ou mau". Nossa IA mapeia o equilíbrio entre sua <strong className="text-slate-900 dark:text-white">Valência</strong> e sua <strong className="text-slate-900 dark:text-white">Ativação</strong> para prever seus picos de produtividade.
+                    </p>
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-4 text-sm font-semibold text-slate-700 dark:text-slate-300">
+                        <div className="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                        </div>
+                        <span>Correlação biológica automatizada</span>
+                      </div>
+                      <div className="flex items-center gap-4 text-sm font-semibold text-slate-700 dark:text-slate-300">
+                        <div className="w-6 h-6 rounded-full bg-blue-500/20 flex items-center justify-center">
+                          <CheckCircle2 className="w-4 h-4 text-blue-500" />
+                        </div>
+                        <span>Previsão de burnout e tédio</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="p-8 rounded-[2rem] bg-slate-50 dark:bg-slate-950/50 border border-slate-100 dark:border-slate-800 shadow-inner">
+                    <div className="space-y-8">
+                      <div className="space-y-3">
+                        <div className="flex items-center justify-between text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                          <span>Valência Emocional</span>
+                          <span className="text-emerald-500">80% Positiva</span>
+                        </div>
+                        <div className="h-4 bg-slate-200 dark:bg-slate-800 rounded-full p-1 border border-slate-300 dark:border-slate-700 shadow-inner">
+                          <div className="h-full bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-full shadow-lg shadow-emerald-500/20" style={{ width: '80%' }} />
+                        </div>
+                      </div>
+
+                      <div className="space-y-3">
+                        <div className="flex items-center justify-between text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                          <span>Nível de Energia / Ativação</span>
+                          <span className="text-blue-500">65% Alta</span>
+                        </div>
+                        <div className="h-4 bg-slate-200 dark:bg-slate-800 rounded-full p-1 border border-slate-300 dark:border-slate-700 shadow-inner">
+                          <div className="h-full bg-gradient-to-r from-blue-400 to-blue-600 rounded-full shadow-lg shadow-blue-500/20" style={{ width: '65%' }} />
+                        </div>
+                      </div>
+
+                      <div className="pt-4 mt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-center">
+                        <div className="px-6 py-3 bg-emerald-500/10 border border-emerald-500/20 rounded-full">
+                          <p className="text-xs font-bold text-emerald-600 dark:text-emerald-400 text-center uppercase tracking-widest">
+                            Estado Atual: Fluxo / Motivado
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -519,10 +728,10 @@ function App() {
                     <span>Métrica Lead</span>
                   </div>
                   <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6 leading-tight">
-                    Sistemas <span className="text-[#3cb371]">&gt;</span> Resultados
+                    Identidade <span className="text-[#3cb371]">&gt;</span> Sistemas <span className="text-[#3cb371]">&gt;</span> Resultados
                   </h2>
                   <p className="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
-                    O erro comum é focar no <strong className="text-slate-700 dark:text-slate-300">Key Result (Metas)</strong>. No Resolu invertemos: o OKR dá o <strong className="text-slate-700 dark:text-slate-300">Norte</strong>, e a execução vive no <strong className="text-[#3cb371]">sistema de hábitos</strong>.
+                    A maioria falha porque foca apenas no <strong className="text-slate-700 dark:text-slate-300">Resultado (Metas)</strong>. No Resolu, unimos a execução de <strong className="text-[#3cb371]">hábitos</strong> à <strong className="text-[#3cb371]">identidade</strong>. Quando você pergunta &quot;o que uma pessoa saudável faria?&quot;, a vitalidade vira consequência.
                   </p>
                   <p className="text-slate-600 dark:text-slate-400 text-sm border-l-2 border-[#3cb371]/50 pl-4 italic">
                     Quando o hábito vira rotina, a meta é consequência.
@@ -585,7 +794,7 @@ function App() {
           <div className="container mx-auto px-6 max-w-4xl mt-20">
             <blockquote className="border-l-4 border-[#3cb371] bg-white/80 dark:bg-slate-800/80 p-6 md:p-8 rounded-2xl shadow-sm">
               <p className="text-lg md:text-xl font-semibold text-slate-700 dark:text-slate-300 leading-relaxed italic">
-                &quot;Unir a visão holística e espiritual da Roda da Vida (Paul J. Meyer) à execução implacável e corporativa dos OKRs (John Doerr), alicerçado no desenvolvimento pessoal dos Hábitos Atômicos (James Clear), é o nosso diferencial.&quot;
+                &quot;Unir a visão holística da Roda da Vida à execução dos OKRs e ao desenvolvimento de hábitos atômicos, sustentados pela ciência da longevidade e do bem-estar emocional, é o nosso diferencial.&quot;
               </p>
               <div className="mt-3 text-sm text-[#3cb371] font-medium uppercase tracking-wider flex items-center gap-1.5">
                 Metodologia
@@ -603,7 +812,7 @@ function App() {
               <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-3xl p-6 shadow-sm">
                 <h3 className="text-xl font-bold mb-4 text-slate-900 dark:text-white">Efeito Juros Compostos</h3>
                 <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">
-                  A ciência de James Clear aplicada: hábitos constantes parecem não mover o KR no início, mas geram um rompimento exponencial após o &quot;Platô do Potencial Latente&quot;.
+                  James Clear prova que 1% de melhoria diária gera resultados exponenciais. O Resolu torna o hábito <strong className="text-[#3cb371]">satisfatório</strong> ao mostrar o impacto imediato na sua vitalidade.
                 </p>
                 <CompoundingChart />
               </div>
@@ -726,7 +935,7 @@ function App() {
                 <div>
                   <h4 className="text-[#3cb371] font-bold uppercase text-xs tracking-widest mb-4">A Tese</h4>
                   <p className="text-sm leading-relaxed">
-                    Não somos um &quot;to-do list&quot;. Somos a convergência entre a visão holística da Roda da Vida, a precisão corporativa dos OKRs e o desenvolvimento atômico de hábitos.
+                    Não somos um &quot;to-do list&quot;. Somos a convergência entre a visão da Roda da Vida, a precisão dos OKRs e a satisfação imediata dos hábitos atômicos.
                   </p>
                 </div>
                 <div>
@@ -758,10 +967,10 @@ function App() {
             <div className="bg-slate-50 dark:bg-slate-950 rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden border border-slate-200 dark:border-0 shadow-sm dark:shadow-none">
               <div className="absolute top-1/2 left-1/2 w-[400px] h-[400px] bg-[#3cb371] opacity-5 dark:opacity-10 blur-[100px] -translate-x-1/2 -translate-y-1/2" aria-hidden />
               <div className="relative z-10">
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 text-slate-900 dark:text-white">Pronto para transformar seu ano?</h2>
-                <p className="text-slate-600 dark:text-slate-400 mb-10 text-lg">Junte-se a milhares de pessoas que já estão planejando com intenção.</p>
+                <h2 className="text-4xl md:text-5xl font-bold mb-6 text-slate-900 dark:text-white">A ciência da IA a serviço da sua vida</h2>
+                <p className="text-slate-600 dark:text-slate-400 mb-10 text-lg">Junte-se a quem já planeja com inteligência e vive com equilíbrio.</p>
                 <a href={signupUrl} className="px-10 py-5 bg-[#3cb371] text-white rounded-full font-medium hover:bg-[#2e8b57] text-lg inline-block">
-                  Começar minha jornada grátis
+                  Começar agora — É grátis
                 </a>
               </div>
             </div>

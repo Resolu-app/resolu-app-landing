@@ -28,6 +28,15 @@ export function CompoundingChart() {
             tension: 0.4,
           },
           {
+            label: 'Vitalidade (Bem-Estar)',
+            data: [65, 69, 74, 78, 83, 86],
+            borderColor: '#ec4899',
+            borderWidth: 2,
+            borderDash: [5, 5],
+            fill: false,
+            tension: 0.4,
+          },
+          {
             label: 'Resultado (KR)',
             data: [2, 8, 15, 30, 60, 95],
             borderColor: '#10b981',
@@ -72,12 +81,12 @@ export function RetentionChart() {
         labels: [
           ['Lista de', 'Desejos'],
           ['OKRs', 'Isolados'],
-          ['Resolu (OKRs', '+ Hábitos)'],
+          ['Resolu (Holístico)'],
         ],
         datasets: [
           {
             label: '% Sucesso Anual',
-            data: [35, 52, 76],
+            data: [35, 52, 88],
             backgroundColor: ['#94a3b8', '#3b82f6', '#10b981'],
             borderRadius: 10,
           },
