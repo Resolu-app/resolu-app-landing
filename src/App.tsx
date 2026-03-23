@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect } from 'react'
 import { appInsights } from './lib/appInsights'
 import { CompoundingChart, RetentionChart, FlowDiagram } from './ScientificCharts'
+import { useInstallPrompt } from './useInstallPrompt'
 import {
   Sun,
   Moon,
@@ -62,6 +63,22 @@ function ResoluLogo({ className = "w-6 h-6 text-[#3cb371]" }: { className?: stri
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const signupUrl = useMemo(getSignupUrl, [])
+  const { isInstallable, handleInstallClick } = useInstallPrompt()
+  const [showIosModal, setShowIosModal] = useState(false)
+
+  const onMainCtaClick = async (e: React.MouseEvent) => {
+    e.preventDefault()
+    if (isInstallable) {
+      const res = await handleInstallClick()
+      if (res === 'show_ios_modal') {
+        setShowIosModal(true)
+      } else if (res !== 'accepted') {
+        window.location.href = signupUrl
+      }
+    } else {
+      window.location.href = signupUrl
+    }
+  }
 
   useEffect(() => {
     const connectionString = import.meta.env.VITE_APPINSIGHTS_CONNECTION_STRING
@@ -138,6 +155,37 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100">
+      {/* iOS Install Modal */}
+      {showIosModal && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+          <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 md:p-8 max-w-sm w-full shadow-2xl border border-slate-200 dark:border-slate-800 relative">
+            <button onClick={() => setShowIosModal(false)} className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+              <span className="text-xl">✕</span>
+            </button>
+            <div className="w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <ResoluLogo className="w-8 h-8 text-[#3cb371]" />
+            </div>
+            <h3 className="text-xl font-bold text-center mb-2">Instalar Resolu</h3>
+            <p className="text-slate-600 dark:text-slate-400 text-sm text-center mb-6">Instale o app na sua tela inicial para uma experiência mais rápida e nativa.</p>
+            
+            <ol className="space-y-4 text-sm font-medium text-slate-700 dark:text-slate-300 mb-6">
+              <li className="flex items-center gap-3">
+                <span className="w-6 h-6 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-xs">1</span>
+                <span>Toque no ícone de <Share2 className="w-4 h-4 inline-block mx-1" /> Compartilhar no rodapé do Safari</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <span className="w-6 h-6 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-xs">2</span>
+                <span>Role para baixo e toque em <strong className="font-bold">Adicionar à Tela de Início</strong></span>
+              </li>
+            </ol>
+            
+            <button onClick={() => window.location.href = signupUrl} className="w-full py-3 text-[#3cb371] font-semibold text-sm hover:bg-[#3cb371]/10 rounded-xl transition-colors">
+              Continuar no navegador
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
@@ -154,8 +202,8 @@ function App() {
             <a href="#bem-estar" className="text-sm hover:text-[#3cb371]">Bem-Estar</a>
             <span className="w-px h-4 bg-slate-300 dark:bg-slate-600 mx-1" aria-hidden />
             <a href={`${APP_URL}/login`} className="text-sm hover:text-[#3cb371]">Entrar</a>
-            <a href={signupUrl} className="px-4 py-2 bg-[#3cb371] text-white rounded-full text-sm font-medium hover:bg-[#2e8b57] inline-block">
-              Criar conta
+            <a href={signupUrl} onClick={onMainCtaClick} className="px-4 py-2 bg-[#3cb371] text-white rounded-full text-sm font-medium hover:bg-[#2e8b57] inline-block cursor-pointer">
+              {isInstallable ? 'Baixar App' : 'Criar conta'}
             </a>
             <div className="flex items-center gap-1 bg-slate-100 dark:bg-slate-900 rounded-full p-1 ml-2 border border-slate-200 dark:border-slate-800">
               <button
@@ -248,8 +296,8 @@ function App() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-            <a href={signupUrl} className="px-8 py-4 bg-[#3cb371] text-white rounded-full font-medium hover:bg-[#2e8b57] flex items-center gap-2 inline-flex">
-              Começar agora <ArrowRight className="w-5 h-5" />
+            <a href={signupUrl} onClick={onMainCtaClick} className="px-8 py-4 bg-[#3cb371] text-white rounded-full font-medium hover:bg-[#2e8b57] flex items-center gap-2 inline-flex cursor-pointer transition-transform hover:scale-105">
+              {isInstallable ? 'Baixar o App' : 'Começar agora'} <ArrowRight className="w-5 h-5" />
             </a>
             <a href="#features" className="px-8 py-4 border-2 border-slate-300 dark:border-slate-700 rounded-full font-medium hover:bg-slate-50 dark:hover:bg-slate-900 inline-block">
               Ver como funciona
