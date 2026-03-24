@@ -29,7 +29,6 @@ import {
   LayoutGrid,
   LineChart,
   Lock,
-  KeyRound,
   Eye,
   EyeOff,
   FileCheck
