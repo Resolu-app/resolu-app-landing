@@ -31,7 +31,7 @@ import {
 } from 'lucide-react'
 
 const APP_URL = (import.meta.env.VITE_APP_URL ?? 'https://my.resolu.app').replace(/\/$/, '')
-const SIGNUP_BASE = `${APP_URL}/cadastro`
+const SIGNUP_BASE = `${APP_URL}/onboarding`
 
 function getSignupUrl(): string {
   if (typeof window === 'undefined') return SIGNUP_BASE
