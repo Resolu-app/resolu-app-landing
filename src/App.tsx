@@ -169,6 +169,7 @@ function App() {
                 onClick={() => setTheme('light')}
                 className={`p-1.5 rounded-full transition-colors ${theme === 'light' ? 'bg-white text-amber-500 shadow-sm' : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-300'}`}
                 title="Claro"
+                aria-label="Ativar tema claro"
               >
                 <Sun className="w-4 h-4" />
               </button>
@@ -176,6 +177,7 @@ function App() {
                 onClick={() => setTheme('system')}
                 className={`p-1.5 rounded-full transition-colors ${theme === 'system' ? 'bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 shadow-sm' : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-300'}`}
                 title="Sistema"
+                aria-label="Seguir tema do sistema"
               >
                 <Laptop className="w-4 h-4" />
               </button>
@@ -183,6 +185,7 @@ function App() {
                 onClick={() => setTheme('dark')}
                 className={`p-1.5 rounded-full transition-colors ${theme === 'dark' ? 'bg-slate-800 text-blue-400 shadow-sm' : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-300'}`}
                 title="Escuro"
+                aria-label="Ativar tema escuro"
               >
                 <Moon className="w-4 h-4" />
               </button>
@@ -192,6 +195,7 @@ function App() {
           <button
             className="md:hidden p-2"
             onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
           >
             {menuOpen ? '✕' : '☰'}
           </button>
@@ -309,7 +313,7 @@ function App() {
               <div className="p-3 md:p-6 flex-1 flex flex-col overflow-hidden bg-slate-50 dark:bg-slate-950">
                 {/* Greeting */}
                 <div className="flex items-center justify-between mb-2 md:mb-4">
-                  <h1 className="text-sm md:text-lg font-semibold">Bom dia, Maria!</h1>
+                  <h2 className="text-sm md:text-lg font-semibold">Bom dia, Maria!</h2>
                   <div className="flex items-center gap-2 text-xs text-slate-500">
                     <span className="hidden md:inline">Ano:</span>
                     <div className="px-2 py-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded text-xs">2025</div>
