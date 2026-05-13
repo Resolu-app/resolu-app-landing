@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "app.resolu.resolu_mobile",
+      "sha256_cert_fingerprints": [
+        "2A:CE:02:EF:FF:00:E8:5D:04:5D:10:7C:1E:DE:FD:BB:8C:25:11:FE:13:3C:95:D6:30:17:05:DF:C3:17:16:38"
+      ]
+    }
+  }
+]
