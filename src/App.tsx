@@ -31,7 +31,8 @@ import {
   Lock,
   Eye,
   EyeOff,
-  FileCheck
+  FileCheck,
+  Smartphone
 } from 'lucide-react'
 
 const APP_URL = (import.meta.env.VITE_APP_URL ?? 'https://my.resolu.app').replace(/\/$/, '')
@@ -113,28 +114,28 @@ function App() {
     {
       icon: LayoutGrid,
       title: '1. Foco & Equilíbrio',
-      desc: 'Divida sua vida nas áreas que mais importam para você. Crescimento equilibrado entre carreira, saúde, finanças e espiritualidade.',
+      desc: 'Organize sua vida nos 6 pilares que importam: saúde, trabalho, dinheiro, relações, crescimento e equilíbrio. Evolua sem deixar nada para trás.',
       colorClass: 'bg-emerald-500/10 text-emerald-500',
       borderClass: 'hover:border-emerald-500/50'
     },
     {
       icon: Repeat,
-      title: '2. Sistemas de Conquista',
-      desc: 'Desdobre grandes objetivos em hábitos atômicos. No Resolu, o sucesso não é um evento, é um sistema diário.',
+      title: '2. Hábitos Atômicos',
+      desc: 'Transforme grandes objetivos em ações diárias. No Resolu, o sucesso não é um evento — é um sistema que você constrói todo dia.',
       colorClass: 'bg-blue-500/10 text-blue-500',
       borderClass: 'hover:border-blue-500/50'
     },
     {
       icon: Zap,
-      title: '3. Vitalidade & Saúde',
-      desc: 'Monitore o tripé da longevidade: sono, alimentação e exercício. Saiba exatamente como sua biologia afeta sua performance.',
+      title: '3. Bem-Estar Integrado',
+      desc: 'Sono, alimentação e exercício conectados ao seu progresso. Com integração ao Apple Health e Health Connect direto no app.',
       colorClass: 'bg-purple-500/10 text-purple-500',
       borderClass: 'hover:border-purple-500/50'
     },
     {
       icon: LineChart,
-      title: '4. Score Resolu AI',
-      desc: 'Nossa inteligência correlaciona seu progresso e vitalidade. Insights automáticos para você nunca perder o momentum.',
+      title: '4. Score AI',
+      desc: 'Uma inteligência que correlaciona seu progresso, constância e bem-estar. Insights automáticos para você manter o ritmo.',
       colorClass: 'bg-amber-500/10 text-amber-500',
       borderClass: 'hover:border-amber-500/50'
     }
@@ -247,16 +248,16 @@ function App() {
         {/* Hero - base */}
         <section className="container mx-auto px-6 py-20 text-center bg-white dark:bg-slate-950">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#3cb371]/10 text-[#3cb371] text-sm font-medium mb-6">
-            <Sparkles className="w-4 h-4" />
-            <span>O novo padrão para planejamento anual</span>
+            <Smartphone className="w-4 h-4" />
+            <span>Agora também no seu celular</span>
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-b from-slate-900 to-slate-600 dark:from-white dark:to-slate-400 bg-clip-text text-transparent">
-            A ciência por trás das conquistas e do seu bem-estar
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-b from-slate-900 to-slate-600 dark:from-white dark:to-slate-400 bg-clip-text text-transparent" style={{ fontFamily: "'Outfit', sans-serif" }}>
+            Seus objetivos. Seus hábitos. Seu bem-estar.
           </h1>
 
-          <p className="text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto">
-            Vá além das listas de tarefas. Um <strong className="text-[#3cb371]">foco implacável</strong> em metas com o cuidado científico do seu bem-estar através de uma plataforma <strong className="text-[#3cb371]">ai-powered</strong>.
+          <p className="text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+            Do planejamento à ação diária, o Resolu conecta <strong className="text-[#3cb371]">o que você quer alcançar</strong> com o que você faz hoje — com inteligência e cuidado.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
@@ -276,6 +277,15 @@ function App() {
             <span aria-hidden>·</span>
             <span className="inline-flex items-center gap-1"><EyeOff className="w-3 h-3" /> Zero knowledge disponível</span>
           </p>
+
+          {/* Mobile App Badge */}
+          <div className="flex items-center justify-center mt-6">
+            <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 text-sm font-medium shadow-sm">
+              <Smartphone className="w-4 h-4 text-[#3cb371]" />
+              <span>App nativo em breve para iOS e Android</span>
+            </div>
+          </div>
+
           <div className="mt-20 relative group">
             <div className="absolute -inset-4 bg-gradient-to-r from-[#3cb371] to-blue-500 rounded-[2.5rem] blur-2xl opacity-10 group-hover:opacity-20 transition-opacity" />
             <div className="relative rounded-[2rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xl overflow-hidden flex flex-col h-[600px] md:h-[600px]">
@@ -316,7 +326,7 @@ function App() {
                   <h2 className="text-sm md:text-lg font-semibold">Bom dia, Maria!</h2>
                   <div className="flex items-center gap-2 text-xs text-slate-500">
                     <span className="hidden md:inline">Ano:</span>
-                    <div className="px-2 py-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded text-xs">2025</div>
+                    <div className="px-2 py-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded text-xs">2026</div>
                   </div>
                 </div>
 
@@ -423,7 +433,7 @@ function App() {
                 funciona
               </h2>
               <p className="text-lg text-slate-600 dark:text-slate-400">
-                Uma esteira completa de engenharia comportamental: do planejamento macro à execução diária de hábitos.
+                Do planejamento à ação diária. Um sistema completo para transformar intenções em resultados.
               </p>
             </div>
 
@@ -457,7 +467,7 @@ function App() {
                   Conheça o seu <br /><span className="text-[#3cb371]">Score AI</span>
                 </h2>
                 <p className="text-lg text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
-                  Diferente de apps que apenas contam tarefas, o Resolu utiliza uma <strong className="text-[#3cb371]">engine de inteligência artificial</strong> para medir seu desempenho holístico. O seu Score é o equilíbrio dinâmico entre conquista e vitalidade.
+                  Diferente de apps que apenas contam tarefas, o Resolu usa <strong className="text-[#3cb371]">inteligência artificial</strong> para entender sua evolução como um todo. O Score é o equilíbrio entre o que você conquista e como você se sente.
                 </p>
 
                 <div className="grid grid-cols-2 gap-6">
@@ -665,24 +675,24 @@ function App() {
                   <div>
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-bold uppercase tracking-widest mb-6">
                       <Sparkles className="w-3 h-3" />
-                      <span>Análise Preditiva</span>
+                      <span>Bem-Estar Inteligente</span>
                     </div>
                     <h3 className="text-3xl md:text-4xl font-bold mb-6 text-slate-900 dark:text-white">Bem-Estar Emocional</h3>
                     <p className="text-lg text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
-                      Não é sobre "bom ou mau". Nossa IA mapeia o equilíbrio entre sua <strong className="text-slate-900 dark:text-white">Valência</strong> e sua <strong className="text-slate-900 dark:text-white">Ativação</strong> para prever seus picos de produtividade.
+                      Como você se sente impacta tudo que você faz. O Resolu mapeia seu <strong className="text-slate-900 dark:text-white">humor</strong> e sua <strong className="text-slate-900 dark:text-white">energia</strong> para entender seus melhores momentos.
                     </p>
                     <div className="space-y-4">
                       <div className="flex items-center gap-4 text-sm font-semibold text-slate-700 dark:text-slate-300">
                         <div className="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center">
                           <CheckCircle2 className="w-4 h-4 text-emerald-500" />
                         </div>
-                        <span>Correlação biológica automatizada</span>
+                        <span>Conexão entre sono, humor e produtividade</span>
                       </div>
                       <div className="flex items-center gap-4 text-sm font-semibold text-slate-700 dark:text-slate-300">
                         <div className="w-6 h-6 rounded-full bg-blue-500/20 flex items-center justify-center">
                           <CheckCircle2 className="w-4 h-4 text-blue-500" />
                         </div>
-                        <span>Previsão de burnout e tédio</span>
+                        <span>Alertas de burnout e queda de energia</span>
                       </div>
                     </div>
                   </div>
@@ -691,8 +701,8 @@ function App() {
                     <div className="space-y-8">
                       <div className="space-y-3">
                         <div className="flex items-center justify-between text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-                          <span>Valência Emocional</span>
-                          <span className="text-emerald-500">80% Positiva</span>
+                          <span>Humor</span>
+                          <span className="text-emerald-500">80% Positivo</span>
                         </div>
                         <div className="h-4 bg-slate-200 dark:bg-slate-800 rounded-full p-1 border border-slate-300 dark:border-slate-700 shadow-inner">
                           <div className="h-full bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-full shadow-lg shadow-emerald-500/20" style={{ width: '80%' }} />
@@ -701,7 +711,7 @@ function App() {
 
                       <div className="space-y-3">
                         <div className="flex items-center justify-between text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-                          <span>Nível de Energia / Ativação</span>
+                          <span>Energia</span>
                           <span className="text-blue-500">65% Alta</span>
                         </div>
                         <div className="h-4 bg-slate-200 dark:bg-slate-800 rounded-full p-1 border border-slate-300 dark:border-slate-700 shadow-inner">
@@ -813,7 +823,7 @@ function App() {
           <div className="container mx-auto px-6 max-w-4xl mt-20">
             <blockquote className="border-l-4 border-[#3cb371] bg-white/80 dark:bg-slate-800/80 p-6 md:p-8 rounded-2xl shadow-sm">
               <p className="text-lg md:text-xl font-semibold text-slate-700 dark:text-slate-300 leading-relaxed italic">
-                &quot;Unir a visão holística da Roda da Vida à execução dos OKRs e ao desenvolvimento de hábitos atômicos, sustentados pela ciência da longevidade e do bem-estar emocional, é o nosso diferencial.&quot;
+                &quot;Unir os 6 Pilares de vida à execução de hábitos atômicos, sustentados pela ciência do bem-estar e pela inteligência do Score AI, é o que nos diferencia.&quot;
               </p>
               <div className="mt-3 text-sm text-[#3cb371] font-medium uppercase tracking-wider flex items-center gap-1.5">
                 Metodologia
@@ -954,7 +964,7 @@ function App() {
                 <div>
                   <h4 className="text-[#3cb371] font-bold uppercase text-xs tracking-widest mb-4">A Tese</h4>
                   <p className="text-sm leading-relaxed">
-                    Não somos um &quot;to-do list&quot;. Somos a convergência entre a visão da Roda da Vida, a precisão dos OKRs e a satisfação imediata dos hábitos atômicos.
+                    Não somos um &quot;to-do list&quot;. Somos a convergência entre os 6 Pilares de vida, a precisão dos OKRs e a satisfação imediata dos hábitos atômicos.
                   </p>
                 </div>
                 <div>
@@ -966,7 +976,7 @@ function App() {
                 <div>
                   <h4 className="text-[#3cb371] font-bold uppercase text-xs tracking-widest mb-4">A Ciência</h4>
                   <p className="text-sm leading-relaxed">
-                    Baseado na tríade: Paul J. Meyer (Visão Holística), John Doerr (Foco e Execução Corporativa) e James Clear (Microcomportamentos). Metodologia com 76% de validação empírica.
+                    Baseado na tríade: Paul J. Meyer (Equilíbrio de Vida), John Doerr (Foco e Execução) e James Clear (Hábitos Atômicos). Metodologia com 76% de validação empírica.
                   </p>
                 </div>
               </div>
@@ -1094,10 +1104,10 @@ function App() {
             <div className="bg-slate-50 dark:bg-slate-950 rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden border border-slate-200 dark:border-0 shadow-sm dark:shadow-none">
               <div className="absolute top-1/2 left-1/2 w-[400px] h-[400px] bg-[#3cb371] opacity-5 dark:opacity-10 blur-[100px] -translate-x-1/2 -translate-y-1/2" aria-hidden />
               <div className="relative z-10">
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 text-slate-900 dark:text-white">A ciência da IA a serviço da sua vida</h2>
-                <p className="text-slate-600 dark:text-slate-400 mb-10 text-lg">Junte-se a quem já planeja com inteligência e vive com equilíbrio.</p>
+                <h2 className="text-4xl md:text-5xl font-bold mb-6 text-slate-900 dark:text-white" style={{ fontFamily: "'Outfit', sans-serif" }}>Comece hoje. Evolua todo dia.</h2>
+                <p className="text-slate-600 dark:text-slate-400 mb-10 text-lg">Disponível no navegador e no seu celular. Grátis para começar.</p>
                 <a href={signupUrl} className="px-10 py-5 bg-[#3cb371] text-white rounded-full font-medium hover:bg-[#2e8b57] text-lg inline-block">
-                  Começar agora — É grátis
+                  Criar conta grátis
                 </a>
               </div>
             </div>
