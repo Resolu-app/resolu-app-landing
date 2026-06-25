@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect } from 'react'
 import { appInsights } from './lib/appInsights'
 import { CompoundingChart, RetentionChart, FlowDiagram } from './ScientificCharts'
+import { PrivacyPolicy } from './PrivacyPolicy'
 import {
   Sun,
   Moon,
@@ -67,6 +68,21 @@ function ResoluLogo({ className = "w-6 h-6 text-[#3cb371]" }: { className?: stri
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const signupUrl = useMemo(getSignupUrl, [])
+
+  const [currentHash, setCurrentHash] = useState(() => 
+    typeof window !== 'undefined' ? window.location.hash : ''
+  )
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      setCurrentHash(window.location.hash)
+      if (window.location.hash === '#politica-de-privacidade' || window.location.hash === '#/politica-de-privacidade') {
+        window.scrollTo(0, 0)
+      }
+    }
+    window.addEventListener('hashchange', handleHashChange)
+    return () => window.removeEventListener('hashchange', handleHashChange)
+  }, [])
 
   useEffect(() => {
     const connectionString = import.meta.env.VITE_APPINSIGHTS_CONNECTION_STRING
@@ -140,6 +156,12 @@ function App() {
       borderClass: 'hover:border-amber-500/50'
     }
   ]
+
+  const isPrivacyPage = currentHash === '#politica-de-privacidade' || currentHash === '#/politica-de-privacidade'
+
+  if (isPrivacyPage) {
+    return <PrivacyPolicy onBack={() => { window.location.hash = '' }} />
+  }
 
   return (
     <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100">
@@ -1130,6 +1152,11 @@ function App() {
             </span>
           </div>
           <p className="text-sm text-slate-500">© {new Date().getFullYear()} Resolu.app. Todos os direitos reservados.</p>
+          <div className="flex justify-center gap-6 mt-3 text-xs">
+            <a href="#politica-de-privacidade" className="text-slate-400 hover:text-[#3cb371] dark:text-slate-500 dark:hover:text-[#3cb371] transition-colors cursor-pointer">
+              Política de Privacidade
+            </a>
+          </div>
         </div>
       </footer>
     </div>
